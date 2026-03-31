@@ -51,9 +51,16 @@ Static mockup of an event security quote intake portal for ShieldBox Security (P
 | 019 | P3 | closed | Honeypot name _honey too obvious | Renamed to company_url with aria-hidden |
 | 020 | P3 | closed | No submission rate limiting | Added 10s timestamp guard on submit |
 | 021 | P3 | closed | Theme not reset on new quote | Added localStorage removal + applyTheme("default") on reset |
+| 022 | P2 | closed | No return visitor pre-fill | Added localStorage client data model with restore bar, 180-day TTL, dismiss state |
+| 023 | P2 | closed | No scope suggestions based on attendance | Added auto-suggest badges on scope checkboxes triggered at 500+ and 1000+ guests |
+| 024 | P2 | closed | No billing model guidance | Added "Best fit" tag on billing rows based on duration and attendance thresholds |
+| 025 | P2 | closed | No contextual next-action after validation | Added dynamic next-prompt that directs user to billing or submit based on state |
+| 026 | P3 | closed | No visual progress indicator | Added progress breadcrumb bar with 5 tracked steps and live completion dots |
+| 027 | P3 | closed | Event date defaults to blank | Auto-defaults to next Saturday; respects existing min-date constraint |
 
 ## Session Log
 
 [2026-03-18] [ShieldBox] [docs] Add AGENTS baseline
 [2026-03-23] [ShieldBox] [audit] Full 21-issue audit; wrote fix-prompts.md
 [2026-03-23] [ShieldBox] [fix] Executed all 5 phases: input hardening, submission security, a11y, XSS, email typo, theme reset
+[2026-03-31] [ShieldBox] [feature] Anticipatory UX: 5 features — contact pre-fill, scope suggestions, billing fit tags, next-action prompt, progress breadcrumb

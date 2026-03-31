@@ -643,194 +643,6 @@
     }
 
     /* =========================================================
-       SMART QUOTE ASSIST
-    ========================================================= */
-    .assist-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
-      gap: 14px;
-    }
-
-    .assist-card {
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: color-mix(in srgb, var(--surface-2) 74%, var(--surface));
-      padding: 14px;
-    }
-
-    .assist-card-title {
-      font-size: 0.74rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--accent);
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-
-    .assist-copy {
-      color: var(--ink-soft);
-      font-size: 0.84rem;
-      line-height: 1.6;
-      margin-bottom: 14px;
-    }
-
-    .assist-fields {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 8px;
-    }
-
-    .assist-field-full {
-      grid-column: 1 / -1;
-    }
-
-    .field-help {
-      color: var(--ink-soft);
-      font-size: 0.76rem;
-      line-height: 1.5;
-    }
-
-    .venue-profile {
-      margin-top: 12px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: var(--surface);
-      padding: 12px;
-    }
-
-    .venue-profile[hidden] {
-      display: none;
-    }
-
-    .venue-profile-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-
-    .venue-profile-name {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--ink);
-    }
-
-    .venue-profile-pill,
-    .estimate-pill {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 999px;
-      border: 1px solid var(--line-strong);
-      padding: 4px 9px;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .venue-profile-pill.is-repeat,
-    .estimate-pill.is-standard {
-      color: var(--ok);
-      border-color: color-mix(in srgb, var(--ok) 60%, var(--line));
-      background: color-mix(in srgb, var(--ok) 14%, transparent);
-    }
-
-    .venue-profile-pill.is-new,
-    .estimate-pill.is-review {
-      color: var(--warn);
-      border-color: color-mix(in srgb, var(--warn) 60%, var(--line));
-      background: color-mix(in srgb, var(--warn) 16%, transparent);
-    }
-
-    .estimate-pill.is-critical {
-      color: #fff;
-      border-color: color-mix(in srgb, var(--accent) 72%, var(--line));
-      background: color-mix(in srgb, var(--accent) 82%, #000);
-    }
-
-    .venue-profile-grid,
-    .estimate-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 8px;
-    }
-
-    .mini-label {
-      display: block;
-      margin-bottom: 3px;
-      color: var(--label-ink);
-      font-size: 0.64rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      font-weight: 700;
-    }
-
-    .venue-profile-value,
-    .estimate-stat strong {
-      color: var(--ink);
-      font-size: 0.92rem;
-      line-height: 1.45;
-    }
-
-    .venue-profile-note {
-      margin-top: 10px;
-      color: var(--ink-soft);
-      font-size: 0.8rem;
-      line-height: 1.6;
-    }
-
-    .estimate-head {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 12px;
-    }
-
-    .estimate-kicker {
-      color: var(--label-ink);
-      font-size: 0.68rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-weight: 700;
-    }
-
-    .estimate-value {
-      font-family: "Libre Baskerville", serif;
-      font-size: 1.4rem;
-      line-height: 1.2;
-      color: var(--ink);
-      margin-right: auto;
-    }
-
-    .estimate-stat {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--surface);
-      padding: 10px;
-    }
-
-    .estimate-flags {
-      margin-top: 12px;
-      display: grid;
-      gap: 7px;
-      padding-left: 18px;
-      color: var(--ink-soft);
-      font-size: 0.82rem;
-      line-height: 1.55;
-    }
-
-    .estimate-footnote {
-      margin-top: 12px;
-      color: var(--ink-soft);
-      font-size: 0.76rem;
-      line-height: 1.55;
-    }
-
-    /* =========================================================
        SERVICES
     ========================================================= */
     .services {
@@ -3061,258 +2873,12 @@
        RESPONSIVE
     ========================================================= */
     @media (max-width: 980px) {
-      .brand-story-grid { grid-template-columns: 1fr; }
-      .layout { grid-template-columns: 1fr; }
-      .side-stack { position: static; order: -1; }
-      .assist-grid { grid-template-columns: 1fr; }
-      .quote-flow { grid-template-columns: 1fr; }
-      /* theme picker uses fixed position, no override needed */
-      .risk-grid { grid-template-columns: 1fr; }
-      .form-grid { grid-template-columns: 1fr; }
-      .assist-fields { grid-template-columns: 1fr; }
-      .footer-note { text-align: left; max-width: none; }
-      .site-footer { flex-direction: column; }
-      .services-grid { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 640px) {
-      .trust-strip { grid-template-columns: repeat(2, 1fr); }
-      .nav-links {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        gap: 14px;
-        flex-shrink: 1;
-        min-width: 0;
-      }
-      .nav-links a {
-        white-space: nowrap;
-        flex-shrink: 0;
-        font-size: 0.7rem;
-      }
-
-      /* Hero: reduce vertical space so CTA is visible without scrolling */
-      .landing {
-        min-height: auto;
-        padding: 36px 20px 44px;
-      }
-      .hero-shield { width: 52px; height: 52px; margin-bottom: 18px; }
-      .hero-sub { font-size: 0.95rem; margin-bottom: 24px; }
-      .hero-spotlight { padding: 14px; }
-
-      /* Global spacing reduction */
-      .site-nav { padding: 0 16px; }
-      .brand-story { padding: 28px 16px 8px; }
-      .gallery { padding: 32px 16px 36px; }
-      .services { padding: 36px 16px; }
-      .quote-section { padding: 36px 16px 48px; }
-      .section-divider { padding: 0 16px; }
-      .site-footer { padding: 24px 16px 32px; }
-
-      /* Trust strip: less padding */
-      .trust-item { padding: 18px 14px; }
-      .trust-num { font-size: 1.3rem; }
-      .trust-label { font-size: 0.68rem; }
-
-      /* Touch targets: buttons minimum 44px height */
-      .btn { padding: 14px 24px; min-height: 44px; }
-      .cta { padding: 14px 22px; min-height: 44px; }
-      .tiny-action { padding: 10px 14px; min-height: 44px; }
-      .nav-cta { padding: 10px 16px; min-height: 44px; }
-
-      /* Form inputs: minimum 44px touch target */
-      .form-field input,
-      .form-field select,
-      .assist-fields input,
-      .assist-fields select {
-        padding: 10px 12px;
-        min-height: 44px;
-        font-size: 0.9rem;
-      }
-
-      /* Billing radio touch targets */
-      .billing-input { width: 20px; height: 20px; }
-      .billing-choice { min-height: 44px; }
-      .quote-jumpbar { align-items: stretch; }
-      .quote-jumpbar label { width: 100%; text-align: left; }
-      .quote-jumpbar select { width: 100%; min-width: 0; }
-
-      /* Checkbox touch targets */
-      .check-item input[type="checkbox"] {
-        width: 20px; height: 20px;
-      }
-      #scope .check-item input[type="checkbox"] {
-        width: 22px; height: 22px;
-      }
-
-      /* Section body spacing */
-      .section-body { padding: 12px; }
-      .section-head { padding: 12px; }
-
-      /* Promise and next-step cards */
-      .promise-card { padding: 14px; }
-      .next-step { padding: 18px 14px 16px; }
-
-      /* Gallery images shorter on phone */
-      .gallery-img { height: 200px; }
-
-      /* Confirm grid: stack on small screens */
-      .confirm-grid { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 480px) {
-      /* Nav: hide non-CTA links, keep only Get a Quote */
-      .nav-link-desktop { display: none; }
-      .nav-back { display: none; }
-      .nav-links { gap: 0; }
-
-      /* Hero: tighten further for 375px */
-      .landing { padding: 28px 16px 36px; }
-      .hero-shield { width: 44px; height: 44px; margin-bottom: 14px; }
-      .hero-tagline { font-size: 0.66rem; margin-bottom: 10px; }
-      .hero-sub { font-size: 0.88rem; line-height: 1.65; margin-bottom: 20px; }
-
-      /* Hero actions stack vertically */
-      .hero-actions { flex-direction: column; width: 100%; }
-      .hero-actions .btn { width: 100%; justify-content: center; }
-      .hero-spotlight-actions { flex-direction: column; align-items: stretch; }
-      .hero-spotlight-actions .btn { width: 100%; justify-content: center; }
-
-      /* Trust strip numbers */
-      .trust-item { padding: 14px 10px; }
-      .trust-num { font-size: 1.15rem; }
-      .trust-label { font-size: 0.64rem; letter-spacing: 0.04em; }
-
-      /* Sections: less internal padding */
-      .section-body { padding: 10px; }
-      .section-head { padding: 10px 12px; }
-      .intake-form { padding: 10px; }
-
-      /* Billing table: ensure no page-level overflow */
-      .billing-table-wrap { margin-left: -10px; margin-right: -10px; border-radius: 0; }
-
-      /* Simple table: also prevent page overflow */
-      .simple-table-wrap { margin-left: -10px; margin-right: -10px; border-radius: 0; }
-
-      /* Recommend box */
-      .recommend-box { padding: 12px; }
-      .recommend-row { font-size: 0.86rem; }
-
-      /* Quote intro */
-      .quote-intro-title { font-size: 1.3rem; }
-      .quote-intro-sub { font-size: 0.86rem; }
-
-      /* Gallery title */
-      .gallery-title { font-size: 1.25rem; }
-      .gallery-copy { font-size: 0.84rem; }
-      .gallery-img { height: 180px; }
-      .brand-title { font-size: 1.2rem; }
-      .brand-headline { font-size: 1.35rem; }
-      .brand-copy, .brand-meta, .services-copy { font-size: 0.84rem; }
-
-      /* Services title */
-      .services-title { font-size: 1.3rem; }
-
-      /* Promise card */
-      .promise-lead { font-size: 1.05rem; }
-
-      /* Next step title */
-      .next-step { padding: 16px 12px 14px; }
-      .next-copy { font-size: 0.86rem; }
-
-      /* Next actions stack */
-      .next-actions { flex-direction: column; width: 100%; }
-      .next-actions .cta { width: 100%; }
-
-      /* Footer */
-      .footer-brand { font-size: 0.84rem; }
-      .footer-note { font-size: 0.72rem; }
-
-      /* Venue profile grid: stack on tiny screens */
-      .venue-profile-grid,
-      .estimate-grid { grid-template-columns: 1fr; }
-
-      /* Property grid: single column */
-      .property-grid { grid-template-columns: 1fr; }
-
-      /* Assist card spacing */
-      .assist-card { padding: 12px; }
-      .assist-copy { font-size: 0.8rem; }
-
-      /* Trust strip: single column on small phones */
-      .trust-strip { grid-template-columns: 1fr; }
-      .trust-label { font-size: 0.72rem; }
-
-      /* Small label readability */
-      .section-note { font-size: 0.72rem; }
-      .risk-level { font-size: 0.72rem; }
-      .property-label { font-size: 0.72rem; }
-      .confirm-label { font-size: 0.72rem; }
-
-      /* Nav links: bump from 0.7rem for readability */
-      .nav-links a { font-size: 0.78rem; }
-
-      /* Footer note: don't shrink further */
-      .footer-note { font-size: 0.78rem; }
-
-      /* Toast: full width at bottom */
-      #toast { right: 8px; bottom: 8px; width: calc(100vw - 16px); }
-
-      /* Mobile dock */
-      body { padding-bottom: 84px; }
-      .mobile-action-dock {
-        position: fixed;
-        left: 10px;
-        right: 10px;
-        bottom: 10px;
-        z-index: 120;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-        padding: 10px;
-        border: 1px solid var(--line);
-        border-radius: 14px;
-        background: color-mix(in srgb, var(--bg) 94%, transparent);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        box-shadow: var(--shadow-soft);
-      }
-      .mobile-action-dock a {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 48px;
-        border-radius: 10px;
-        text-decoration: none;
-        font-size: 0.78rem;
-        font-weight: 700;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-      }
-      .mobile-action-dock .dock-secondary {
-        border: 1px solid var(--line-strong);
-        color: var(--ink);
-        background: var(--surface);
-      }
-      .mobile-action-dock .dock-primary {
-        border: 1px solid var(--accent);
-        color: #fff;
-        background: var(--accent);
-      }
-    }
-
-    /* =========================================================
-       REDESIGN RESPONSIVE OVERRIDES
-    ========================================================= */
-    @media (max-width: 980px) {
       .site-nav {
         width: calc(100% - 24px);
       }
 
-      .landing {
-        padding: 22px 16px 42px;
-      }
-
       .landing-grid,
+      .brand-story-grid,
       .services-head {
         grid-template-columns: 1fr;
       }
@@ -3323,7 +2889,8 @@
         max-width: none;
       }
 
-      .hero-metrics {
+      .hero-metrics,
+      .trust-strip {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
@@ -3349,18 +2916,15 @@
         grid-column: span 2;
       }
 
-      .layout {
-        grid-template-columns: 1fr;
-      }
-
-      .side-stack {
-        order: 2;
-        position: static;
-      }
-
-      .promise-points {
-        grid-template-columns: 1fr;
-      }
+      .layout { grid-template-columns: 1fr; }
+      .side-stack { position: static; order: 2; gap: 16px; }
+      .quote-flow { grid-template-columns: 1fr; }
+      .risk-grid { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .promise-points { grid-template-columns: 1fr; }
+      .footer-note { text-align: left; max-width: none; }
+      .site-footer { flex-direction: column; }
+      .services-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 640px) {
@@ -3370,14 +2934,46 @@
         padding: 10px 14px;
       }
 
+      .nav-links {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        gap: 14px;
+        flex-shrink: 1;
+        min-width: 0;
+      }
+      .nav-links a {
+        white-space: nowrap;
+        flex-shrink: 0;
+        font-size: 0.72rem;
+      }
+
       .nav-wordmark {
         font-size: 0.84rem;
         letter-spacing: 0.14em;
       }
 
       .landing {
+        min-height: auto;
         margin-top: 18px;
         padding: 16px 16px 36px;
+      }
+      .brand-story {
+        padding: 28px 16px 8px;
+      }
+      .gallery {
+        padding: 32px 16px 36px;
+      }
+      .services {
+        padding: 36px 16px;
+      }
+      .quote-section {
+        padding: 36px 16px 48px;
+      }
+      .section-divider {
+        padding: 0 16px;
+      }
+      .site-footer {
+        padding: 24px 16px 32px;
       }
 
       .hero-kicker-row {
@@ -3396,9 +2992,15 @@
       .hero-sub {
         font-size: 0.94rem;
         line-height: 1.72;
+        margin-bottom: 24px;
       }
 
       .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .hero-spotlight-actions {
         flex-direction: column;
         align-items: stretch;
       }
@@ -3435,6 +3037,33 @@
         height: 220px;
       }
 
+      .btn { padding: 14px 24px; min-height: 44px; }
+      .cta { padding: 14px 22px; min-height: 44px; }
+      .tiny-action { padding: 10px 14px; min-height: 44px; }
+      .nav-cta { padding: 10px 16px; min-height: 44px; }
+
+      .form-field input,
+      .form-field select {
+        padding: 10px 12px;
+        min-height: 44px;
+        font-size: 0.9rem;
+      }
+
+      .billing-input { width: 20px; height: 20px; }
+      .billing-choice { min-height: 44px; }
+      .quote-jumpbar { align-items: stretch; }
+      .quote-jumpbar label { width: 100%; text-align: left; }
+      .quote-jumpbar select { width: 100%; min-width: 0; }
+
+      .check-item input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+      }
+      #scope .check-item input[type="checkbox"] {
+        width: 22px;
+        height: 22px;
+      }
+
       .quote-intro,
       .section-body,
       .promise-card,
@@ -3462,6 +3091,144 @@
       .theme-picker-panel {
         right: 14px;
         width: calc(100vw - 28px);
+      }
+
+      .confirm-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-link-desktop { display: none; }
+      .nav-back { display: none; }
+      .nav-links { gap: 0; }
+      .nav-links a { font-size: 0.78rem; }
+
+      .landing {
+        padding: 28px 16px 36px;
+      }
+
+      .hero-shield {
+        width: 44px;
+        height: 44px;
+        margin-bottom: 14px;
+      }
+
+      .hero-tagline {
+        font-size: 0.66rem;
+        margin-bottom: 10px;
+      }
+
+      .hero-sub {
+        font-size: 0.88rem;
+        line-height: 1.65;
+        margin-bottom: 20px;
+      }
+
+      .trust-item { padding: 14px 10px; }
+      .trust-num { font-size: 1.15rem; }
+      .trust-label {
+        font-size: 0.72rem;
+        letter-spacing: 0.04em;
+      }
+
+      .section-body { padding: 10px; }
+      .section-head { padding: 10px 12px; }
+      .intake-form { padding: 10px; }
+
+      .billing-table-wrap,
+      .simple-table-wrap {
+        margin-left: -10px;
+        margin-right: -10px;
+        border-radius: 0;
+      }
+
+      .recommend-box { padding: 12px; }
+      .recommend-row { font-size: 0.86rem; }
+
+      .quote-intro-title { font-size: 1.3rem; }
+      .quote-intro-sub { font-size: 0.86rem; }
+
+      .gallery-title { font-size: 1.25rem; }
+      .gallery-copy { font-size: 0.84rem; }
+      .gallery-img,
+      .gallery-card-wide .gallery-img {
+        min-height: 180px;
+        height: 180px;
+      }
+
+      .brand-title { font-size: 1.2rem; }
+      .brand-headline { font-size: 1.35rem; }
+      .brand-copy,
+      .brand-meta,
+      .services-copy { font-size: 0.84rem; }
+
+      .services-title { font-size: 1.3rem; }
+      .promise-lead { font-size: 1.05rem; }
+
+      .next-step { padding: 16px 12px 14px; }
+      .next-copy { font-size: 0.86rem; }
+      .next-actions { flex-direction: column; width: 100%; }
+      .next-actions .cta { width: 100%; }
+
+      .footer-brand { font-size: 0.84rem; }
+      .footer-note { font-size: 0.78rem; }
+
+      .property-grid { grid-template-columns: 1fr; }
+
+      .section-note,
+      .risk-level,
+      .property-label,
+      .confirm-label { font-size: 0.72rem; }
+
+      #toast {
+        right: 8px;
+        bottom: 8px;
+        width: calc(100vw - 16px);
+      }
+
+      body { padding-bottom: 84px; }
+      .mobile-action-dock {
+        position: fixed;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        z-index: 120;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        padding: 10px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: color-mix(in srgb, var(--bg) 94%, transparent);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .mobile-action-dock a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        border-radius: 10px;
+        text-decoration: none;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .mobile-action-dock .dock-secondary {
+        border: 1px solid var(--line-strong);
+        color: var(--ink);
+        background: var(--surface);
+      }
+
+      .mobile-action-dock .dock-primary {
+        border: 1px solid var(--accent);
+        color: #fff;
+        background: var(--accent);
       }
     }
 
@@ -3493,6 +3260,134 @@
 
       @page { margin: 14mm; }
     }
+    /* =========================================================
+       ANTICIPATORY UX
+    ========================================================= */
+    .intake-restore {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+      padding: 10px 14px;
+      border: 1px solid color-mix(in srgb, var(--ok) 44%, var(--line));
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--ok) 8%, var(--surface));
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+    }
+    .intake-restore[hidden] { display: none; }
+    .intake-restore .tiny-action { margin-left: auto; }
+
+    .scope-suggest {
+      display: inline-block;
+      margin-top: 4px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 0.64rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-soft);
+      border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+    }
+    .scope-suggest[hidden] { display: none; }
+
+    .billing-fit-tag {
+      display: inline-block;
+      margin-left: 8px;
+      padding: 2px 7px;
+      border-radius: 999px;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ok);
+      background: color-mix(in srgb, var(--ok) 14%, transparent);
+      border: 1px solid color-mix(in srgb, var(--ok) 40%, transparent);
+      vertical-align: middle;
+    }
+    .billing-fit-tag[hidden] { display: none; }
+
+    .next-prompt {
+      margin-top: 10px;
+      font-size: 0.84rem;
+      color: var(--ok);
+      line-height: 1.5;
+    }
+    .next-prompt a {
+      color: var(--ok);
+      font-weight: 700;
+    }
+    .next-prompt[hidden] { display: none; }
+
+    .progress-bar {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 14px;
+      padding: 0;
+    }
+    .progress-step {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 10px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      text-decoration: none;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+      white-space: nowrap;
+    }
+    .progress-step:hover {
+      color: var(--ink);
+      border-color: var(--line);
+    }
+    .progress-step .step-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      border: 2px solid var(--line-strong);
+      background: transparent;
+      flex-shrink: 0;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .progress-step.is-done .step-dot {
+      background: var(--ok);
+      border-color: var(--ok);
+    }
+    .progress-step.is-done {
+      color: var(--ok);
+    }
+    .progress-sep {
+      width: 16px;
+      height: 1px;
+      background: var(--line);
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 640px) {
+      .intake-restore {
+        border-radius: 14px;
+        padding: 10px 12px;
+        font-size: 0.78rem;
+        gap: 8px;
+      }
+      .intake-restore .tiny-action {
+        margin-left: 0;
+        width: 100%;
+        text-align: center;
+      }
+      .progress-step span:not(.step-dot) { display: none; }
+      .progress-step { padding: 5px 6px; }
+      .progress-sep { width: 10px; }
+    }
+
   @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
   </style>
 </head>
@@ -3787,7 +3682,22 @@
             <h2 id="overviewHeading" class="section-title">Client &amp; Event Overview</h2>
           </div>
           <div class="section-body">
-            <div class="section-crumb"><strong>Step 2 of 2</strong><span>Complete the required request details and submit to ShieldBox ops</span></div>
+            <nav class="progress-bar" id="progressBar" aria-label="Quote progress">
+              <a href="#overview" class="progress-step" data-track="contact"><span class="step-dot"></span><span>Contact</span></a>
+              <span class="progress-sep"></span>
+              <a href="#schedule" class="progress-step" data-track="schedule"><span class="step-dot"></span><span>Schedule</span></a>
+              <span class="progress-sep"></span>
+              <a href="#scope" class="progress-step" data-track="scope"><span class="step-dot"></span><span>Scope</span></a>
+              <span class="progress-sep"></span>
+              <a href="#billing" class="progress-step" data-track="billing"><span class="step-dot"></span><span>Billing</span></a>
+              <span class="progress-sep"></span>
+              <a href="#next" class="progress-step" data-track="submit"><span class="step-dot"></span><span>Submit</span></a>
+            </nav>
+            <div class="intake-restore" id="intakeRestore" hidden>
+              <span>Welcome back — restore your last contact details?</span>
+              <button class="tiny-action" id="restoreFieldsBtn" type="button">Restore</button>
+              <button class="tiny-action" id="dismissRestoreBtn" type="button">Dismiss</button>
+            </div>
             <form id="intakeForm" class="intake-form" novalidate aria-labelledby="intakeFormTitle">
               <h3 id="intakeFormTitle" class="form-title">Required Intake Fields</h3>
               <p class="form-help">Complete the required values below. When you submit, the intake routes directly to ShieldBox proposal ops at <a href="mailto:shieldbox.sec@gmail.com">shieldbox.sec@gmail.com</a>.</p>
@@ -3852,6 +3762,7 @@
               <div class="form-actions">
                 <button id="validateIntakeButton" class="tiny-action" type="button">Check Required Fields</button>
                 <p id="validationMessage" class="validation-msg" role="status" aria-live="polite"></p>
+                <p id="nextPrompt" class="next-prompt" hidden></p>
               </div>
             </form>
 
@@ -3869,13 +3780,13 @@
                   <tr><td>Email</td><td id="summaryEmail">—</td></tr>
                   <tr><td>Phone</td><td id="summaryPhone">—</td></tr>
                   <tr><td>Event Name</td><td id="summaryEventName">—</td></tr>
-                  <tr><td>Event Type</td><td id="summaryEventType">Private Music Event</td></tr>
+                  <tr><td>Event Type</td><td id="summaryEventType">General event security request</td></tr>
                   <tr><td>Venue Address</td><td id="summaryLocation">—</td></tr>
                   <tr><td>Event Date</td><td id="summaryDate">—</td></tr>
                   <tr><td>Expected Attendance</td><td id="summaryAttendance">—</td></tr>
                   <tr><td>Coverage Hours</td><td id="summaryDuration">—</td></tr>
-                  <tr><td>Alcohol Served</td><td id="summaryAlcohol">Alcohol served</td></tr>
-                  <tr><td>VIP or Talent Present</td><td id="summaryVip">VIP or talent on site</td></tr>
+                  <tr><td>Alcohol Served</td><td id="summaryAlcohol">Not specified in intake</td></tr>
+                  <tr><td>VIP or Talent Present</td><td id="summaryVip">No VIP / talent coverage selected</td></tr>
                 </tbody>
               </table>
             </div>
@@ -3957,6 +3868,7 @@
                 <span>
                   <span class="check-label">Access Control</span>
                   <span class="check-copy">VIP areas, backstage, and credentials.</span>
+                  <span class="scope-suggest" hidden data-scope-suggest="access">Suggested for this event size</span>
                 </span>
               </label>
               <label class="check-item">
@@ -3964,6 +3876,7 @@
                 <span>
                   <span class="check-label">Front of House</span>
                   <span class="check-copy">Entry screening, bag checks, and metal detection.</span>
+                  <span class="scope-suggest" hidden data-scope-suggest="frontofhouse">Suggested for this event size</span>
                 </span>
               </label>
               <label class="check-item">
@@ -3971,6 +3884,7 @@
                 <span>
                   <span class="check-label">Perimeter</span>
                   <span class="check-copy">Roaming patrols to secure the venue boundary.</span>
+                  <span class="scope-suggest" hidden data-scope-suggest="perimeter">Suggested for 500+ guests</span>
                 </span>
               </label>
               <label class="check-item">
@@ -3978,6 +3892,7 @@
                 <span>
                   <span class="check-label">Talent or Executive Protection</span>
                   <span class="check-copy">Dedicated 1-on-1 escort for speakers or artists.</span>
+                  <span class="scope-suggest" hidden data-scope-suggest="talent">Suggested for this event size</span>
                 </span>
               </label>
               <label class="check-item">
@@ -3985,6 +3900,7 @@
                 <span>
                   <span class="check-label">Crowd Management</span>
                   <span class="check-copy">High-density area monitoring and de-escalation.</span>
+                  <span class="scope-suggest" hidden data-scope-suggest="crowd">Suggested for 500+ guests</span>
                 </span>
               </label>
             </div>
@@ -4037,7 +3953,7 @@
                 </thead>
                 <tbody id="billingRows" aria-label="Billing preference options">
                   <tr class="billing-row" data-model="hourly" data-rate="42">
-                    <td><div class="billing-model">Hourly Rate</div></td>
+                    <td><div class="billing-model">Hourly Rate <span class="billing-fit-tag" id="fitHourly" hidden>Best fit</span></div></td>
                     <td><div class="billing-desc">Best for flexible schedules ($42/hr per guard)</div></td>
                     <td>
                       <label class="billing-choice">
@@ -4047,7 +3963,7 @@
                     </td>
                   </tr>
                   <tr class="billing-row" data-model="person" data-rate="40.625">
-                    <td><div class="billing-model">Per Guard / Shift</div></td>
+                    <td><div class="billing-model">Per Guard / Shift <span class="billing-fit-tag" id="fitPerson" hidden>Best fit</span></div></td>
                     <td><div class="billing-desc">Fixed cost per guard per 8-hour shift ($325/pp)</div></td>
                     <td>
                       <label class="billing-choice">
@@ -4057,7 +3973,7 @@
                     </td>
                   </tr>
                   <tr class="billing-row is-selected" data-model="flat" data-rate="368.75">
-                    <td><div class="billing-model">Flat Event Rate</div></td>
+                    <td><div class="billing-model">Flat Event Rate <span class="billing-fit-tag" id="fitFlat" hidden>Best fit</span></div></td>
                     <td><div class="billing-desc">All-inclusive single price for the full run ($2,950)</div></td>
                     <td>
                       <label class="billing-choice">
@@ -4117,7 +4033,7 @@
         <section class="side-card" aria-labelledby="summaryHeadingAside">
           <h2 id="summaryHeadingAside" class="side-title">Summary</h2>
           <ul class="summary-list">
-            <li>Use venue intelligence to prefill location, ZIP, and event assumptions.</li>
+            <li>Capture the venue, contact, and event basics for ops review.</li>
             <li>Define coverage windows per phase (load-in, doors, strike, overnight).</li>
             <li>Select primary security functions for the quote.</li>
             <li>Pick billing model to anchor the proposal.</li>
@@ -4372,35 +4288,6 @@
         fieldSubmissionToken.value = Array.from(crypto.getRandomValues(new Uint8Array(4))).map(byte => byte.toString(16).padStart(2, "0")).join("");
       }
 
-      /* Smart quote assist */
-      const venueLookup = document.getElementById("venueLookup");
-      const venueSuggestions = document.getElementById("venueSuggestions");
-      const estimateEventType = document.getElementById("estimateEventType");
-      const estimateVenueSetting = document.getElementById("estimateVenueSetting");
-      const estimateAttendance = document.getElementById("estimateAttendance");
-      const estimateCoverageHours = document.getElementById("estimateCoverageHours");
-      const estimateAlcohol = document.getElementById("estimateAlcohol");
-      const estimateVip = document.getElementById("estimateVip");
-      const estimateZip = document.getElementById("estimateZip");
-      const estimateEndTime = document.getElementById("estimateEndTime");
-
-      const venueProfileEl = document.getElementById("venueProfile");
-      const venueProfileName = document.getElementById("venueProfileName");
-      const venueProfileAddress = document.getElementById("venueProfileAddress");
-      const venueProfileType = document.getElementById("venueProfileType");
-      const venueProfileCapacity = document.getElementById("venueProfileCapacity");
-      const venueProfileComplexity = document.getElementById("venueProfileComplexity");
-      const venueProfileNote = document.getElementById("venueProfileNote");
-      const venueProfilePill = document.getElementById("venueProfilePill");
-
-      const riskIndexValue = document.getElementById("riskIndexValue");
-      const reviewLanePill = document.getElementById("reviewLanePill");
-      const recommendedGuardsEl = document.getElementById("recommendedGuards");
-      const guardRatioEl = document.getElementById("guardRatio");
-      const priceRangeEl = document.getElementById("priceRange");
-      const reviewLaneEl = document.getElementById("reviewLane");
-      const estimateFlags = document.getElementById("estimateFlags");
-
       const riskAttendance = document.getElementById("riskAttendance");
       const riskAlcohol = document.getElementById("riskAlcohol");
       const riskCrowd = document.getElementById("riskCrowd");
@@ -4411,95 +4298,6 @@
       const staffEntryScreeners = document.getElementById("staffEntryScreeners");
       const staffOvernight = document.getElementById("staffOvernight");
       const recommendNote = document.getElementById("recommendNote");
-
-      const venueProfiles = [
-        {
-          search: "905 spring garden",
-          label: "905 Spring Garden",
-          address: "905 Spring Garden St, Philadelphia, PA 19123",
-          zip: "19123",
-          eventType: "concert",
-          setting: "indoor",
-          attendance: 320,
-          hours: 5,
-          endTime: "01:00",
-          alcohol: "yes",
-          vip: "no",
-          capacity: "320 guests",
-          complexity: "Street queue + single front entrance",
-          note: "Known live-room setup with visible front-door pressure and ID checks.",
-          repeat: true
-        },
-        {
-          search: "american street warehouse",
-          label: "American Street Warehouse",
-          address: "1425 American St, Philadelphia, PA 19147",
-          zip: "19147",
-          eventType: "private-music",
-          setting: "indoor",
-          attendance: 450,
-          hours: 6,
-          endTime: "00:30",
-          alcohol: "yes",
-          vip: "yes",
-          capacity: "450 guests",
-          complexity: "Warehouse entry with VIP split and after-hours load-out",
-          note: "Best fit for owner-led site command plus entry control and overnight coverage.",
-          repeat: true
-        },
-        {
-          search: "riverfront festival lot",
-          label: "Riverfront Festival Lot",
-          address: "301 S Christopher Columbus Blvd, Philadelphia, PA 19106",
-          zip: "19106",
-          eventType: "festival",
-          setting: "outdoor",
-          attendance: 1500,
-          hours: 8,
-          endTime: "23:30",
-          alcohol: "yes",
-          vip: "no",
-          capacity: "1,500+ guests",
-          complexity: "Open perimeter with multiple ingress points",
-          note: "Requires perimeter staffing and crowd-control heavy deployment.",
-          repeat: false
-        },
-        {
-          search: "broad street ballroom",
-          label: "Broad Street Ballroom",
-          address: "1100 S Broad St, Philadelphia, PA 19147",
-          zip: "19147",
-          eventType: "corporate",
-          setting: "indoor",
-          attendance: 220,
-          hours: 4,
-          endTime: "22:00",
-          alcohol: "no",
-          vip: "yes",
-          capacity: "220 guests",
-          complexity: "Corporate ingress, guest list enforcement, lobby coverage",
-          note: "Lower crowd volatility, but VIP arrival windows still require controlled access.",
-          repeat: false
-        }
-      ];
-
-      const zipWeights = {
-        "19106": 4,
-        "19107": 3,
-        "19121": 5,
-        "19123": 4,
-        "19125": 5,
-        "19130": 3,
-        "19147": 4
-      };
-
-      const eventTypeWeights = {
-        "private-music": 18,
-        "concert": 20,
-        "corporate": 8,
-        "festival": 25,
-        "wedding": 10
-      };
 
       function setVal(text, state) {
         valMsg.textContent = text;
@@ -4552,11 +4350,6 @@
         if (confirmationReference) confirmationReference.textContent = currentReference;
       }
 
-      function optionText(selectEl) {
-        if (!selectEl || selectEl.selectedIndex < 0) return "—";
-        return selectEl.options[selectEl.selectedIndex].textContent.trim();
-      }
-
       function formatDate(value) {
         if (!value) return "—";
         const parsed = new Date(`${value}T00:00:00`);
@@ -4596,18 +4389,19 @@
       }
 
       function syncOverviewSnapshot() {
+        const scopes = scopeSelections();
         setNodeValue(summaryOrganization, fieldOrganization && fieldOrganization.value.trim());
         setNodeValue(summaryName, fieldName && fieldName.value.trim());
         setNodeValue(summaryEmail, fieldEmail && fieldEmail.value.trim(), fieldEmail && fieldEmail.value.trim() ? `mailto:${fieldEmail.value.trim()}` : "");
         setNodeValue(summaryPhone, fieldPhone && fieldPhone.value.trim());
         setNodeValue(summaryEventName, fieldEventName && fieldEventName.value.trim());
-        setNodeValue(summaryEventType, optionText(estimateEventType));
+        setNodeValue(summaryEventType, inferEventTypeLabel(scopes));
         setNodeValue(summaryLocation, fieldLocation && fieldLocation.value.trim());
         setNodeValue(summaryDate, formatDate(fieldDate && fieldDate.value));
         setNodeValue(summaryAttendance, fieldAttendance && fieldAttendance.value ? `${fieldAttendance.value} guests` : "");
         setNodeValue(summaryDuration, fieldDuration && fieldDuration.value ? `${fieldDuration.value} hours` : "");
-        setNodeValue(summaryAlcohol, optionText(estimateAlcohol));
-        setNodeValue(summaryVip, optionText(estimateVip));
+        setNodeValue(summaryAlcohol, inferAlcoholLabel(scopes));
+        setNodeValue(summaryVip, inferVipLabel(scopes));
       }
 
       function collectCheckedLabels(selector) {
@@ -4638,67 +4432,6 @@
         el.textContent = text;
       }
 
-      function getRiskTone(score) {
-        if (score >= 78) return { tone: "high", label: "CRITICAL" };
-        if (score >= 56) return { tone: "high", label: "HIGH" };
-        if (score >= 34) return { tone: "medium", label: "MEDIUM" };
-        return { tone: "low", label: "LOW" };
-      }
-
-      function parseTimeMinutes(value) {
-        if (!value || !value.includes(":")) return null;
-        const [hours, minutes] = value.split(":").map(Number);
-        return (hours * 60) + minutes;
-      }
-
-      function populateVenueSuggestions() {
-        if (!venueSuggestions) return;
-        venueSuggestions.replaceChildren();
-        venueProfiles.forEach(profile => {
-          const option = document.createElement("option");
-          option.value = `${profile.label} — ${profile.address}`;
-          venueSuggestions.appendChild(option);
-        });
-      }
-
-      function findVenueProfile(value) {
-        const normalized = value.trim().toLowerCase();
-        if (!normalized) return null;
-        return venueProfiles.find(profile => normalized.includes(profile.search) || normalized === `${profile.label} — ${profile.address}`.toLowerCase()) || null;
-      }
-
-      function fillFromVenue(profile) {
-        if (!profile) return;
-        estimateEventType.value = profile.eventType;
-        estimateVenueSetting.value = profile.setting;
-        estimateAttendance.value = profile.attendance;
-        estimateCoverageHours.value = profile.hours;
-        estimateAlcohol.value = profile.alcohol;
-        estimateVip.value = profile.vip;
-        estimateZip.value = profile.zip;
-        estimateEndTime.value = profile.endTime;
-        if (fieldLocation) fieldLocation.value = profile.address;
-        if (fieldAttendance) fieldAttendance.value = profile.attendance;
-        syncOverviewSnapshot();
-      }
-
-      function renderVenueProfile(profile) {
-        if (!profile) {
-          venueProfileEl.hidden = true;
-          venueProfilePill.className = "venue-profile-pill";
-          return;
-        }
-        venueProfileEl.hidden = false;
-        venueProfileName.textContent = profile.label;
-        venueProfileAddress.textContent = profile.address;
-        venueProfileType.textContent = profile.eventType.replace(/-/g, " ");
-        venueProfileCapacity.textContent = profile.capacity;
-        venueProfileComplexity.textContent = profile.complexity;
-        venueProfileNote.textContent = profile.note;
-        venueProfilePill.textContent = profile.repeat ? "Repeat venue" : "New venue";
-        venueProfilePill.className = `venue-profile-pill ${profile.repeat ? "is-repeat" : "is-new"}`;
-      }
-
       function currency(value) {
         return new Intl.NumberFormat("en-US", {
           style: "currency",
@@ -4717,11 +4450,45 @@
       }
 
       function hasAlcoholScope(scopes) {
-        const matchedScope = scopes.some(input => {
+        return scopes.some(input => {
           const text = input.closest("label")?.textContent.toLowerCase() || "";
           return text.includes("bar") || text.includes("alcohol");
         });
-        return matchedScope || estimateAlcohol.value === "yes";
+      }
+
+      function hasVipScope(scopes) {
+        return scopes.some(input => {
+          const text = input.closest("label")?.textContent.toLowerCase() || "";
+          return text.includes("vip") || text.includes("talent") || text.includes("executive");
+        });
+      }
+
+      function inferEventTypeLabel(scopes) {
+        if (fieldEventName && fieldEventName.value.trim()) return "Custom event security request";
+        if (hasVipScope(scopes)) return "Talent / VIP coverage request";
+        if (fieldOrganization && fieldOrganization.value.trim()) return "Private or corporate event request";
+        return "General event security request";
+      }
+
+      function inferAlcoholLabel(scopes) {
+        return hasAlcoholScope(scopes) ? "Alcohol-related scope requested" : "Not specified in intake";
+      }
+
+      function inferVipLabel(scopes) {
+        return hasVipScope(scopes) ? "VIP or talent coverage requested" : "No VIP / talent coverage selected";
+      }
+
+      function staffCount(node) {
+        const value = node?.textContent?.trim() || "";
+        const match = value.match(/\d+/);
+        return match ? Number(match[0]) : 0;
+      }
+
+      function currentReviewLane() {
+        const overallLabel = riskOverall?.textContent?.trim().toUpperCase() || "";
+        if (overallLabel === "HIGH" || overallLabel === "CRITICAL") return "Manual review";
+        if (overallLabel === "MEDIUM") return "Ops review";
+        return "Standard review";
       }
 
       function syncEmailSuggestion() {
@@ -4752,84 +4519,6 @@
         });
         emailSuggestion.append("Did you mean ", fix, "?");
         emailSuggestion.hidden = false;
-      }
-
-      function updateEstimate() {
-        const attendance = Math.max(1, Number(estimateAttendance.value || 0));
-        const hours = Math.max(1, Number(estimateCoverageHours.value || 0));
-        const eventType = estimateEventType.value;
-        const setting = estimateVenueSetting.value;
-        const alcohol = estimateAlcohol.value === "yes";
-        const vip = estimateVip.value === "yes";
-        const zip = String(estimateZip.value || "").slice(0, 5);
-        const endMinutes = parseTimeMinutes(estimateEndTime.value);
-
-        let score = 10 + (eventTypeWeights[eventType] || 0);
-
-        if (attendance >= 1000) score += 30;
-        else if (attendance >= 600) score += 22;
-        else if (attendance >= 300) score += 14;
-        else if (attendance >= 150) score += 8;
-        else score += 3;
-
-        if (setting === "outdoor") score += 12;
-        else if (setting === "hybrid") score += 8;
-        else score += 4;
-
-        if (alcohol) score += 15;
-        if (vip) score += 10;
-        score += zipWeights[zip] || 2;
-
-        if (endMinutes !== null) {
-          if (endMinutes < 240) score += 16;
-          else if (endMinutes >= 1380) score += 10;
-        }
-
-        const overall = getRiskTone(score);
-        const attendanceRisk = getRiskTone(attendance >= 1000 ? 80 : attendance >= 600 ? 62 : attendance >= 300 ? 45 : attendance >= 150 ? 32 : 18);
-        const alcoholRisk = getRiskTone(alcohol ? 64 : 18);
-        const crowdScore = Math.min(90, (eventTypeWeights[eventType] || 0) + (attendance >= 600 ? 24 : attendance >= 300 ? 16 : 8) + (alcohol ? 8 : 0));
-        const crowdRisk = getRiskTone(crowdScore);
-        const vipRisk = getRiskTone(vip ? 50 : 14);
-        const complexityScore = (setting === "outdoor" ? 58 : setting === "hybrid" ? 45 : 28) + (zipWeights[zip] || 2);
-        const complexityRisk = getRiskTone(complexityScore);
-
-        const ratio = overall.label === "CRITICAL" ? 2.4 : overall.label === "HIGH" ? 1.8 : overall.label === "MEDIUM" ? 1.3 : 0.9;
-        const recommendedGuards = Math.max(overall.label === "CRITICAL" ? 8 : overall.label === "HIGH" ? 5 : overall.label === "MEDIUM" ? 3 : 2, Math.ceil((attendance / 100) * ratio));
-        const siteLead = attendance >= 250 || overall.label === "HIGH" || overall.label === "CRITICAL" ? 1 : 0;
-        const entryScreeners = alcohol || attendance >= 300 ? Math.max(1, Math.ceil(recommendedGuards / 3)) : 0;
-        const overnight = endMinutes !== null && endMinutes < 180 ? 1 : 0;
-        const eventSecurity = Math.max(2, recommendedGuards - entryScreeners);
-
-        const hourlyBase = overall.label === "CRITICAL" ? 68 : overall.label === "HIGH" ? 58 : overall.label === "MEDIUM" ? 48 : 40;
-        const siteLeadCost = siteLead ? 425 : 0;
-        const rangeLow = Math.round((recommendedGuards * hours * hourlyBase) + siteLeadCost + (entryScreeners * 60));
-        const rangeHigh = Math.round(rangeLow * (overall.label === "CRITICAL" ? 1.24 : overall.label === "HIGH" ? 1.18 : 1.12));
-
-        const flags = [];
-        if (attendance < 75) flags.push("Small event: verify minimum deployment before issuing a formal quote.");
-        if (attendance >= 1000) flags.push("Large-capacity event: senior ops review recommended before commitment.");
-        if (setting === "outdoor" && attendance >= 500) flags.push("Outdoor perimeter exposure increases ingress, egress, and patrol coverage needs.");
-        if (endMinutes !== null && endMinutes < 240) flags.push("After-midnight coverage increases staffing pressure and requires manual review.");
-        if (vip && alcohol && attendance >= 300) flags.push("VIP presence plus alcohol service elevates access-control and escort requirements.");
-        if (!flags.length) flags.push("Standard intake lane: suitable for fast-turn quote review.");
-
-        riskIndexValue.textContent = overall.label;
-        recommendedGuardsEl.textContent = String(recommendedGuards);
-        guardRatioEl.textContent = `${ratio.toFixed(1)} / 100`;
-        priceRangeEl.textContent = `${currency(rangeLow)} – ${currency(rangeHigh)}`;
-        reviewLaneEl.textContent = flags.length > 1 ? "Manual review" : "Standard review";
-
-        reviewLanePill.textContent = overall.label === "CRITICAL" ? "Critical review" : flags.length > 1 ? "Ops review recommended" : "Standard review lane";
-        reviewLanePill.className = `estimate-pill ${overall.label === "CRITICAL" ? "is-critical" : flags.length > 1 ? "is-review" : "is-standard"}`;
-
-        estimateFlags.replaceChildren();
-        flags.forEach(flag => {
-          const item = document.createElement("li");
-          item.textContent = flag;
-          estimateFlags.appendChild(item);
-        });
-        syncOverviewSnapshot();
       }
 
       function updateQuoteAndRisk() {
@@ -4905,8 +4594,7 @@
         if (target === fieldDuration || target === fieldAttendance || target.matches('#scope input[type="checkbox"], input[name="billingModel"]')) updateQuoteAndRisk();
         if (target === fieldDuration) syncDurationFormatNote();
         if (target === fieldAttendance) syncAttendanceWarning();
-        if (target.closest("#overview") || target.matches("#instantEstimate input, #instantEstimate select")) syncOverviewSnapshot();
-        if (target.matches("#instantEstimate input, #instantEstimate select")) updateEstimate();
+        if (target.closest("#overview") || target.matches('#scope input[type="checkbox"]')) syncOverviewSnapshot();
         if (valMsg.textContent) runValidation();
       });
 
@@ -4914,10 +4602,7 @@
         const target = e.target;
         if (!(target instanceof HTMLElement)) return;
         if (target.matches('#scope input[type="checkbox"], input[name="billingModel"], #fieldDuration, #fieldAttendance')) updateQuoteAndRisk();
-        if (target.matches("#instantEstimate input, #instantEstimate select")) {
-          updateEstimate();
-          syncOverviewSnapshot();
-        }
+        if (target.closest("#overview") || target.matches('#scope input[type="checkbox"]')) syncOverviewSnapshot();
       });
 
       fieldDuration.addEventListener("beforeinput", e => {
@@ -4935,7 +4620,6 @@
 
       fieldEmail.addEventListener("blur", syncEmailSuggestion);
 
-      populateVenueSuggestions();
       if (sectionJump) {
         sectionJump.addEventListener("change", e => {
           if (!e.target.value) return;
@@ -4948,36 +4632,6 @@
           goToSection("#overview", fieldName);
         });
       }
-      venueLookup.addEventListener("change", e => {
-        const profile = findVenueProfile(e.target.value);
-        renderVenueProfile(profile);
-        if (profile) fillFromVenue(profile);
-        updateEstimate();
-        updateQuoteAndRisk();
-      });
-      venueLookup.addEventListener("blur", e => {
-        const profile = findVenueProfile(e.target.value);
-        renderVenueProfile(profile);
-        if (profile) fillFromVenue(profile);
-        updateEstimate();
-        updateQuoteAndRisk();
-      });
-
-      [
-        estimateEventType,
-        estimateVenueSetting,
-        estimateAttendance,
-        estimateCoverageHours,
-        estimateAlcohol,
-        estimateVip,
-        estimateZip,
-        estimateEndTime
-      ].forEach(input => {
-        input.addEventListener("input", updateEstimate);
-        input.addEventListener("change", updateEstimate);
-        input.addEventListener("input", syncOverviewSnapshot);
-        input.addEventListener("change", syncOverviewSnapshot);
-      });
 
       /* Billing radios */
       const billingInputs = Array.from(document.querySelectorAll('input[name="billingModel"]'));
@@ -5029,13 +4683,11 @@
         });
       });
       document.getElementById('billingRows').setAttribute('role', 'radiogroup');
-      renderVenueProfile(findVenueProfile(venueLookup.value));
       currentReference = buildReference();
       syncReference();
       syncOverviewSnapshot();
       syncDurationFormatNote();
       syncAttendanceWarning();
-      updateEstimate();
       updateQuoteAndRisk();
 
       let toastTimer;
@@ -5075,24 +4727,21 @@
 
         const submissionReference = currentReference || buildReference();
         const data = new FormData(intakeForm);
+        const recommendedGuards = staffCount(staffSiteLead) + staffCount(staffEventSecurity) + staffCount(staffEntryScreeners) + staffCount(staffOvernight);
         data.append("_replyto", fieldEmail.value.trim());
         data.append("_template", "table");
         data.append("_url", location.href);
         data.append("reference", submissionReference);
-        data.append("event_type", optionText(estimateEventType));
-        data.append("venue_setting", optionText(estimateVenueSetting));
-        data.append("venue_lookup", venueLookup.value.trim());
-        data.append("alcohol_service", optionText(estimateAlcohol));
-        data.append("vip_or_talent", optionText(estimateVip));
-        data.append("zip_code", estimateZip.value.trim());
-        data.append("event_end_time", estimateEndTime.value || "");
+        data.append("event_type", summaryEventType.textContent.trim());
+        data.append("alcohol_service", summaryAlcohol.textContent.trim());
+        data.append("vip_or_talent", summaryVip.textContent.trim());
         data.append("schedule_windows", collectCheckedLabels('#schedule input[type="checkbox"]'));
         data.append("scope_functions", collectCheckedLabels('#scope input[type="checkbox"]'));
         data.append("billing_preference", selectedBillingModel());
-        data.append("risk_index", riskIndexValue.textContent.trim());
-        data.append("review_lane", reviewLaneEl.textContent.trim());
-        data.append("estimated_price_range", summaryEstimateRange ? summaryEstimateRange.textContent.trim() : priceRangeEl.textContent.trim());
-        data.append("recommended_guards", recommendedGuardsEl.textContent.trim());
+        data.append("risk_index", riskOverall.textContent.trim());
+        data.append("review_lane", currentReviewLane());
+        data.append("estimated_price_range", summaryEstimateRange ? summaryEstimateRange.textContent.trim() : "");
+        data.append("recommended_guards", String(recommendedGuards));
         data.append(
           "recommended_staffing",
           [
@@ -5171,12 +4820,233 @@
         localStorage.removeItem(themeKey);
         applyTheme("default");
         syncOverviewSnapshot();
-        updateEstimate();
         updateQuoteAndRisk();
         syncBilling();
         clearToast();
         requestAnimationFrame(() => fieldName.focus());
       });
+      /* ---- Anticipatory UX ---- */
+      const clientKey = `sb-client:${location.pathname.split("/").pop() || "shieldbox"}`;
+      const intakeRestore = document.getElementById("intakeRestore");
+      const restoreFieldsBtn = document.getElementById("restoreFieldsBtn");
+      const dismissRestoreBtn = document.getElementById("dismissRestoreBtn");
+      const nextPrompt = document.getElementById("nextPrompt");
+      const fitHourly = document.getElementById("fitHourly");
+      const fitPerson = document.getElementById("fitPerson");
+      const fitFlat = document.getElementById("fitFlat");
+
+      function loadClientData() {
+        try {
+          const raw = localStorage.getItem(clientKey);
+          if (!raw) return null;
+          const data = JSON.parse(raw);
+          if (data.v !== 1) { localStorage.removeItem(clientKey); return null; }
+          if (data.lastSubmission && Date.now() - data.lastSubmission.ts > 180 * 24 * 60 * 60 * 1000) {
+            localStorage.removeItem(clientKey);
+            return null;
+          }
+          return data;
+        } catch { localStorage.removeItem(clientKey); return null; }
+      }
+
+      function saveClientData() {
+        const billingChecked = document.querySelector('input[name="billingModel"]:checked');
+        const scopeChecked = Array.from(document.querySelectorAll('#scope input[type="checkbox"]:checked')).map(el => el.name);
+        const data = {
+          v: 1,
+          contact: {
+            name: fieldName.value.trim(),
+            phone: fieldPhone.value.trim(),
+            email: fieldEmail.value.trim(),
+            organization: fieldOrganization ? fieldOrganization.value.trim() : ""
+          },
+          preferences: {
+            billing: billingChecked ? billingChecked.value : "flat",
+            theme: localStorage.getItem(themeKey) || "default",
+            scopeDefaults: scopeChecked
+          },
+          lastSubmission: {
+            reference: currentReference,
+            date: fieldDate.value,
+            location: fieldLocation.value.trim(),
+            ts: Date.now()
+          },
+          dismissed: { restoreBar: false, scopeSuggestions: false }
+        };
+        localStorage.setItem(clientKey, JSON.stringify(data));
+      }
+
+      function showRestoreBar() {
+        const saved = loadClientData();
+        if (!saved || !saved.contact || !saved.contact.name) return;
+        if (saved.dismissed && saved.dismissed.restoreBar) return;
+        if (fieldName.value.trim() || fieldEmail.value.trim()) return;
+        intakeRestore.hidden = false;
+      }
+
+      function restoreFields() {
+        const saved = loadClientData();
+        if (!saved || !saved.contact) return;
+        const c = saved.contact;
+        if (c.name) fieldName.value = c.name;
+        if (c.phone) fieldPhone.value = c.phone;
+        if (c.email) fieldEmail.value = c.email;
+        if (c.organization && fieldOrganization) fieldOrganization.value = c.organization;
+        if (saved.preferences && saved.preferences.billing) {
+          const radio = document.querySelector(`input[name="billingModel"][value="${saved.preferences.billing}"]`);
+          if (radio) { radio.checked = true; radio.dispatchEvent(new Event("change", { bubbles: true })); }
+        }
+        intakeRestore.hidden = true;
+        syncOverviewSnapshot();
+        syncProgress();
+        showToast("Details restored", "Contact info loaded from your last submission.");
+      }
+
+      function dismissRestore() {
+        intakeRestore.hidden = true;
+        const saved = loadClientData();
+        if (saved) {
+          saved.dismissed = saved.dismissed || {};
+          saved.dismissed.restoreBar = true;
+          localStorage.setItem(clientKey, JSON.stringify(saved));
+        }
+      }
+
+      restoreFieldsBtn.addEventListener("click", restoreFields);
+      dismissRestoreBtn.addEventListener("click", dismissRestore);
+
+      /* Scope auto-suggestions based on attendance */
+      function syncScopeSuggestions() {
+        const attendance = Number(fieldAttendance.value || 0);
+        const badges = document.querySelectorAll("[data-scope-suggest]");
+        badges.forEach(badge => {
+          const key = badge.dataset.scopeSuggest;
+          let show = false;
+          if (attendance >= 500) {
+            show = ["crowd", "perimeter", "frontofhouse", "access"].includes(key);
+          }
+          if (attendance >= 1000) {
+            show = true;
+          }
+          const checkbox = badge.closest("label")?.querySelector('input[type="checkbox"]');
+          if (checkbox && checkbox.checked) show = false;
+          badge.hidden = !show;
+        });
+      }
+
+      /* Billing best-fit tag */
+      function syncBillingFit() {
+        const duration = Number(fieldDuration.value || 0);
+        const attendance = Number(fieldAttendance.value || 0);
+        if (fitHourly) fitHourly.hidden = true;
+        if (fitPerson) fitPerson.hidden = true;
+        if (fitFlat) fitFlat.hidden = true;
+        if (duration <= 0) return;
+        if (duration < 3) {
+          if (fitHourly) fitHourly.hidden = false;
+        } else if (duration >= 8 || attendance >= 500) {
+          if (fitFlat) fitFlat.hidden = false;
+        } else {
+          if (fitPerson) fitPerson.hidden = false;
+        }
+      }
+
+      /* Contextual next-action prompt */
+      function syncNextPrompt() {
+        if (!nextPrompt) return;
+        const valid = intakeForm.checkValidity();
+        if (!valid) { nextPrompt.hidden = true; return; }
+        const billingChecked = document.querySelector('input[name="billingModel"]:checked');
+        if (!billingChecked) {
+          nextPrompt.innerHTML = 'Fields complete &mdash; <a href="#billing">choose a billing model</a> to finish.';
+          nextPrompt.hidden = false;
+          return;
+        }
+        nextPrompt.innerHTML = 'Ready to submit &mdash; <a href="#next">send your request</a> to ShieldBox ops.';
+        nextPrompt.hidden = false;
+      }
+
+      /* Progress breadcrumb */
+      function syncProgress() {
+        const steps = document.querySelectorAll("#progressBar .progress-step");
+        steps.forEach(step => {
+          const track = step.dataset.track;
+          let done = false;
+          switch (track) {
+            case "contact":
+              done = Boolean(fieldName.value.trim() && fieldEmail.value.trim() && fieldPhone.value.trim() && fieldDate.value && fieldLocation.value.trim() && fieldDuration.value && fieldAttendance.value);
+              break;
+            case "schedule":
+              done = document.querySelectorAll('#schedule input[type="checkbox"]:checked').length > 0;
+              break;
+            case "scope":
+              done = document.querySelectorAll('#scope input[type="checkbox"]:checked').length > 0;
+              break;
+            case "billing":
+              done = Boolean(document.querySelector('input[name="billingModel"]:checked'));
+              break;
+            case "submit":
+              done = quoteSection.classList.contains("is-submitted");
+              break;
+          }
+          step.classList.toggle("is-done", done);
+        });
+      }
+
+      /* Hook into existing input/change listeners */
+      const origInputHandler = quoteSection.oninput;
+      quoteSection.addEventListener("input", () => {
+        syncScopeSuggestions();
+        syncBillingFit();
+        syncNextPrompt();
+        syncProgress();
+      });
+      quoteSection.addEventListener("change", () => {
+        syncScopeSuggestions();
+        syncBillingFit();
+        syncNextPrompt();
+        syncProgress();
+      });
+
+      /* Save client data on successful submission */
+      const origSubmitSuccess = lastSuccessfulSubmissionAt;
+      const submitObserver = new MutationObserver(() => {
+        if (quoteSection.classList.contains("is-submitted")) {
+          saveClientData();
+          syncProgress();
+          submitObserver.disconnect();
+        }
+      });
+      submitObserver.observe(quoteSection, { attributes: true, attributeFilter: ["class"] });
+
+      /* On new request, reset anticipatory state */
+      newRequestButton.addEventListener("click", () => {
+        intakeRestore.hidden = true;
+        nextPrompt.hidden = true;
+        if (fitHourly) fitHourly.hidden = true;
+        if (fitPerson) fitPerson.hidden = true;
+        if (fitFlat) fitFlat.hidden = true;
+        document.querySelectorAll("[data-scope-suggest]").forEach(b => b.hidden = true);
+        syncProgress();
+      });
+
+      /* Initial sync */
+      showRestoreBar();
+      syncScopeSuggestions();
+      syncBillingFit();
+      syncProgress();
+
+      /* Default event date to next Saturday */
+      if (fieldDate && !fieldDate.value) {
+        const today = new Date();
+        const dayOfWeek = today.getDay();
+        const daysUntilSat = (6 - dayOfWeek + 7) % 7 || 7;
+        const nextSat = new Date(today);
+        nextSat.setDate(today.getDate() + daysUntilSat);
+        const pad = n => String(n).padStart(2, "0");
+        fieldDate.value = `${nextSat.getFullYear()}-${pad(nextSat.getMonth() + 1)}-${pad(nextSat.getDate())}`;
+        syncOverviewSnapshot();
+      }
     })();
   </script>
 </body>
