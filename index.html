@@ -684,11 +684,6 @@
       transform: scale(1.02);
       filter: grayscale(0);
     }
-    @media (max-width: 700px) {
-      .gallery-grid { grid-template-columns: 1fr; }
-      .gallery-img { height: 220px; }
-    }
-
     /* =========================================================
        SERVICES
     ========================================================= */
@@ -3411,6 +3406,48 @@
       .confirm-grid {
         grid-template-columns: 1fr;
       }
+
+      /* Mobile action dock — visible at ≤640px */
+      body { padding-bottom: 84px; }
+      .mobile-action-dock {
+        position: fixed;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        z-index: 120;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 10px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: color-mix(in srgb, var(--bg) 94%, transparent);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        box-shadow: var(--shadow-soft);
+      }
+      .mobile-action-dock a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        border-radius: 10px;
+        text-decoration: none;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+      .mobile-action-dock .dock-primary {
+        border: 1px solid var(--accent);
+        color: #fff;
+        background: var(--accent);
+      }
+
+      /* Billing table — stacked on mobile */
+      .billing-table { min-width: 0; }
+
+      .svc-fit { font-size: 0.7rem; }
     }
 
     @media (max-width: 480px) {
@@ -3500,43 +3537,11 @@
         width: calc(100vw - 16px);
       }
 
-      body { padding-bottom: 84px; }
-      .mobile-action-dock {
-        position: fixed;
-        left: 10px;
-        right: 10px;
-        bottom: 10px;
-        z-index: 120;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-        padding: 10px;
-        border: 1px solid var(--line);
-        border-radius: 14px;
-        background: color-mix(in srgb, var(--bg) 94%, transparent);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        box-shadow: var(--shadow-soft);
-      }
-
-      .mobile-action-dock a {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 48px;
-        border-radius: 10px;
-        text-decoration: none;
-        font-size: 0.78rem;
-        font-weight: 700;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-      }
-
-      .mobile-action-dock .dock-primary {
-        border: 1px solid var(--accent);
-        color: #fff;
-        background: var(--accent);
-      }
+      .hero-h1 { font-size: clamp(1.95rem, 9vw, 2.35rem); }
+      .mobile-action-dock a { font-size: 0.72rem; letter-spacing: 0.03em; }
+      .hero-inline-link-wrap { font-size: 0.72rem; }
+      .hero-spotlight-media img { height: 200px; }
+      .svc-fit { font-size: 0.66rem; }
     }
 
     /* =========================================================
@@ -3875,7 +3880,7 @@
         <div class="svc-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M3 9h18"/></svg></div>
         <h3 class="svc-name">Commercial &amp; Retail Security</h3>
         <div class="svc-desc">Storefronts, warehouses, strip malls, and other commercial properties that need a reliable physical presence.</div>
-        <div class="svc-fit">Best for: retail locations, warehouses, and commercial properties needing daily or recurring coverage</div>
+        <div class="svc-fit">Best for: retail locations, warehouses, and recurring commercial coverage</div>
       </div>
       <div class="svc-card">
         <div class="svc-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
@@ -3990,15 +3995,15 @@
           </div>
           <div class="section-body">
             <nav class="progress-bar" id="progressBar" aria-label="Quote progress">
-              <a href="#overview" class="progress-step" data-track="contact"><span class="step-dot"></span><span>Contact</span></a>
+              <a href="#overview" class="progress-step" data-track="contact" aria-label="Contact"><span class="step-dot"></span><span>Contact</span></a>
               <span class="progress-sep"></span>
-              <a href="#schedule" class="progress-step" data-track="schedule"><span class="step-dot"></span><span>Schedule</span></a>
+              <a href="#schedule" class="progress-step" data-track="schedule" aria-label="Schedule"><span class="step-dot"></span><span>Schedule</span></a>
               <span class="progress-sep"></span>
-              <a href="#scope" class="progress-step" data-track="scope"><span class="step-dot"></span><span>Scope</span></a>
+              <a href="#scope" class="progress-step" data-track="scope" aria-label="Scope"><span class="step-dot"></span><span>Scope</span></a>
               <span class="progress-sep"></span>
-              <a href="#billing" class="progress-step" data-track="billing"><span class="step-dot"></span><span>Billing</span></a>
+              <a href="#billing" class="progress-step" data-track="billing" aria-label="Billing"><span class="step-dot"></span><span>Billing</span></a>
               <span class="progress-sep"></span>
-              <a href="#next" class="progress-step" data-track="submit"><span class="step-dot"></span><span>Submit</span></a>
+              <a href="#next" class="progress-step" data-track="submit" aria-label="Submit"><span class="step-dot"></span><span>Submit</span></a>
             </nav>
             <div class="intake-restore" id="intakeRestore" hidden>
               <span>Welcome back — restore your last contact details?</span>
