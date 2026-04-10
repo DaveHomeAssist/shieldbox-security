@@ -1,5 +1,7 @@
 # [2026-03-18] ShieldBox [test] Run smoke test
 
+Status: TEMPLATE - not executed
+
 ## Goal
 
 Confirm the quote-request experience still renders correctly, preserves theme behavior, and completes the primary quote flow with no obvious regression.

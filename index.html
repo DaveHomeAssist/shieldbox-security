@@ -12,20 +12,20 @@
     <meta property="og:title" content="ShieldBox Security | Philadelphia Event Security">
     <meta property="og:description" content="Request a quote for professional event security services in Philadelphia from ShieldBox Security.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://davehomeassist.github.io/shieldbox-quote-request/">
-    <meta property="og:image" content="https://davehomeassist.github.io/shieldbox-quote-request/assets/icons/favicon/android-chrome-512.png">
+    <meta property="og:url" content="https://shieldboxsecurity.com/">
+    <meta property="og:image" content="https://shieldboxsecurity.com/assets/icons/favicon/android-chrome-512.png">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="ShieldBox Security | Philadelphia Event Security">
     <meta name="twitter:description" content="Request a quote for professional event security services in Philadelphia from ShieldBox Security.">
-    <meta name="twitter:image" content="https://davehomeassist.github.io/shieldbox-quote-request/assets/icons/favicon/android-chrome-512.png">
-    <link rel="canonical" href="https://davehomeassist.github.io/shieldbox-quote-request/">
+    <meta name="twitter:image" content="https://shieldboxsecurity.com/assets/icons/favicon/android-chrome-512.png">
+    <link rel="canonical" href="https://shieldboxsecurity.com/">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": ["LocalBusiness", "SecurityService"],
       "name": "ShieldBox Security",
       "description": "Professional, armed and unarmed event security in Philadelphia. Trained personnel, visible presence, and disciplined protection for events, venues, and private clients.",
-      "url": "https://davehomeassist.github.io/shieldbox-quote-request/",
+      "url": "https://shieldboxsecurity.com/",
       "email": "shieldbox.sec@gmail.com",
       "address": {
         "@type": "PostalAddress",
@@ -69,6 +69,22 @@
       --warn: #c99647;
       --radius: 10px;
       --shadow-soft: 0 10px 28px rgba(0, 0, 0, 0.28);
+      --motion-hover: 160ms;
+      --motion-press: 90ms;
+      --motion-feedback: 180ms;
+      --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --motion-ease-press: cubic-bezier(0.3, 0, 0.2, 1);
+      --press-scale: 0.985;
+      --press-scale-soft: 0.992;
+      --hover-rise: -1px;
+      --radius-sm: 12px;
+      --radius-lg: 24px;
+      --accent-strong: #f1cb86;
+      --surface-3: #192332;
+      --gridline: rgba(255, 255, 255, 0.04);
+      --panel-shadow: 0 24px 70px rgba(0, 0, 0, 0.32);
+      --font-display: "Libre Baskerville", serif;
+      --font-body: "Libre Franklin", sans-serif;
     }
 
     body[data-theme="editorial"] {
@@ -93,6 +109,12 @@
       --ok: #3d725e;
       --warn: #9d6f2b;
       --shadow-soft: 0 10px 24px rgba(26, 17, 12, 0.08);
+      --accent-strong: #7c3a2e;
+      --surface-3: #f0ebe0;
+      --gridline: rgba(0, 0, 0, 0.04);
+      --panel-shadow: 0 16px 48px rgba(26, 17, 12, 0.10);
+      --radius-sm: 12px;
+      --radius-lg: 24px;
     }
 
     body[data-theme="slate"] {
@@ -116,6 +138,11 @@
       --accent-soft: rgba(47, 93, 155, 0.16);
       --ok: #4b9b83;
       --warn: #b7934b;
+      --shadow-soft: 0 10px 28px rgba(0, 0, 0, 0.28);
+      --accent-strong: #7da8d4;
+      --surface-3: #1e2939;
+      --gridline: rgba(255, 255, 255, 0.04);
+      --panel-shadow: 0 24px 70px rgba(0, 0, 0, 0.32);
     }
 
     body[data-theme="obsidian"] {
@@ -140,6 +167,10 @@
       --ok: #5a9a6e;
       --warn: #c4943a;
       --shadow-soft: 0 10px 28px rgba(0, 0, 0, 0.4);
+      --accent-strong: #d4943a;
+      --surface-3: #23201b;
+      --gridline: rgba(255, 255, 255, 0.04);
+      --panel-shadow: 0 24px 70px rgba(0, 0, 0, 0.40);
     }
 
     body[data-theme="arctic"] {
@@ -164,6 +195,10 @@
       --ok: #287a50;
       --warn: #9a7020;
       --shadow-soft: 0 8px 24px rgba(20, 28, 43, 0.06);
+      --accent-strong: #1e5090;
+      --surface-3: #edf1f7;
+      --gridline: rgba(0, 0, 0, 0.04);
+      --panel-shadow: 0 16px 48px rgba(20, 28, 43, 0.08);
     }
 
     body[data-theme="midnight"] {
@@ -188,6 +223,10 @@
       --ok: #38a070;
       --warn: #c49040;
       --shadow-soft: 0 10px 28px rgba(0, 0, 0, 0.45);
+      --accent-strong: #e8a830;
+      --surface-3: #172035;
+      --gridline: rgba(255, 255, 255, 0.03);
+      --panel-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
     }
 
     body[data-theme="concrete"] {
@@ -212,6 +251,10 @@
       --ok: #3a9a68;
       --warn: #c4943a;
       --shadow-soft: 0 10px 28px rgba(0, 0, 0, 0.35);
+      --accent-strong: #4aaa6a;
+      --surface-3: #2c2f32;
+      --gridline: rgba(255, 255, 255, 0.04);
+      --panel-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
     }
 
     body[data-theme="parchment"] {
@@ -236,6 +279,10 @@
       --ok: #3a6e4e;
       --warn: #8a6420;
       --shadow-soft: 0 8px 20px rgba(42, 32, 24, 0.06);
+      --accent-strong: #6a2a1e;
+      --surface-3: #f2ede4;
+      --gridline: rgba(0, 0, 0, 0.03);
+      --panel-shadow: 0 16px 48px rgba(42, 32, 24, 0.08);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -243,7 +290,7 @@
 
     body {
       min-height: 100vh;
-      font-family: "Libre Franklin", sans-serif;
+      font-family: var(--font-body);
       background: var(--bg);
       color: var(--ink);
       line-height: 1.6;
@@ -303,7 +350,7 @@
     .nav-back:hover { opacity: 1; }
 
     .nav-wordmark {
-      font-family: "Libre Franklin", sans-serif;
+      font-family: var(--font-body);
       font-size: 1.05rem; font-weight: 600;
       letter-spacing: 0.02em; text-transform: lowercase;
     }
@@ -377,7 +424,7 @@
     }
 
     .hero-h1 {
-      font-family: "Libre Baskerville", serif;
+      font-family: var(--font-display);
       font-size: clamp(2.2rem, 5vw, 3.6rem);
       font-weight: 700; line-height: 1.12;
       letter-spacing: -0.015em;
@@ -417,7 +464,7 @@
     }
 
     .hero-spotlight-title {
-      font-family: "Libre Baskerville", serif;
+      font-family: var(--font-display);
       font-size: 1.2rem;
       line-height: 1.35;
       margin-bottom: 6px;
@@ -484,7 +531,7 @@
     }
 
     .trust-num {
-      font-family: "Libre Baskerville", serif;
+      font-family: var(--font-display);
       font-size: 1.6rem; font-weight: 700;
       color: var(--accent);
       margin-bottom: 4px;
@@ -539,7 +586,7 @@
     }
 
     .brand-title {
-      font-family: "Libre Baskerville", serif;
+      font-family: var(--font-display);
       font-size: 1.45rem;
       line-height: 1.35;
       margin-bottom: 10px;
@@ -562,7 +609,7 @@
     }
 
     .brand-headline {
-      font-family: "Libre Baskerville", serif;
+      font-family: var(--font-display);
       font-size: clamp(1.55rem, 3vw, 2.1rem);
       line-height: 1.24;
       margin-bottom: 10px;
@@ -580,7 +627,7 @@
       border-left: 3px solid var(--accent);
       padding-left: 14px;
       color: var(--ink);
-      font-family: "Libre Baskerville", serif;
+      font-family: var(--font-display);
       font-size: 1rem;
       line-height: 1.65;
     }
@@ -609,7 +656,7 @@
       color: var(--accent); margin-bottom: 8px;
     }
     .gallery-title {
-      font-family: "Libre Baskerville", serif;
+      font-family: var(--font-display);
       font-size: 1.5rem; font-weight: 700;
       color: var(--ink);
     }
@@ -661,7 +708,7 @@
     }
 
     .services-title {
-      font-family: "Libre Baskerville", serif;
+      font-family: var(--font-display);
       font-size: 1.6rem; font-weight: 700;
     }
 
@@ -731,7 +778,7 @@
     }
 
     .quote-intro-title {
-      font-family: "Libre Baskerville", serif;
+      font-family: var(--font-display);
       font-size: 1.6rem; font-weight: 700;
       margin-bottom: 10px;
     }
@@ -953,7 +1000,7 @@
     }
 
     .summary-estimate-value {
-      font-family: var(--font-display, "Libre Baskerville", serif);
+      font-family: var(--font-display);
       color: var(--accent);
       font-size: 1.05rem;
       line-height: 1.35;
@@ -1001,7 +1048,7 @@
     }
 
     .section-title {
-      font-family: "Libre Baskerville", serif;
+      font-family: var(--font-display);
       font-size: 1.1rem; font-weight: 700; line-height: 1.35;
     }
 
@@ -1213,6 +1260,15 @@
       color: var(--warn);
     }
 
+    .email-fix-btn {
+      color: var(--ink);
+      background: none;
+      border: 0;
+      padding: 0;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
     .field-note[hidden] {
       display: none;
     }
@@ -1383,7 +1439,7 @@
     }
 
     .recommend-row span:last-child {
-      font-family: "Libre Baskerville", serif; font-weight: 700;
+      font-family: var(--font-display); font-weight: 700;
     }
 
     .recommend-note {
@@ -1422,7 +1478,7 @@
     }
     .billing-row:hover {
       transform: translateY(-1px);
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+      box-shadow: var(--shadow-soft);
     }
 
     .billing-row:focus-visible {
@@ -1502,7 +1558,7 @@
     }
 
     .promise-lead {
-      font-family: "Libre Baskerville", serif;
+      font-family: var(--font-display);
       font-size: 1.2rem; line-height: 1.46; margin-bottom: 10px;
     }
 
@@ -1527,7 +1583,7 @@
     }
 
     .next-title {
-      font-family: "Libre Baskerville", serif;
+      font-family: var(--font-display);
       font-size: clamp(1.72rem, 3.35vw, 2.28rem);
       margin-bottom: 12px; line-height: 1.28;
     }
@@ -1597,7 +1653,7 @@
     }
 
     .confirm-reference {
-      font-family: "Libre Baskerville", serif;
+      font-family: var(--font-display);
       font-size: clamp(1.8rem, 4vw, 2.5rem);
       line-height: 1.2; margin-bottom: 16px;
       color: var(--ink);
@@ -1659,7 +1715,7 @@
     }
 
     .footer-name {
-      color: var(--ink); font-family: "Libre Franklin", sans-serif;
+      color: var(--ink); font-family: var(--font-body);
       font-size: 1rem; font-weight: 600; margin-bottom: 4px;
       text-transform: lowercase;
     }
@@ -1702,15 +1758,6 @@
     /* =========================================================
        REDESIGN OVERRIDES
     ========================================================= */
-    :root {
-      --radius-sm: 12px;
-      --radius-lg: 24px;
-      --accent-strong: #f1cb86;
-      --surface-3: #192332;
-      --gridline: rgba(255, 255, 255, 0.04);
-      --panel-shadow: 0 24px 70px rgba(0, 0, 0, 0.32);
-    }
-
     body {
       position: relative;
       background:
@@ -1837,7 +1884,7 @@
       height: 64px;
       margin: 0;
       opacity: 0.88;
-      filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.18));
+      filter: drop-shadow(0 12px 20px color-mix(in srgb, var(--ink) 18%, transparent));
     }
 
     .hero-tagline {
@@ -1883,7 +1930,7 @@
     .btn-primary {
       background:
         linear-gradient(180deg, color-mix(in srgb, var(--accent-strong) 28%, var(--accent)) 0%, var(--accent) 100%);
-      box-shadow: 0 16px 24px rgba(0, 0, 0, 0.22);
+      box-shadow: var(--shadow-soft);
     }
 
     .btn-ghost {
@@ -1927,7 +1974,7 @@
       display: block;
       margin-bottom: 5px;
       color: var(--accent-strong);
-      font-family: "Libre Baskerville", serif;
+      font-family: var(--font-display);
       font-size: 1.2rem;
       line-height: 1.2;
     }
@@ -2180,9 +2227,6 @@
       box-shadow: var(--panel-shadow);
     }
 
-    .gallery-card-wide {
-      grid-column: span 2;
-    }
 
     .gallery-img {
       display: block;
@@ -2195,9 +2239,6 @@
       transition: transform 0.28s ease;
     }
 
-    .gallery-card-wide .gallery-img {
-      min-height: 340px;
-    }
 
     .gallery-card:hover .gallery-img {
       transform: scale(1.04);
@@ -2366,6 +2407,45 @@
       border-radius: 14px;
       background: color-mix(in srgb, var(--field-bg) 92%, var(--surface));
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    }
+
+    .quote-section-preview .quote-intro {
+      margin-bottom: 0;
+    }
+
+    .quote-section-preview:not(.is-expanded) .layout,
+    .quote-section-preview:not(.is-expanded) .submission-confirmation,
+    .quote-section-preview:not(.is-expanded) .theme-picker-toggle,
+    .quote-section-preview:not(.is-expanded) .theme-picker-panel {
+      display: none !important;
+    }
+
+    .quote-section-preview.is-expanded .quote-intro {
+      margin-bottom: 22px;
+    }
+
+    .quote-section-preview.is-expanded .quote-home-note {
+      max-width: 70ch;
+    }
+
+    .quote-home-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .quote-home-note {
+      margin: 16px 0 0;
+      max-width: 60ch;
+      font-size: 0.84rem;
+      line-height: 1.7;
+      color: var(--ink-soft);
+    }
+
+    .quote-home-note a {
+      color: var(--accent-strong);
+      font-weight: 600;
     }
 
     .theme-picker-toggle {
@@ -2814,7 +2894,7 @@
     .cta {
       min-height: 48px;
       padding: 12px 20px;
-      box-shadow: 0 12px 18px rgba(0, 0, 0, 0.18);
+      box-shadow: var(--shadow-soft);
     }
 
     .cta-secondary {
@@ -2870,6 +2950,229 @@
     }
 
     /* =========================================================
+       MICROINTERACTIONS
+    ========================================================= */
+    @keyframes tactile-shake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-5px); }
+      40% { transform: translateX(4px); }
+      60% { transform: translateX(-3px); }
+      80% { transform: translateX(2px); }
+    }
+
+    @keyframes feedback-settle {
+      0% { filter: brightness(1); }
+      45% { filter: brightness(1.08); }
+      100% { filter: brightness(1); }
+    }
+
+    .nav-back,
+    .nav-links a,
+    .nav-feature,
+    .nav-cta,
+    .btn,
+    .gallery-card,
+    .gallery-img,
+    .svc-card,
+    .quote-flow-step,
+    .theme-picker-toggle,
+    .theme-swatch,
+    .side-list a,
+    .progress-step,
+    .tiny-action,
+    #scope .check-item,
+    .billing-row,
+    .billing-row td,
+    .form-field input,
+    .form-field select,
+    .optional-fields summary,
+    .mobile-action-dock a,
+    #toast {
+      transition:
+        transform var(--motion-hover) var(--motion-ease),
+        background-color var(--motion-hover) var(--motion-ease),
+        border-color var(--motion-hover) var(--motion-ease),
+        color var(--motion-hover) var(--motion-ease),
+        box-shadow var(--motion-hover) var(--motion-ease),
+        opacity var(--motion-press) var(--motion-ease-press),
+        filter var(--motion-feedback) var(--motion-ease);
+    }
+
+    .nav-back:hover,
+    .nav-links a:hover,
+    .side-list a:hover,
+    .progress-step:hover,
+    .tiny-action:hover,
+    #scope .check-item:hover {
+      transform: translateY(var(--hover-rise));
+    }
+
+    .nav-feature:hover,
+    .nav-cta:hover,
+    .btn:hover,
+    .theme-picker-toggle:hover,
+    .theme-swatch:hover,
+    .mobile-action-dock a:hover {
+      transform: translateY(var(--hover-rise));
+      box-shadow: var(--shadow-soft);
+    }
+
+    .gallery-card:hover,
+    .svc-card:hover,
+    .quote-flow-step:hover {
+      transform: translateY(-2px);
+      border-color: color-mix(in srgb, var(--accent) 38%, var(--line-strong));
+    }
+
+    .gallery-card:hover .gallery-img {
+      transform: scale(1.03);
+      filter: brightness(1.04);
+    }
+
+    .billing-row:hover {
+      transform: translateY(var(--hover-rise));
+    }
+
+    .form-field input:focus-visible,
+    .form-field select:focus-visible {
+      border-color: color-mix(in srgb, var(--accent) 64%, var(--field-border));
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent);
+    }
+
+    .nav-back.is-pressing,
+    .nav-links a.is-pressing,
+    .nav-feature.is-pressing,
+    .nav-cta.is-pressing,
+    .btn.is-pressing,
+    .theme-picker-toggle.is-pressing,
+    .theme-swatch.is-pressing,
+    .side-list a.is-pressing,
+    .progress-step.is-pressing,
+    .tiny-action.is-pressing,
+    #scope .check-item.is-pressing,
+    .mobile-action-dock a.is-pressing {
+      transform: scale(var(--press-scale)) translateY(0) !important;
+    }
+
+    .gallery-card.is-pressing,
+    .svc-card.is-pressing,
+    .quote-flow-step.is-pressing,
+    .billing-row.is-pressing {
+      transform: scale(var(--press-scale-soft)) translateY(0) !important;
+    }
+
+    .feedback-success {
+      animation: feedback-settle var(--motion-feedback) var(--motion-ease);
+    }
+
+    .feedback-error {
+      animation: tactile-shake var(--motion-feedback) var(--motion-ease-press);
+    }
+
+    .btn.feedback-success,
+    .nav-cta.feedback-success,
+    .theme-picker-toggle.feedback-success,
+    .theme-swatch.feedback-success,
+    .mobile-action-dock .dock-primary.feedback-success {
+      box-shadow:
+        0 0 0 1px color-mix(in srgb, var(--ok) 48%, transparent),
+        0 0 0 6px color-mix(in srgb, var(--ok) 12%, transparent);
+    }
+
+    #scope .check-item.feedback-success {
+      background: color-mix(in srgb, var(--scope-selected-bg) 92%, var(--surface));
+      border-color: color-mix(in srgb, var(--scope-selected-border) 88%, var(--line-strong));
+    }
+
+    #scope .check-item.feedback-error {
+      background: color-mix(in srgb, var(--accent-soft) 84%, var(--surface));
+      border-color: color-mix(in srgb, var(--accent) 68%, var(--line-strong));
+    }
+
+    .billing-row.feedback-success td {
+      background: color-mix(in srgb, var(--billing-selected-bg) 88%, var(--surface));
+    }
+
+    .billing-row.feedback-error td {
+      background: color-mix(in srgb, var(--accent-soft) 82%, var(--surface));
+    }
+
+    .form-field.is-success input,
+    .form-field.is-success select {
+      border-color: color-mix(in srgb, var(--ok) 64%, var(--field-border));
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--ok) 14%, transparent);
+    }
+
+    .form-field.is-error input,
+    .form-field.is-error select {
+      border-color: color-mix(in srgb, var(--accent) 70%, var(--field-border));
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 16%, transparent);
+    }
+
+    #toast.show {
+      animation: feedback-settle var(--motion-feedback) var(--motion-ease);
+    }
+
+    #toast.show.is-error {
+      animation: tactile-shake var(--motion-feedback) var(--motion-ease-press);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+
+      .nav-back,
+      .nav-links a,
+      .nav-feature,
+      .nav-cta,
+      .btn,
+      .gallery-card,
+      .gallery-img,
+      .svc-card,
+      .quote-flow-step,
+      .theme-picker-toggle,
+      .theme-swatch,
+      .side-list a,
+      .progress-step,
+      .tiny-action,
+      #scope .check-item,
+      .billing-row,
+      .billing-row td,
+      .form-field input,
+      .form-field select,
+      .optional-fields summary,
+      .mobile-action-dock a,
+      #toast {
+        transition-duration: 1ms !important;
+      }
+
+      .feedback-success,
+      .feedback-error,
+      #toast.show,
+      #toast.show.is-error {
+        animation: none !important;
+      }
+
+      .nav-back:hover,
+      .nav-links a:hover,
+      .nav-feature:hover,
+      .nav-cta:hover,
+      .btn:hover,
+      .gallery-card:hover,
+      .svc-card:hover,
+      .quote-flow-step:hover,
+      .theme-picker-toggle:hover,
+      .theme-swatch:hover,
+      .side-list a:hover,
+      .progress-step:hover,
+      .tiny-action:hover,
+      #scope .check-item:hover,
+      .billing-row:hover,
+      .mobile-action-dock a:hover {
+        transform: none !important;
+      }
+    }
+
+    /* =========================================================
        RESPONSIVE
     ========================================================= */
     @media (max-width: 980px) {
@@ -2912,9 +3215,6 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .gallery-card-wide {
-        grid-column: span 2;
-      }
 
       .layout { grid-template-columns: 1fr; }
       .side-stack { position: static; order: 2; gap: 16px; }
@@ -2928,6 +3228,8 @@
     }
 
     @media (max-width: 640px) {
+      .nav-link-desktop { display: none; }
+
       .site-nav {
         width: calc(100% - 20px);
         min-height: 58px;
@@ -3027,12 +3329,7 @@
         grid-template-columns: 1fr;
       }
 
-      .gallery-card-wide {
-        grid-column: auto;
-      }
-
-      .gallery-img,
-      .gallery-card-wide .gallery-img {
+      .gallery-img {
         min-height: 220px;
         height: 220px;
       }
@@ -3054,6 +3351,14 @@
       .quote-jumpbar { align-items: stretch; }
       .quote-jumpbar label { width: 100%; text-align: left; }
       .quote-jumpbar select { width: 100%; min-width: 0; }
+      .quote-home-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .quote-home-actions .btn {
+        width: 100%;
+        justify-content: center;
+      }
 
       .check-item input[type="checkbox"] {
         width: 20px;
@@ -3099,7 +3404,6 @@
     }
 
     @media (max-width: 480px) {
-      .nav-link-desktop { display: none; }
       .nav-back { display: none; }
       .nav-links { gap: 0; }
       .nav-links a { font-size: 0.78rem; }
@@ -3151,8 +3455,7 @@
 
       .gallery-title { font-size: 1.25rem; }
       .gallery-copy { font-size: 0.84rem; }
-      .gallery-img,
-      .gallery-card-wide .gallery-img {
+      .gallery-img {
         min-height: 180px;
         height: 180px;
       }
@@ -3217,12 +3520,6 @@
         font-weight: 700;
         letter-spacing: 0.05em;
         text-transform: uppercase;
-      }
-
-      .mobile-action-dock .dock-secondary {
-        border: 1px solid var(--line-strong);
-        color: var(--ink);
-        background: var(--surface);
       }
 
       .mobile-action-dock .dock-primary {
@@ -3388,18 +3685,17 @@
       .progress-sep { width: 10px; }
     }
 
-  @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#quoteStart">Skip to quote request</a>
+  <a class="skip-link" href="#quoteStart" data-open-intake="true">Skip to quote request</a>
 
   <!-- =========================================================
        SITE NAV
   ========================================================= -->
   <nav class="site-nav" aria-label="Main navigation">
-    <a href="https://davehomeassist.github.io/" class="nav-back">&larr; All Projects</a>
-    <a class="nav-brand" href="#">
+    <a href="event-quote-request.html" class="nav-back">&larr; Event Brief Example</a>
+    <a class="nav-brand" href="index.html">
       <svg width="24" height="28" viewBox="0 0 48 56" fill="none" aria-hidden="true">
         <path d="M24 2C24 2 4 10 4 10V28C4 42 14 52 24 54C34 52 44 42 44 28V10L24 2Z" stroke="var(--ink)" stroke-width="1.8" fill="none" />
         <path d="M24 10C24 10 10 16 10 16V28C10 38 16 46 24 48C32 46 38 38 38 28V16L24 10Z" stroke="var(--ink)" stroke-width="1.4" fill="none" opacity="0.55" />
@@ -3408,8 +3704,8 @@
     </a>
     <div class="nav-links">
       <a href="#services" class="nav-link-desktop">Services</a>
-      <a href="#quoteStart" class="nav-link-desktop">Quote Flow</a>
-      <a href="#quoteStart" class="nav-cta">Get a Quote</a>
+      <a href="event-quote-request.html" class="nav-link-desktop">Brief Example</a>
+      <a href="#quoteStart" class="nav-cta" data-open-intake="true">Get a Quote</a>
     </div>
   </nav>
 
@@ -3429,10 +3725,10 @@
         <h1 class="hero-h1">Philadelphia event security that shows up, stays sharp, and protects your people.</h1>
         <p class="hero-sub">Professional, armed and unarmed security for events, venues, businesses, and private clients. Trained personnel who understand that presence, awareness, and communication prevent incidents before they escalate.</p>
         <div class="hero-actions">
-          <a href="#quoteStart" class="btn btn-primary">Request a Quote</a>
+          <a href="#quoteStart" class="btn btn-primary" data-open-intake="true">Request a Quote</a>
           <a href="#services" class="btn btn-ghost">Our Services</a>
         </div>
-        <p class="hero-inline-link-wrap"><a href="#services" class="hero-inline-link">View services</a> · <a href="#overview" class="hero-inline-link">Skip to full request details</a></p>
+        <p class="hero-inline-link-wrap"><a href="#services" class="hero-inline-link">View services</a> · <a href="event-quote-request.html#overview" class="hero-inline-link">Preview the event brief example</a></p>
         <div class="hero-metrics" aria-label="ShieldBox operations highlights">
           <div class="hero-metric">
             <span class="hero-metric-value">24hr</span>
@@ -3453,7 +3749,7 @@
         </div>
       </div>
 
-      <aside class="hero-spotlight" aria-label="ShieldBox operations snapshot">
+      <section class="hero-spotlight" aria-label="ShieldBox operations snapshot">
         <div class="hero-spotlight-kicker">Operations Snapshot</div>
         <h2 class="hero-spotlight-title">Built for doors, credential control, backstage movement, and late-night load-out.</h2>
         <p class="hero-spotlight-copy">ShieldBox is for live environments where visible presence, clear communication, and disciplined field judgment keep the night moving without unnecessary escalation.</p>
@@ -3478,7 +3774,7 @@
             <strong>Manual ops follow-up within 24 hours</strong>
           </div>
         </div>
-      </aside>
+      </section>
     </div>
   </section>
 
@@ -3516,7 +3812,7 @@
         <div class="brand-kicker">Straight Talk</div>
         <h2 class="brand-headline">We Keep It Safe. That's It. That's the Job.</h2>
         <p class="brand-copy">You need personnel who arrive on time, hold the line, communicate clearly, and represent your operation professionally. That is what ShieldBox is built to do. Philadelphia born and raised, working every corner of the city for 20 years.</p>
-        <blockquote class="brand-quote">“You don't need a corporation. You need someone who shows up.”</blockquote>
+        <blockquote class=”brand-quote”>”You don't need a corporation. You need someone who shows up.”<footer><cite>ShieldBox Security</cite></footer></blockquote>
       </div>
     </div>
   </section>
@@ -3531,11 +3827,11 @@
       <p class="gallery-copy">Real ShieldBox team members managing entry, wristbands, and guest flow during live event operations. No stock photography.</p>
     </div>
     <div class="gallery-grid">
-      <figure class="gallery-card gallery-card-wide">
-        <img class="gallery-img" src="BoxPics/IMG_2594-web.jpeg" alt="ShieldBox security team member checking credentials outside a live event entrance" loading="lazy" width="800" height="533" />
+      <figure class="gallery-card">
+        <img class="gallery-img" src="BoxPics/att.ZxHeEFy_psJsMVVjKHGzZxhRyE7DzwXEGz6AKdxzMIM.jpeg" alt="ShieldBox team members maintaining visible venue presence during live event operations" loading="lazy" width="2048" height="1364" />
         <figcaption class="gallery-caption">
-          <span>Credential Control</span>
-          <p>First-contact screening, queue discipline, and a visible security posture before guests reach the door.</p>
+          <span>Venue Presence</span>
+          <p>Visible field coverage that keeps the venue controlled, watchful, and professional once the event is underway.</p>
         </figcaption>
       </figure>
       <figure class="gallery-card">
@@ -3546,10 +3842,10 @@
         </figcaption>
       </figure>
       <figure class="gallery-card">
-        <img class="gallery-img" src="BoxPics/IMG_4091-web.jpeg" alt="ShieldBox security member verifying guest credentials during nighttime check-in" loading="lazy" width="800" height="533" />
+        <img class="gallery-img" src="BoxPics/IMG_2594-web.jpeg" alt="ShieldBox security team member checking credentials outside a live event entrance" loading="lazy" width="800" height="1200" />
         <figcaption class="gallery-caption">
-          <span>Night Ops</span>
-          <p>Low-light credential verification and steady front-of-house presence when the venue gets busy.</p>
+          <span>Credential Control</span>
+          <p>First-contact screening, queue discipline, and a visible security posture before guests reach the door.</p>
         </figcaption>
       </figure>
     </div>
@@ -3603,43 +3899,38 @@
   <!-- =========================================================
        QUOTE INTAKE
   ========================================================= -->
-  <div class="quote-section" id="quoteStart">
+  <div class="quote-section quote-section-preview" id="quoteStart">
     <div class="quote-intro">
-      <div class="quote-intro-overline">Start Here</div>
-      <h2 class="quote-intro-title">Build the Security Brief</h2>
-      <p class="quote-intro-sub">Give us the venue, attendance, coverage windows, and scope. ShieldBox turns it into a staffed, itemized proposal within 24 hours.</p>
+      <div class="quote-intro-overline">Dedicated Quote Desk</div>
+      <h2 class="quote-intro-title">Open the live quote desk only when you need it.</h2>
+      <p class="quote-intro-sub">This homepage stays lighter until you are ready to send a real request. Open the live intake below for the working submission form, or review the separate event brief example if you want to see how ShieldBox structures scope, logistics, and proposal notes.</p>
       <div class="quote-flow" aria-label="Quote flow">
         <div class="quote-flow-step">
           <span class="quote-flow-num">1</span>
-          <div class="quote-flow-title">Brief the ops desk</div>
-          <div class="quote-flow-copy">Enter the event basics, schedule pressure points, and the coverage you know you need.</div>
+          <div class="quote-flow-title">Start on the service page</div>
+          <div class="quote-flow-copy">Use the homepage to understand ShieldBox coverage, see the team in action, and confirm the service fit before you start a request.</div>
         </div>
         <div class="quote-flow-step">
           <span class="quote-flow-num">2</span>
-          <div class="quote-flow-title">Lock the proposal</div>
-          <div class="quote-flow-copy">ShieldBox reviews the intake, confirms staffing posture, and returns a formal plan with pricing.</div>
+          <div class="quote-flow-title">Open the live intake when ready</div>
+          <div class="quote-flow-copy">The full quote desk expands here on demand so clients can submit a real request without carrying the full form in view from the first screen.</div>
         </div>
       </div>
-      <div class="quote-jumpbar">
-        <label for="sectionJump">Quick jump</label>
-        <select id="sectionJump" aria-label="Jump to a section in the quote flow">
-          <option value="#overview">Request details</option>
-          <option value="#schedule">Schedule</option>
-          <option value="#scope">Scope</option>
-          <option value="#billing">Billing</option>
-          <option value="#next">Submit request</option>
-        </select>
+      <div class="quote-home-actions">
+        <a href="#quoteStart" class="btn btn-primary" data-open-intake="true">Open Live Quote Form</a>
+        <a href="event-quote-request.html#overview" class="btn btn-ghost">Preview Brief Example</a>
       </div>
+      <p class="quote-home-note">The button above reveals the working form already wired to ShieldBox intake. The separate event brief page is now treated as an example layout reference, not the primary public submission path.</p>
     </div>
 
-    <button class="theme-picker-toggle" id="themeToggle" aria-expanded="false" aria-controls="themePanel" title="Change color theme">
+    <button class="theme-picker-toggle" id="themeToggle" aria-expanded="false" aria-controls="themePanel" title="Change color theme" hidden aria-hidden="true">
       <span class="tp-icon" aria-hidden="true"></span> Theme
     </button>
-    <div class="theme-picker-panel" id="themePanel" role="dialog" aria-label="Theme picker">
+    <div class="theme-picker-panel" id="themePanel" role="dialog" aria-modal="true" aria-label="Theme picker" hidden aria-hidden="true">
       <ul class="theme-picker-grid" role="listbox" aria-label="Color themes" id="themeGrid"></ul>
     </div>
 
-    <div class="layout">
+    <div class="layout" hidden aria-hidden="true" inert>
       <div class="stack">
 
         <!-- DIRECT OPS CONTACT -->
@@ -3816,35 +4107,35 @@
                 <input id="schedule_loadin" type="checkbox" name="schedule_loadin" checked />
                 <span>
                   <span class="check-label">Load-In / Setup</span>
-                  <span class="check-copy">Mar 28, 2026 | 12:00 PM - 4:00 PM</span>
+                  <span class="check-copy">Pre-event setup and equipment staging window</span>
                 </span>
               </label>
               <label class="check-item">
                 <input id="schedule_doors" type="checkbox" name="schedule_doors" checked />
                 <span>
                   <span class="check-label">Main Event Doors</span>
-                  <span class="check-copy">Mar 28, 2026 | 7:00 PM</span>
+                  <span class="check-copy">Guest arrival and credential verification</span>
                 </span>
               </label>
               <label class="check-item">
                 <input id="schedule_coverage" type="checkbox" name="schedule_coverage" checked />
                 <span>
                   <span class="check-label">Event Coverage Window</span>
-                  <span class="check-copy">Mar 28, 2026 | 6:30 PM - 12:30 AM</span>
+                  <span class="check-copy">Active event security coverage period</span>
                 </span>
               </label>
               <label class="check-item">
                 <input id="schedule_loadout" type="checkbox" name="schedule_loadout" checked />
                 <span>
                   <span class="check-label">Load-Out / Strike</span>
-                  <span class="check-copy">Mar 29, 2026 | 12:30 AM - 2:30 AM</span>
+                  <span class="check-copy">Post-event teardown and venue clear</span>
                 </span>
               </label>
               <label class="check-item">
                 <input id="schedule_overnight" type="checkbox" name="schedule_overnight" checked />
                 <span>
                   <span class="check-label">Overnight Gear Watch</span>
-                  <span class="check-copy">Yes | Mar 29, 2026 | 2:30 AM - 8:00 AM</span>
+                  <span class="check-copy">Overnight equipment and venue monitoring</span>
                 </span>
               </label>
             </div>
@@ -3992,7 +4283,7 @@
 
         <!-- PROMISE -->
         <section class="promise-card" id="promise" aria-labelledby="promiseHeading">
-          <div class="promise-title" id="promiseHeading">Our Mission</div>
+          <h2 class="promise-title" id="promiseHeading">Our Mission</h2>
           <p class="promise-lead">Dependable, professional security that prioritizes safety, prevention, and peace of mind.</p>
           <div class="promise-points">
             <div>Maintaining a strong, visible presence to deter potential threats.</div>
@@ -4047,7 +4338,7 @@
       </aside>
     </div>
 
-    <div class="submission-confirmation" id="submissionConfirmation" hidden>
+    <div class="submission-confirmation" id="submissionConfirmation" hidden aria-hidden="true" inert>
       <section class="section" aria-labelledby="confirmationHeading">
         <div class="section-head">
           <span class="section-icon">✓</span>
@@ -4098,11 +4389,11 @@
   </footer>
 
   <div class="mobile-action-dock" aria-label="Quick mobile actions">
-    <a href="#quoteStart" class="dock-primary">Get a Quote</a>
+    <a href="#quoteStart" class="dock-primary" data-open-intake="true">Get a Quote</a>
   </div>
 
   <!-- TOAST -->
-  <div id="toast" role="status" aria-live="polite" hidden>
+  <div id="toast" role="status" aria-atomic="true" hidden>
     <strong id="toastTitle">Submission status</strong>
     <span id="toastMessage">Please try again or email shieldbox.sec@gmail.com.</span>
   </div>
@@ -4111,7 +4402,7 @@
   <script>
     (() => {
       /* ---- Theme Picker ---- */
-      const themeKey = `sb-theme:${location.pathname.split("/").pop() || "shieldbox"}`;
+      const themeKey = "sb-theme:shieldbox";
       const themes = [
         { id: "default",   name: "Dark Ops",   bg: "#0e1116", accent: "#b24b40", ink: "#e7edf6" },
         { id: "editorial", name: "Editorial",   bg: "#f4f1eb", accent: "#8e3a30", ink: "#1f1b17" },
@@ -4135,8 +4426,6 @@
         const btn = document.createElement("button");
         btn.className = "theme-swatch";
         btn.dataset.theme = t.id;
-        btn.setAttribute("role", "option");
-        btn.setAttribute("aria-pressed", "false");
         btn.setAttribute("aria-label", t.name);
         const strip = document.createElement("span");
         strip.className = "swatch-strip";
@@ -4161,27 +4450,43 @@
           document.body.removeAttribute("data-theme");
         }
         themeGrid.querySelectorAll(".theme-swatch").forEach(b => {
-          b.setAttribute("aria-pressed", b.dataset.theme === (v || "default") ? "true" : "false");
+          const isActive = b.dataset.theme === (v || "default");
+          b.closest("li").setAttribute("aria-selected", String(isActive));
         });
       }
 
-      function selectTheme(v) {
-        localStorage.setItem(themeKey, v);
+      function selectTheme(v, swatchBtn) {
+        try { localStorage.setItem(themeKey, v); } catch {}
         applyTheme(v);
+        if (swatchBtn) flashFeedback(swatchBtn, "success");
+        flashFeedback(themeToggle, "success");
         closePanel();
       }
 
+      let panelTrapHandler = null;
       function openPanel() {
         themePanel.classList.add("is-open");
         themeToggle.setAttribute("aria-expanded", "true");
         /* Focus the active swatch */
-        const active = themePanel.querySelector('[aria-pressed="true"]');
+        const active = themePanel.querySelector('[aria-selected="true"] .theme-swatch');
         if (active) active.focus();
+        /* Focus trap */
+        panelTrapHandler = e => {
+          if (e.key !== "Tab") return;
+          const focusable = Array.from(themePanel.querySelectorAll('button, [tabindex]:not([tabindex="-1"])'));
+          if (!focusable.length) return;
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+          else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        };
+        themePanel.addEventListener("keydown", panelTrapHandler);
       }
 
       function closePanel() {
         themePanel.classList.remove("is-open");
         themeToggle.setAttribute("aria-expanded", "false");
+        if (panelTrapHandler) { themePanel.removeEventListener("keydown", panelTrapHandler); panelTrapHandler = null; }
         themeToggle.focus();
       }
 
@@ -4199,7 +4504,7 @@
 
       themeGrid.addEventListener("click", e => {
         const btn = e.target.closest(".theme-swatch");
-        if (btn) selectTheme(btn.dataset.theme);
+        if (btn) selectTheme(btn.dataset.theme, btn);
       });
 
       themeGrid.addEventListener("keydown", e => {
@@ -4207,7 +4512,7 @@
         if (!btn) return;
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
-          selectTheme(btn.dataset.theme);
+          selectTheme(btn.dataset.theme, btn);
         }
       });
 
@@ -4225,6 +4530,53 @@
           closePanel();
         }
       });
+
+      /* ---- Motion helpers ---- */
+      const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+      const feedbackTimers = new WeakMap();
+
+      function flashFeedback(el, kind = "success") {
+        if (!el) return;
+        const klass = kind === "error" ? "feedback-error" : "feedback-success";
+        el.classList.remove("feedback-success", "feedback-error");
+        void el.offsetWidth;
+        el.classList.add(klass);
+        if (feedbackTimers.has(el)) clearTimeout(feedbackTimers.get(el));
+        feedbackTimers.set(el, setTimeout(() => {
+          el.classList.remove(klass);
+          feedbackTimers.delete(el);
+        }, reduceMotionQuery.matches ? 20 : 200));
+      }
+
+      function bindPressFeedback(selector) {
+        document.querySelectorAll(selector).forEach(el => {
+          if (el.dataset.pressBound === "true") return; /* camelCase "pressBound" becomes data-press-bound in DOM */
+          el.dataset.pressBound = "true";
+          const release = () => el.classList.remove("is-pressing");
+          el.addEventListener("pointerdown", event => {
+            if (event.pointerType === "mouse" && event.button !== 0) return;
+            el.classList.add("is-pressing");
+          });
+          el.addEventListener("pointerup", release);
+          el.addEventListener("pointerleave", release);
+          el.addEventListener("pointercancel", release);
+          el.addEventListener("blur", release);
+          el.addEventListener("keyup", release);
+          el.addEventListener("keydown", event => {
+            if (event.key === " " || event.key === "Enter") el.classList.add("is-pressing");
+          });
+        });
+      }
+
+      function markFieldState(field, state) {
+        const wrapper = field && field.closest(".form-field");
+        if (!wrapper) return;
+        wrapper.classList.remove("is-success", "is-error");
+        if (state === "success") wrapper.classList.add("is-success");
+        if (state === "error") wrapper.classList.add("is-error");
+      }
+
+      bindPressFeedback(".nav-back, .nav-links a, .nav-feature, .nav-cta, .btn, .gallery-card, .svc-card, .quote-flow-step, .theme-picker-toggle, .theme-swatch, .side-list a, .progress-step, .tiny-action, .billing-row, #scope .check-item, .mobile-action-dock a");
 
       /* Form validation */
       const intakeForm = document.getElementById("intakeForm");
@@ -4253,8 +4605,8 @@
       const referencePreview = document.getElementById("referencePreview");
       const printConfirmationButton = document.getElementById("printConfirmationButton");
       const newRequestButton = document.getElementById("newRequestButton");
-      const sectionJump = document.getElementById("sectionJump");
-      const usePreviewButton = document.getElementById("usePreviewButton");
+      const quoteLayout = quoteSection ? quoteSection.querySelector(".layout") : null;
+      const quoteOpeners = Array.from(document.querySelectorAll("[data-open-intake='true']"));
       const toast = document.getElementById("toast");
       const toastTitle = document.getElementById("toastTitle");
       const toastMessage = document.getElementById("toastMessage");
@@ -4275,6 +4627,7 @@
 
       const opsEmail = "shieldbox.sec@gmail.com";
       const formSubmitEndpoint = "https://formsubmit.co/ajax/shieldbox.sec@gmail.com";
+      const quoteHashes = new Set(["#quoteStart", "#overview", "#schedule", "#scope", "#risk", "#billing", "#next"]);
       let currentReference = "";
       let lastSuccessfulSubmissionAt = 0;
       let isSubmitting = false;
@@ -4282,7 +4635,16 @@
 
       if (fieldDate) fieldDate.min = new Date().toISOString().split("T")[0];
       intakeForm.querySelectorAll("input, select, textarea").forEach(el => {
-        el.addEventListener("blur", () => el.classList.add("touched"), { once: true });
+        el.addEventListener("blur", () => {
+          el.classList.add("touched");
+          if (!el.willValidate) return;
+          if (el.checkValidity() && String(el.value || "").trim()) {
+            markFieldState(el, "success");
+          } else if (!el.checkValidity()) {
+            markFieldState(el, "error");
+            flashFeedback(el.closest(".form-field"), "error");
+          }
+        });
       });
       if (fieldSubmissionToken) {
         fieldSubmissionToken.value = Array.from(crypto.getRandomValues(new Uint8Array(4))).map(byte => byte.toString(16).padStart(2, "0")).join("");
@@ -4308,7 +4670,8 @@
       function buildReference() {
         const d = new Date();
         const pad = n => String(n).padStart(2, "0");
-        return `SBX-${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}-${String(Math.floor(1000 + (Math.random() * 9000)))}`;
+        const hex = Array.from(crypto.getRandomValues(new Uint8Array(3))).map(b => b.toString(16).padStart(2, "0")).join("").toUpperCase();
+        return `SBX-${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}-${hex}`;
       }
 
       function firstInvalidField() {
@@ -4320,6 +4683,10 @@
         setVal(valid ? "All required intake fields are complete." : "Please complete required fields before proposal handoff.", valid ? "is-ok" : "is-warn");
         if (!valid) {
           const invalidField = firstInvalidField();
+          if (invalidField) {
+            markFieldState(invalidField, "error");
+            flashFeedback(invalidField.closest(".form-field"), "error");
+          }
           if (scroll && invalidField) goToSection(invalidField, invalidField);
           if (report) intakeForm.reportValidity();
         }
@@ -4387,6 +4754,33 @@
           requestAnimationFrame(() => focusEl.focus({ preventScroll: true }));
         }
       }
+
+      function expandQuoteDesk({ scroll = true, focusField = true } = {}) {
+        if (!quoteSection) return;
+        quoteSection.classList.add("is-expanded");
+        if (quoteLayout) {
+          quoteLayout.hidden = false;
+          quoteLayout.removeAttribute("aria-hidden");
+          quoteLayout.inert = false;
+        }
+        if (submissionConfirmation) {
+          submissionConfirmation.removeAttribute("aria-hidden");
+          submissionConfirmation.inert = false;
+        }
+        if (scroll) goToSection("#quoteStart");
+        if (focusField) requestAnimationFrame(() => fieldName.focus({ preventScroll: true }));
+      }
+
+      quoteOpeners.forEach(link => {
+        link.addEventListener("click", event => {
+          event.preventDefault();
+          flashFeedback(link, "success");
+          if (location.hash !== "#quoteStart") {
+            history.replaceState(null, "", "#quoteStart");
+          }
+          expandQuoteDesk();
+        });
+      });
 
       function syncOverviewSnapshot() {
         const scopes = scopeSelections();
@@ -4511,7 +4905,7 @@
         const fix = document.createElement("button");
         fix.type = "button";
         fix.textContent = suggestion;
-        fix.style.cssText = "color:inherit;background:none;border:0;padding:0;text-decoration:underline;cursor:pointer;";
+        fix.className = "email-fix-btn";
         fix.addEventListener("click", () => {
           fieldEmail.value = `${local}@${suggestion}`;
           emailSuggestion.hidden = true;
@@ -4526,7 +4920,17 @@
         const duration = Math.max(0, Number(fieldDuration.value || 0));
         const scopes = scopeSelections();
         const alcoholRiskActive = hasAlcoholScope(scopes);
-        let total = selectedBillingRate() * duration;
+        const billingModel = document.querySelector('input[name="billingModel"]:checked')?.closest(".billing-row")?.dataset.model || "";
+        const rate = selectedBillingRate();
+        let total;
+        if (billingModel === "flat") {
+          total = rate * 8; /* recover fixed event price */
+        } else if (billingModel === "person") {
+          const baseGuardCount = attendance >= 1000 ? 8 : attendance >= 500 ? 5 : attendance >= 200 ? 3 : 2;
+          total = rate * 8 * baseGuardCount; /* per-shift rate × full shift × guards */
+        } else {
+          total = rate * duration; /* hourly */
+        }
 
         if (attendance > 2000) total *= 1.35;
         else if (attendance > 500) total *= 1.15;
@@ -4543,9 +4947,9 @@
         }
 
         const crowdRisk = attendance >= 1000 ? { tone: "high", label: "HIGH", severity: 2 } : attendance >= 200 ? { tone: "medium", label: "MEDIUM", severity: 1 } : { tone: "low", label: "LOW", severity: 0 };
-        const alcoholRisk = alcoholRiskActive ? { tone: "high", label: "HIGH", severity: 2 } : { tone: "medium", label: "MEDIUM", severity: 1 };
+        const alcoholRisk = alcoholRiskActive ? { tone: "high", label: "HIGH", severity: 2 } : { tone: "low", label: "LOW", severity: 0 };
         const durationRisk = duration >= 8 ? { tone: "high", label: "HIGH", severity: 2 } : duration >= 4 ? { tone: "medium", label: "MEDIUM", severity: 1 } : { tone: "low", label: "LOW", severity: 0 };
-        const accessRisk = attendance > 500 && duration > 6 ? { tone: "high", label: "HIGH", severity: 2 } : { tone: "medium", label: "MEDIUM", severity: 1 };
+        const accessRisk = attendance > 500 && duration > 6 ? { tone: "high", label: "HIGH", severity: 2 } : attendance <= 100 && duration <= 3 ? { tone: "low", label: "LOW", severity: 0 } : { tone: "medium", label: "MEDIUM", severity: 1 };
         const overallRisk = [crowdRisk, alcoholRisk, durationRisk, accessRisk].reduce((highest, current) => current.severity > highest.severity ? current : highest, crowdRisk);
 
         setRiskBadge(riskAttendance, crowdRisk.tone, crowdRisk.label);
@@ -4580,12 +4984,13 @@
         validateBtn.setAttribute("aria-busy", "true");
         const originalText = validateBtn.textContent;
         validateBtn.textContent = "Checking…";
-        requestAnimationFrame(() => {
-          runValidation({ report: true });
+        setTimeout(() => {
+          const valid = runValidation({ report: true });
+          flashFeedback(validateBtn, valid ? "success" : "error");
           validateBtn.disabled = false;
           validateBtn.setAttribute("aria-busy", "false");
           validateBtn.textContent = originalText;
-        });
+        }, 50);
       });
 
       quoteSection.addEventListener("input", e => {
@@ -4595,7 +5000,18 @@
         if (target === fieldDuration) syncDurationFormatNote();
         if (target === fieldAttendance) syncAttendanceWarning();
         if (target.closest("#overview") || target.matches('#scope input[type="checkbox"]')) syncOverviewSnapshot();
+        if (target.matches("input, select") && target.willValidate) {
+          if (target.checkValidity() && String(target.value || "").trim()) {
+            markFieldState(target, "success");
+          } else if (target.classList.contains("touched")) {
+            markFieldState(target, "error");
+          }
+        }
         if (valMsg.textContent) runValidation();
+        syncScopeSuggestions();
+        syncBillingFit();
+        syncNextPrompt();
+        syncProgress();
       });
 
       quoteSection.addEventListener("change", e => {
@@ -4603,6 +5019,16 @@
         if (!(target instanceof HTMLElement)) return;
         if (target.matches('#scope input[type="checkbox"], input[name="billingModel"], #fieldDuration, #fieldAttendance')) updateQuoteAndRisk();
         if (target.closest("#overview") || target.matches('#scope input[type="checkbox"]')) syncOverviewSnapshot();
+        if (target.matches('#scope input[type="checkbox"]')) {
+          flashFeedback(target.closest(".check-item"), "success");
+        }
+        if (target.matches("input, select") && target.willValidate) {
+          markFieldState(target, target.checkValidity() && String(target.value || "").trim() ? "success" : "error");
+        }
+        syncScopeSuggestions();
+        syncBillingFit();
+        syncNextPrompt();
+        syncProgress();
       });
 
       fieldDuration.addEventListener("beforeinput", e => {
@@ -4620,19 +5046,6 @@
 
       fieldEmail.addEventListener("blur", syncEmailSuggestion);
 
-      if (sectionJump) {
-        sectionJump.addEventListener("change", e => {
-          if (!e.target.value) return;
-          goToSection(e.target.value);
-        });
-      }
-      if (usePreviewButton) {
-        usePreviewButton.addEventListener("click", e => {
-          e.preventDefault();
-          goToSection("#overview", fieldName);
-        });
-      }
-
       /* Billing radios */
       const billingInputs = Array.from(document.querySelectorAll('input[name="billingModel"]'));
       const billingRows = Array.from(document.querySelectorAll(".billing-row"));
@@ -4643,9 +5056,6 @@
           const text = row.querySelector(".billing-choice-text");
           const on = Boolean(radio && radio.checked);
           row.classList.toggle("is-selected", on);
-          row.setAttribute("tabindex", "0");
-          row.setAttribute("role", "radio");
-          row.setAttribute("aria-checked", String(on));
           if (text) text.textContent = on ? "Selected" : "Select";
         });
       }
@@ -4653,6 +5063,7 @@
       billingInputs.forEach(i => i.addEventListener("change", () => {
         syncBilling();
         updateQuoteAndRisk();
+        flashFeedback(i.closest(".billing-row"), "success");
         if (window.innerWidth <= 640) {
           setTimeout(() => goToSection("#next"), 120);
         }
@@ -4682,7 +5093,6 @@
           }
         });
       });
-      document.getElementById('billingRows').setAttribute('role', 'radiogroup');
       currentReference = buildReference();
       syncReference();
       syncOverviewSnapshot();
@@ -4693,7 +5103,7 @@
       let toastTimer;
 
       function clearToast() {
-        toast.classList.remove("show", "is-error");
+        toast.classList.remove("show", "is-error", "is-success");
         toast.hidden = true;
       }
 
@@ -4702,6 +5112,7 @@
         toastMessage.textContent = message;
         clearTimeout(toastTimer);
         toast.hidden = false;
+        toast.classList.toggle("is-success", tone !== "error");
         toast.classList.toggle("is-error", tone === "error");
         requestAnimationFrame(() => toast.classList.add("show"));
         toastTimer = setTimeout(() => {
@@ -4713,8 +5124,12 @@
       intakeForm.addEventListener("submit", async e => {
         e.preventDefault();
         if (isSubmitting) return;
-        if (!runValidation({ report: true, scroll: true })) return;
+        if (!runValidation({ report: true, scroll: true })) {
+          flashFeedback(requestBtn, "error");
+          return;
+        }
         if (Date.now() - lastSuccessfulSubmissionAt < 10000) {
+          flashFeedback(requestBtn, "error");
           showToast("Please wait before resubmitting", "Please wait before resubmitting.", "error");
           return;
         }
@@ -4770,17 +5185,24 @@
           setNodeValue(confirmationClientEmail, fieldEmail.value.trim(), `mailto:${fieldEmail.value.trim()}`);
           submissionConfirmation.hidden = false;
           quoteSection.classList.add("is-submitted");
+          saveClientData();
+          syncProgress();
           requestBtn.textContent = "Request Sent";
           requestBtn.classList.remove("is-loading");
-          clearToast();
+          flashFeedback(requestBtn, "success");
+          showToast("Request sent", "ShieldBox ops received your request and reference.", "ok");
 
           const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
           window.scrollTo({ top: quoteSection.offsetTop - 12, behavior: reduceMotion ? "auto" : "smooth" });
-          requestAnimationFrame(() => confirmationHeading.focus({ preventScroll: true }));
+          requestAnimationFrame(() => {
+            flashFeedback(submissionConfirmation, "success");
+            confirmationHeading.focus({ preventScroll: true });
+          });
         } catch (err) {
           requestBtn.classList.remove("is-loading");
           requestBtn.textContent = "Request Failed";
           requestBtn.disabled = true;
+          flashFeedback(requestBtn, "error");
           showToast("Unable to send request", `Please try again or email ${opsEmail}.`, "error");
           setVal("We could not send the request. Please try again or email ShieldBox directly.", "is-warn");
           setTimeout(() => {
@@ -4799,6 +5221,9 @@
       printConfirmationButton.addEventListener("click", () => window.print());
       newRequestButton.addEventListener("click", () => {
         intakeForm.reset();
+        document.querySelectorAll(".form-field").forEach(field => {
+          field.classList.remove("is-success", "is-error", "feedback-success", "feedback-error");
+        });
         currentReference = buildReference();
         syncReference();
         refreshSubmissionToken();
@@ -4817,16 +5242,22 @@
           emailSuggestion.hidden = true;
           emailSuggestion.replaceChildren();
         }
-        localStorage.removeItem(themeKey);
-        applyTheme("default");
         syncOverviewSnapshot();
         updateQuoteAndRisk();
         syncBilling();
         clearToast();
+        /* Reset anticipatory UX state */
+        intakeRestore.hidden = true;
+        nextPrompt.hidden = true;
+        if (fitHourly) fitHourly.hidden = true;
+        if (fitPerson) fitPerson.hidden = true;
+        if (fitFlat) fitFlat.hidden = true;
+        document.querySelectorAll("[data-scope-suggest]").forEach(b => b.hidden = true);
+        syncProgress();
         requestAnimationFrame(() => fieldName.focus());
       });
       /* ---- Anticipatory UX ---- */
-      const clientKey = `sb-client:${location.pathname.split("/").pop() || "shieldbox"}`;
+      const clientKey = "sb-client:shieldbox";
       const intakeRestore = document.getElementById("intakeRestore");
       const restoreFieldsBtn = document.getElementById("restoreFieldsBtn");
       const dismissRestoreBtn = document.getElementById("dismissRestoreBtn");
@@ -4873,7 +5304,7 @@
           },
           dismissed: { restoreBar: false, scopeSuggestions: false }
         };
-        localStorage.setItem(clientKey, JSON.stringify(data));
+        try { localStorage.setItem(clientKey, JSON.stringify(data)); } catch {}
       }
 
       function showRestoreBar() {
@@ -4896,6 +5327,12 @@
           const radio = document.querySelector(`input[name="billingModel"][value="${saved.preferences.billing}"]`);
           if (radio) { radio.checked = true; radio.dispatchEvent(new Event("change", { bubbles: true })); }
         }
+        if (saved.preferences && saved.preferences.scopeDefaults) {
+          saved.preferences.scopeDefaults.forEach(name => {
+            const input = document.querySelector(`#scope input[type="checkbox"][name="${name}"]`);
+            if (input) input.checked = true;
+          });
+        }
         intakeRestore.hidden = true;
         syncOverviewSnapshot();
         syncProgress();
@@ -4908,7 +5345,7 @@
         if (saved) {
           saved.dismissed = saved.dismissed || {};
           saved.dismissed.restoreBar = true;
-          localStorage.setItem(clientKey, JSON.stringify(saved));
+          try { localStorage.setItem(clientKey, JSON.stringify(saved)); } catch {}
         }
       }
 
@@ -4922,11 +5359,10 @@
         badges.forEach(badge => {
           const key = badge.dataset.scopeSuggest;
           let show = false;
-          if (attendance >= 500) {
-            show = ["crowd", "perimeter", "frontofhouse", "access"].includes(key);
-          }
           if (attendance >= 1000) {
-            show = true;
+            show = ["crowd", "perimeter", "frontofhouse", "access"].includes(key);
+          } else if (attendance >= 500) {
+            show = ["crowd", "perimeter", "frontofhouse", "access"].includes(key);
           }
           const checkbox = badge.closest("label")?.querySelector('input[type="checkbox"]');
           if (checkbox && checkbox.checked) show = false;
@@ -4957,12 +5393,18 @@
         const valid = intakeForm.checkValidity();
         if (!valid) { nextPrompt.hidden = true; return; }
         const billingChecked = document.querySelector('input[name="billingModel"]:checked');
+        nextPrompt.replaceChildren();
         if (!billingChecked) {
-          nextPrompt.innerHTML = 'Fields complete &mdash; <a href="#billing">choose a billing model</a> to finish.';
-          nextPrompt.hidden = false;
-          return;
+          const link = document.createElement("a");
+          link.href = "#billing";
+          link.textContent = "choose a billing model";
+          nextPrompt.append("Fields complete \u2014 ", link, " to finish.");
+        } else {
+          const link = document.createElement("a");
+          link.href = "#next";
+          link.textContent = "send your request";
+          nextPrompt.append("Ready to submit \u2014 ", link, " to ShieldBox ops.");
         }
-        nextPrompt.innerHTML = 'Ready to submit &mdash; <a href="#next">send your request</a> to ShieldBox ops.';
         nextPrompt.hidden = false;
       }
 
@@ -4993,48 +5435,20 @@
         });
       }
 
-      /* Hook into existing input/change listeners */
-      const origInputHandler = quoteSection.oninput;
-      quoteSection.addEventListener("input", () => {
-        syncScopeSuggestions();
-        syncBillingFit();
-        syncNextPrompt();
-        syncProgress();
-      });
-      quoteSection.addEventListener("change", () => {
-        syncScopeSuggestions();
-        syncBillingFit();
-        syncNextPrompt();
-        syncProgress();
-      });
 
-      /* Save client data on successful submission */
-      const origSubmitSuccess = lastSuccessfulSubmissionAt;
-      const submitObserver = new MutationObserver(() => {
-        if (quoteSection.classList.contains("is-submitted")) {
-          saveClientData();
-          syncProgress();
-          submitObserver.disconnect();
-        }
-      });
-      submitObserver.observe(quoteSection, { attributes: true, attributeFilter: ["class"] });
-
-      /* On new request, reset anticipatory state */
-      newRequestButton.addEventListener("click", () => {
-        intakeRestore.hidden = true;
-        nextPrompt.hidden = true;
-        if (fitHourly) fitHourly.hidden = true;
-        if (fitPerson) fitPerson.hidden = true;
-        if (fitFlat) fitFlat.hidden = true;
-        document.querySelectorAll("[data-scope-suggest]").forEach(b => b.hidden = true);
-        syncProgress();
-      });
 
       /* Initial sync */
       showRestoreBar();
       syncScopeSuggestions();
       syncBillingFit();
       syncProgress();
+
+      if (quoteHashes.has(location.hash)) {
+        expandQuoteDesk({ scroll: false, focusField: location.hash === "#quoteStart" });
+        if (location.hash !== "#quoteStart") {
+          requestAnimationFrame(() => goToSection(location.hash));
+        }
+      }
 
       /* Default event date to next Saturday */
       if (fieldDate && !fieldDate.value) {

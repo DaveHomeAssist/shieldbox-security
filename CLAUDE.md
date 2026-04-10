@@ -4,12 +4,12 @@ Inherits root rules from `/Users/daverobertson/Desktop/Code/AGENTS.md`.
 
 ## Project Overview
 
-Static mockup of an event security quote intake portal for ShieldBox Security (Philadelphia). Users configure event details (type, size, billing, scope) and receive a quote estimate. The v4 gold master is the final polished version. The archive/ directory contains previous iterations: v0 original, v1 gemini, v2 codex, v3 claude.
+Static mockup of an event security quote intake portal for ShieldBox Security (Philadelphia). Users configure event details (type, size, billing, scope) and receive a quote estimate. The v4 gold master is a historical snapshot from the March 18 redesign. `index.html` is the canonical development file. `event-quote-request.html` is a static read-only preview of a completed event brief, linked from `index.html`. It carries `noindex`/`nofollow`. The `archives/` directory contains previous iterations: v0 original, v1 gemini, v2 codex, v3 claude, plus `shieldbox-v4-pre-audit-snapshot.html` as the pre-audit v4 archive.
 
 ## Stack
 
 - Static HTML + inline CSS + inline JS (single file index.html)
-- Three theme variants: default dark, editorial (warm light), slate
+- Eight theme variants: default, editorial, slate, obsidian, arctic, midnight, concrete, parchment
 - Token based design system documented in SCHEMA.md
 - GitHub Pages hosting
 - No build step, no bundler, no framework
@@ -19,7 +19,7 @@ Static mockup of an event security quote intake portal for ShieldBox Security (P
 - Single file architecture; all form logic, pricing, and styles inline
 - Multi theme support via body[data-theme] attribute and CSS custom property overrides
 - Full design token contract: components reference tokens, no hardcoded colors
-- Archive directory preserves the build evolution across different AI tools
+- Archives directory preserves the build evolution across different AI tools, including the pre-audit v4 snapshot
 
 ## Documentation Maintenance
 
@@ -37,7 +37,7 @@ Static mockup of an event security quote intake portal for ShieldBox Security (P
 | 005 | P2 | closed | Color contrast fails WCAG AA on editorial, slate, obsidian, and concrete themes | ink-soft values already bumped in prior session |
 | 006 | P2 | closed | Validation only runs on explicit button click, not on submit | Added form submit event listener with preventDefault + scroll to invalid |
 | 007 | P2 | closed | Risk assessment grid is static despite auto-assessed label | Already reactive via updateEstimate() |
-| 008 | P2 | closed | Billing row selection not keyboard accessible | Already had tabindex + keydown; added role="radio" + aria-checked |
+| 008 | P2 | closed | Billing row selection not keyboard accessible | Native radio inputs now carry state, with row-level click and keyboard delegation preserved |
 | 009 | P0 | closed | XSS risk in theme swatch innerHTML | Replaced innerHTML with DOM API (createElement) |
 | 010 | P0 | closed | Missing CSRF-like token on form submission | Added hidden _token input with crypto.getRandomValues hex |
 | 011 | P1 | closed | Phone field has no format validation | Added pattern + title attributes |
@@ -50,7 +50,7 @@ Static mockup of an event security quote intake portal for ShieldBox Security (P
 | 018 | P2 | closed | No validation button loading state | Added aria-busy + text swap + disable during check |
 | 019 | P3 | closed | Honeypot name _honey too obvious | Renamed to company_url with aria-hidden |
 | 020 | P3 | closed | No submission rate limiting | Added 10s timestamp guard on submit |
-| 021 | P3 | closed | Theme not reset on new quote | Added localStorage removal + applyTheme("default") on reset |
+| 021 | P3 | open | Theme not reset on new quote | Current `index.html` preserves the selected theme when starting a new quote |
 | 022 | P2 | closed | No return visitor pre-fill | Added localStorage client data model with restore bar, 180-day TTL, dismiss state |
 | 023 | P2 | closed | No scope suggestions based on attendance | Added auto-suggest badges on scope checkboxes triggered at 500+ and 1000+ guests |
 | 024 | P2 | closed | No billing model guidance | Added "Best fit" tag on billing rows based on duration and attendance thresholds |
@@ -64,3 +64,4 @@ Static mockup of an event security quote intake portal for ShieldBox Security (P
 [2026-03-23] [ShieldBox] [audit] Full 21-issue audit; wrote fix-prompts.md
 [2026-03-23] [ShieldBox] [fix] Executed all 5 phases: input hardening, submission security, a11y, XSS, email typo, theme reset
 [2026-03-31] [ShieldBox] [feature] Anticipatory UX: 5 features — contact pre-fill, scope suggestions, billing fit tags, next-action prompt, progress breadcrumb
+[2026-04-10] [ShieldBox] [docs] Clarify canonical files, archive naming, event brief preview status, and current issue tracker state

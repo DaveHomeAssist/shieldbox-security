@@ -1,6 +1,6 @@
 # ShieldBox Security — Design Schema
 
-Extracted from `shieldbox-security-event-quote-request-v4-gold-master.html`
+Extracted from `index.html` and aligned with the canonical ShieldBox development file.
 
 ---
 
@@ -20,8 +20,8 @@ Extracted from `shieldbox-security-event-quote-request-v4-gold-master.html`
 ## Theme Contract
 
 - Default theme: tokens on `:root`
-- Editorial: overrides on `body[data-theme="editorial"]`
-- Slate: overrides on `body[data-theme="slate"]`
+- Theme overrides on `body[data-theme="editorial"]`, `body[data-theme="slate"]`, `body[data-theme="obsidian"]`, `body[data-theme="arctic"]`, `body[data-theme="midnight"]`, `body[data-theme="concrete"]`, and `body[data-theme="parchment"]`
+- Redesign tokens and motion tokens are also declared on `:root`
 
 Every component references tokens only — never hard-coded colors.
 
@@ -35,6 +35,7 @@ Every component references tokens only — never hard-coded colors.
   --bg: #0e1116;
   --surface: #151b24;
   --surface-2: #1b2430;
+  --surface-3: #192332;
 
   /* borders */
   --line: #2d3949;
@@ -42,6 +43,7 @@ Every component references tokens only — never hard-coded colors.
   --panel-border: #3a4a5f;
   --field-border: #3a4a5f;
   --footer-divider: #3b4a5f;
+  --gridline: rgba(255, 255, 255, 0.04);
 
   /* specialized */
   --field-bg: #1a2230;
@@ -49,6 +51,7 @@ Every component references tokens only — never hard-coded colors.
   --billing-selected-border: #b76a44;
   --scope-selected-bg: #223044;
   --scope-selected-border: #5b6c83;
+  --accent-strong: #f1cb86;
 
   /* ink */
   --ink: #e7edf6;
@@ -63,7 +66,20 @@ Every component references tokens only — never hard-coded colors.
 
   /* effects */
   --radius: 10px;
+  --radius-sm: 12px;
+  --radius-lg: 24px;
   --shadow-soft: 0 10px 28px rgba(0, 0, 0, 0.28);
+  --panel-shadow: 0 24px 70px rgba(0, 0, 0, 0.32);
+
+  /* motion */
+  --motion-hover: 160ms;
+  --motion-press: 90ms;
+  --motion-feedback: 180ms;
+  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-ease-press: cubic-bezier(0.3, 0, 0.2, 1);
+  --press-scale: 0.985;
+  --press-scale-soft: 0.992;
+  --hover-rise: -1px;
 
   /* type */
   --font-display: "Libre Baskerville", serif;
@@ -75,8 +91,8 @@ body[data-theme="editorial"] {
   --surface: #ffffff;
   --surface-2: #f7f4ef;
   --ink: #1f1b17;
-  --ink-soft: #61594f;
-  --label-ink: #6f675d;
+  --ink-soft: #565046;
+  --label-ink: #60574d;
   --line: #d8d0c4;
   --line-strong: #baaea0;
   --panel-border: #d7d1c6;
@@ -99,8 +115,8 @@ body[data-theme="slate"] {
   --surface: #1a212d;
   --surface-2: #212b3a;
   --ink: #e6ecf6;
-  --ink-soft: #b1bfd4;
-  --label-ink: #c1cee2;
+  --ink-soft: #becbdf;
+  --label-ink: #ccd7e8;
   --line: #314055;
   --line-strong: #3d506a;
   --panel-border: #41546e;
@@ -116,7 +132,151 @@ body[data-theme="slate"] {
   --ok: #4b9b83;
   --warn: #b7934b;
 }
+
+body[data-theme="obsidian"] {
+  --bg: #0f0d0b;
+  --surface: #1a1714;
+  --surface-2: #23201b;
+  --ink: #e8e2d8;
+  --ink-soft: #c1b5a4;
+  --label-ink: #d0c4b4;
+  --line: #332e26;
+  --line-strong: #4a4236;
+  --panel-border: #443d33;
+  --field-bg: #1c1915;
+  --field-border: #443d33;
+  --billing-selected-border: #c47a3a;
+  --billing-selected-bg: #2a2318;
+  --scope-selected-border: #8a7560;
+  --scope-selected-bg: #2a2318;
+  --footer-divider: #3d362c;
+  --accent: #b56a2c;
+  --accent-soft: rgba(181, 106, 44, 0.12);
+  --ok: #5a9a6e;
+  --warn: #c4943a;
+  --shadow-soft: 0 10px 28px rgba(0, 0, 0, 0.4);
+}
+
+body[data-theme="arctic"] {
+  --bg: #f5f7fa;
+  --surface: #ffffff;
+  --surface-2: #edf1f7;
+  --ink: #141c2b;
+  --ink-soft: #4d5c72;
+  --label-ink: #5e6d82;
+  --line: #d4dbe6;
+  --line-strong: #b8c4d4;
+  --panel-border: #cdd6e2;
+  --field-bg: #f8fafe;
+  --field-border: #cdd6e2;
+  --billing-selected-border: #3a7cc0;
+  --billing-selected-bg: #edf4fc;
+  --scope-selected-border: #90b4d8;
+  --scope-selected-bg: #edf4fc;
+  --footer-divider: #dde3ec;
+  --accent: #2b6aaa;
+  --accent-soft: rgba(43, 106, 170, 0.08);
+  --ok: #287a50;
+  --warn: #9a7020;
+  --shadow-soft: 0 8px 24px rgba(20, 28, 43, 0.06);
+}
+
+body[data-theme="midnight"] {
+  --bg: #090d18;
+  --surface: #101728;
+  --surface-2: #172035;
+  --ink: #e2e8f4;
+  --ink-soft: #8a9bba;
+  --label-ink: #9dadc8;
+  --line: #1e2d48;
+  --line-strong: #2c3f5e;
+  --panel-border: #283a56;
+  --field-bg: #0e1525;
+  --field-border: #283a56;
+  --billing-selected-border: #d4952e;
+  --billing-selected-bg: #1a1e2e;
+  --scope-selected-border: #5c7aaa;
+  --scope-selected-bg: #141c30;
+  --footer-divider: #253550;
+  --accent: #cc8820;
+  --accent-soft: rgba(204, 136, 32, 0.12);
+  --ok: #38a070;
+  --warn: #c49040;
+  --shadow-soft: 0 10px 28px rgba(0, 0, 0, 0.45);
+}
+
+body[data-theme="concrete"] {
+  --bg: #1a1c1e;
+  --surface: #232628;
+  --surface-2: #2c2f32;
+  --ink: #dcdfe2;
+  --ink-soft: #adb3b9;
+  --label-ink: #bec3c8;
+  --line: #363a3e;
+  --line-strong: #484e54;
+  --panel-border: #424850;
+  --field-bg: #202325;
+  --field-border: #424850;
+  --billing-selected-border: #3a9a5c;
+  --billing-selected-bg: #1e2c24;
+  --scope-selected-border: #5a7a68;
+  --scope-selected-bg: #1e2c24;
+  --footer-divider: #3a3e42;
+  --accent: #2e8a4e;
+  --accent-soft: rgba(46, 138, 78, 0.10);
+  --ok: #3a9a68;
+  --warn: #c4943a;
+  --shadow-soft: 0 10px 28px rgba(0, 0, 0, 0.35);
+}
+
+body[data-theme="parchment"] {
+  --bg: #f0ebe0;
+  --surface: #faf8f2;
+  --surface-2: #f2ede4;
+  --ink: #2a2018;
+  --ink-soft: #6b5e4e;
+  --label-ink: #7a6d5c;
+  --line: #d8cfc0;
+  --line-strong: #c4b8a4;
+  --panel-border: #d0c6b6;
+  --field-bg: #f7f4ec;
+  --field-border: #d0c6b6;
+  --billing-selected-border: #944030;
+  --billing-selected-bg: #f4ede4;
+  --scope-selected-border: #baa890;
+  --scope-selected-bg: #f4ede4;
+  --footer-divider: #ddd4c6;
+  --accent: #7c2e22;
+  --accent-soft: rgba(124, 46, 34, 0.08);
+  --ok: #3a6e4e;
+  --warn: #8a6420;
+  --shadow-soft: 0 8px 20px rgba(42, 32, 24, 0.06);
+}
 ```
+
+## Motion Tokens
+
+| Token | Value | Intended use |
+|---|---|---|
+| `--motion-hover` | `160ms` | Standard hover and preview transitions |
+| `--motion-press` | `90ms` | Press-in state on buttons and interactive rows |
+| `--motion-feedback` | `180ms` | Success/error confirmation feedback and tactile settle states |
+| `--motion-ease` | `cubic-bezier(0.22, 1, 0.36, 1)` | Default exit/settle easing |
+| `--motion-ease-press` | `cubic-bezier(0.3, 0, 0.2, 1)` | Press and error-response easing |
+| `--press-scale` | `0.985` | Stronger press compression for primary actions |
+| `--press-scale-soft` | `0.992` | Softer press compression for rows and utility controls |
+| `--hover-rise` | `-1px` | Small lift on hover for tactile affordance |
+
+## Redesign Tokens
+
+| Token | Value | Intended use |
+|---|---|---|
+| `--accent-strong` | `#f1cb86` | High-emphasis accent text, highlight borders, and warm gradient peaks in the redesign surfaces |
+| `--surface-3` | `#192332` | Deeper elevated panel background layered above `--surface-2` |
+| `--panel-shadow` | `0 24px 70px rgba(0, 0, 0, 0.32)` | Large-form card and dashboard shadow treatment |
+| `--radius-sm` | `12px` | Compact rounded corners on smaller panels and controls |
+| `--radius-lg` | `24px` | Large rounded corners on hero cards, callouts, and major containers |
+| `--gridline` | `rgba(255, 255, 255, 0.04)` | Subtle page-grid overlay lines in the redesigned background treatment |
 
 ---
 
