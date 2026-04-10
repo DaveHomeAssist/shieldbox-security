@@ -57,6 +57,21 @@ Static mockup of an event security quote intake portal for ShieldBox Security (P
 | 025 | P2 | closed | No contextual next-action after validation | Added dynamic next-prompt that directs user to billing or submit based on state |
 | 026 | P3 | closed | No visual progress indicator | Added progress breadcrumb bar with 5 tracked steps and live completion dots |
 | 027 | P3 | closed | Event date defaults to blank | Auto-defaults to next Saturday; respects existing min-date constraint |
+| 028 | P1 | closed | innerHTML in syncNextPrompt — fragile XSS surface | Replaced with safe DOM construction (replaceChildren/createElement) |
+| 029 | P1 | closed | Estimate formula broken for flat and per-guard billing | Flat uses fixed price; per-guard uses rate × shift × guards |
+| 030 | P1 | closed | Alcohol and access risk floors stuck at MEDIUM | Added LOW branches; risk grid now reflects actual event profile |
+| 031 | P1 | closed | Hash deep links don't scroll to target section | Added goToSection after expandQuoteDesk for non-quoteStart hashes |
+| 032 | P1 | closed | 6 redesign tokens not overridden in light themes | Added per-theme overrides for all 6 tokens across all 7 non-default themes |
+| 033 | P0 | closed | Theme panel dialog missing aria-modal and focus trap | Added aria-modal="true" and keyboard focus trap in openPanel/closePanel |
+| 034 | P1 | closed | Conflicting ARIA on billing rows and theme swatches | Removed role="radio" from tr; removed role="option"/aria-pressed from swatch buttons |
+| 035 | P2 | closed | 18 hardcoded font-family strings bypass token system | Defined --font-display/--font-body; replaced all hardcoded strings |
+| 036 | P2 | closed | Dead CSS (.gallery-card-wide, .dock-secondary) | Removed all dead rules |
+| 037 | P2 | closed | Duplicate event listeners causing double checkValidity | Merged anticipatory UX handlers into primary input/change listeners |
+| 038 | P2 | closed | Service cards lack scope qualifiers | Added "Best for" one-liners to help prospects self-select |
+| 039 | P2 | closed | Act 235 certification lacks context for visitors | Added tooltip explainer and expanded label text |
+| 040 | P2 | closed | Service area not defined | Added counties to footer, expanded JSON-LD areaServed |
+| 041 | P3 | closed | Footer email exposed to scrapers | Obfuscated with JS assembly at runtime |
+| 042 | P3 | closed | CTA button text generic ("Request a Quote") | Changed to "Get a 24-Hour Security Proposal" / "Get a 24-Hour Proposal" |
 
 ## Session Log
 
@@ -65,3 +80,5 @@ Static mockup of an event security quote intake portal for ShieldBox Security (P
 [2026-03-23] [ShieldBox] [fix] Executed all 5 phases: input hardening, submission security, a11y, XSS, email typo, theme reset
 [2026-03-31] [ShieldBox] [feature] Anticipatory UX: 5 features — contact pre-fill, scope suggestions, billing fit tags, next-action prompt, progress breadcrumb
 [2026-04-10] [ShieldBox] [docs] Clarify canonical files, archive naming, event brief preview status, and current issue tracker state
+[2026-04-10] [ShieldBox] [fix] Full 61-item audit: JS logic, security, a11y, CSS tokens, themes, docs — phases 1-5
+[2026-04-10] [ShieldBox] [feature] Content improvements: service scope qualifiers, Act 235 context, service area, CTA copy, email obfuscation
