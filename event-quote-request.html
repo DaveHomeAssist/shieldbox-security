@@ -1908,52 +1908,6 @@ a:hover { text-decoration: underline; }
 #toast strong { display: block; font-size: 14px; font-weight: 600; margin-bottom: 3px; }
 
 /* ============================================================
-   26. THEME SWITCHER (fixed pill)
-   ============================================================ */
-.theme-switcher {
-  position: fixed;
-  bottom: 28px; left: 28px;
-  z-index: 300;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background:
-    linear-gradient(180deg, color-mix(in srgb, var(--surface-2) 80%, rgba(10,14,20,0.74)), color-mix(in srgb, var(--surface) 96%, transparent));
-  border: 1px solid color-mix(in srgb, var(--panel-border) 88%, rgba(255,255,255,0.05));
-  border-radius: 999px;
-  padding: 10px 14px 10px 16px;
-  box-shadow:
-    0 20px 36px rgba(0,0,0,0.28),
-    inset 0 1px 0 rgba(255,255,255,0.05);
-  backdrop-filter: blur(14px);
-}
-
-.theme-switcher label {
-  font-family: var(--font-body);
-  font-size: 10.5px;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--label-ink);
-  opacity: 0.82;
-  white-space: nowrap;
-}
-
-.theme-switcher select {
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 600;
-  background: color-mix(in srgb, var(--surface-2) 90%, rgba(255,255,255,0.03));
-  color: var(--ink);
-  border: 1px solid color-mix(in srgb, var(--panel-border) 84%, rgba(255,255,255,0.04));
-  border-radius: 999px;
-  padding: 7px 12px;
-  cursor: pointer;
-  outline: none;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
-}
-
-/* ============================================================
    27. MICROINTERACTIONS
    ============================================================ */
 @keyframes tactile-shake {
@@ -2043,50 +1997,6 @@ a:hover { text-decoration: underline; }
   box-shadow: inset 0 1px 0 color-mix(in srgb, var(--billing-selected-border) 45%, transparent);
 }
 
-.theme-switcher {
-  --switcher-x: 0px;
-  --switcher-y: 0px;
-  --switcher-scale: 1;
-  transform: translate3d(var(--switcher-x), var(--switcher-y), 0) scale(var(--switcher-scale));
-  transition:
-    transform var(--motion-hover) var(--motion-ease),
-    background-color var(--motion-hover) var(--motion-ease),
-    border-color var(--motion-hover) var(--motion-ease),
-    box-shadow var(--motion-hover) var(--motion-ease);
-  cursor: grab;
-  touch-action: none;
-}
-
-.theme-switcher:hover {
-  --switcher-y: -2px;
-  box-shadow:
-    0 24px 40px rgba(0,0,0,0.32),
-    inset 0 1px 0 rgba(255,255,255,0.07);
-}
-
-.theme-switcher.is-dragging {
-  --switcher-y: 0px;
-  transition: none;
-  cursor: grabbing;
-}
-
-.theme-switcher.is-pressing {
-  --switcher-scale: var(--press-scale-soft);
-}
-
-.theme-switcher select {
-  transition:
-    background-color var(--motion-hover) var(--motion-ease),
-    border-color var(--motion-hover) var(--motion-ease),
-    color var(--motion-hover) var(--motion-ease),
-    box-shadow var(--motion-hover) var(--motion-ease);
-}
-
-.theme-switcher select:hover,
-.theme-switcher select:focus-visible {
-  border-color: color-mix(in srgb, var(--accent) 52%, var(--panel-border));
-}
-
 .nav-links a.is-pressing,
 .nav-cta.is-pressing,
 .sb-link.is-pressing,
@@ -2133,8 +2043,7 @@ a:hover { text-decoration: underline; }
 
 .cta.feedback-success,
 .cta-secondary.feedback-success,
-.nav-cta.feedback-success,
-.theme-switcher.feedback-success {
+.nav-cta.feedback-success {
   box-shadow:
     0 0 0 1px color-mix(in srgb, var(--ok) 48%, transparent),
     0 0 0 6px color-mix(in srgb, var(--ok) 12%, transparent);
@@ -2143,7 +2052,6 @@ a:hover { text-decoration: underline; }
 .cta.feedback-error,
 .cta-secondary.feedback-error,
 .nav-cta.feedback-error,
-.theme-switcher.feedback-error,
 .supporting-details summary.feedback-error {
   border-color: color-mix(in srgb, var(--accent) 72%, var(--panel-border));
 }
@@ -2176,10 +2084,6 @@ a:hover { text-decoration: underline; }
   animation: tactile-shake var(--motion-feedback) var(--motion-ease-press);
 }
 
-body.is-switcher-dragging {
-  user-select: none;
-}
-
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 
@@ -2194,8 +2098,6 @@ body.is-switcher-dragging {
   .cta,
   .cta-secondary,
   .supporting-details summary,
-  .theme-switcher,
-  .theme-switcher select,
   #toast {
     transition-duration: 1ms !important;
   }
@@ -2213,13 +2115,9 @@ body.is-switcher-dragging {
   .check-item:hover,
   .cta:hover,
   .cta-secondary:hover,
-  .theme-switcher:hover,
-  .theme-switcher.is-pressing,
   .billing-row:hover,
   .billing-row.is-pressing {
     transform: none !important;
-    --switcher-y: 0px;
-    --switcher-scale: 1;
   }
 }
 
@@ -2253,8 +2151,6 @@ body.is-switcher-dragging {
   .footer-inner {
     width: min(100%, calc(100% - 24px));
   }
-
-  .theme-switcher { display: none; }
 
   .brief-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2375,7 +2271,6 @@ body.is-switcher-dragging {
   .site-nav,
   .sidebar,
   .note-banner,
-  .theme-switcher,
   #toast,
   .cta,
   .cta-secondary  { display: none !important; }
@@ -3133,16 +3028,6 @@ body.is-switcher-dragging {
     <span id="toastBody">Forwarded to shieldbox.sec@gmail.com. Expect your formal proposal within 24 hours.</span>
   </div>
 
-  <!-- THEME SWITCHER -->
-  <div class="theme-switcher" aria-label="Theme switcher">
-    <label for="theme-select">Theme</label>
-    <select id="theme-select">
-      <option value="">Dark (Default)</option>
-      <option value="editorial">Editorial (Light)</option>
-      <option value="slate">Slate (Blue)</option>
-    </select>
-  </div>
-
   <!-- ============================================================
        JAVASCRIPT
   ============================================================ -->
@@ -3191,7 +3076,7 @@ body.is-switcher-dragging {
       });
     }
 
-    bindPressFeedback('.nav-links a, .nav-cta, .sb-link, .check-item, .billing-row, .cta, .cta-secondary, .supporting-details summary, .theme-switcher');
+    bindPressFeedback('.nav-links a, .nav-cta, .sb-link, .check-item, .billing-row, .cta, .cta-secondary, .supporting-details summary');
 
     /* — Sidebar scroll spy — */
     var sections = document.querySelectorAll('section[id]');
@@ -3291,81 +3176,6 @@ body.is-switcher-dragging {
         window.location.href = liveQuoteUrl;
       }, reduceMotionQuery.matches ? 0 : 140);
     });
-
-    /* — Theme switcher — */
-    var themeSelect = document.getElementById('theme-select');
-    var themeSwitcher = document.querySelector('.theme-switcher');
-    var switcherStorageKey = 'sbx-theme-switcher-side';
-
-    function currentSwitcherOffset() {
-      if (!themeSwitcher) return 0;
-      return Number.parseFloat(getComputedStyle(themeSwitcher).getPropertyValue('--switcher-x')) || 0;
-    }
-
-    function maxSwitcherOffset() {
-      if (!themeSwitcher) return 0;
-      return Math.max(0, window.innerWidth - 56 - themeSwitcher.offsetWidth);
-    }
-
-    function snapThemeSwitcher(side) {
-      if (!themeSwitcher || window.innerWidth <= 980) return;
-      var nextOffset = side === 'right' ? maxSwitcherOffset() : 0;
-      themeSwitcher.style.setProperty('--switcher-x', nextOffset + 'px');
-      localStorage.setItem(switcherStorageKey, side);
-    }
-
-    themeSelect.addEventListener('change', function() {
-      document.body.setAttribute('data-theme', this.value);
-      flashFeedback(themeSwitcher, 'success');
-    });
-
-    if (themeSwitcher) {
-      var dragState = null;
-      snapThemeSwitcher(localStorage.getItem(switcherStorageKey) || 'left');
-
-      themeSwitcher.addEventListener('pointerdown', function(event) {
-        if (event.target.closest('select')) return;
-        dragState = {
-          id: event.pointerId,
-          startX: event.clientX,
-          startOffset: currentSwitcherOffset()
-        };
-        themeSwitcher.classList.add('is-dragging', 'is-pressing');
-        document.body.classList.add('is-switcher-dragging');
-        themeSwitcher.setPointerCapture(event.pointerId);
-      });
-
-      themeSwitcher.addEventListener('pointermove', function(event) {
-        if (!dragState || event.pointerId !== dragState.id) return;
-        var resisted = dragState.startOffset + ((event.clientX - dragState.startX) * 0.92);
-        var clamped = Math.min(maxSwitcherOffset(), Math.max(0, resisted));
-        themeSwitcher.style.setProperty('--switcher-x', clamped + 'px');
-      });
-
-      function finishDrag(event) {
-        if (!dragState || event.pointerId !== dragState.id) return;
-        var midpoint = currentSwitcherOffset() + (themeSwitcher.offsetWidth / 2);
-        var nextSide = midpoint > ((window.innerWidth - 56) / 2) ? 'right' : 'left';
-        dragState = null;
-        themeSwitcher.classList.remove('is-dragging', 'is-pressing');
-        document.body.classList.remove('is-switcher-dragging');
-        snapThemeSwitcher(nextSide);
-      }
-
-      themeSwitcher.addEventListener('pointerup', finishDrag);
-      themeSwitcher.addEventListener('pointercancel', function(event) {
-        if (!dragState || event.pointerId !== dragState.id) return;
-        dragState = null;
-        themeSwitcher.classList.remove('is-dragging', 'is-pressing');
-        document.body.classList.remove('is-switcher-dragging');
-        snapThemeSwitcher(localStorage.getItem(switcherStorageKey) || 'left');
-      });
-
-      window.addEventListener('resize', function() {
-        if (window.innerWidth <= 980) return;
-        snapThemeSwitcher(localStorage.getItem(switcherStorageKey) || 'left');
-      });
-    }
 
     /* — Supporting record disclosure label — */
     document.querySelectorAll('.supporting-details').forEach(function(details) {
