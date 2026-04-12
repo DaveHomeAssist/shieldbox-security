@@ -50,7 +50,7 @@ Static mockup of an event security quote intake portal for ShieldBox Security (P
 | 018 | P2 | closed | No validation button loading state | Added aria-busy + text swap + disable during check |
 | 019 | P3 | closed | Honeypot name _honey too obvious | Renamed to company_url with aria-hidden |
 | 020 | P3 | closed | No submission rate limiting | Added 10s timestamp guard on submit |
-| 021 | P3 | open | Theme not reset on new quote | Current `index.html` preserves the selected theme when starting a new quote |
+| 021 | P3 | closed | Theme not reset on new quote | Closed as tracker drift; current `index.html` intentionally preserves the selected theme when starting a new quote |
 | 022 | P2 | closed | No return visitor pre-fill | Added localStorage client data model with restore bar, 180-day TTL, dismiss state |
 | 023 | P2 | closed | No scope suggestions based on attendance | Added auto-suggest badges on scope checkboxes triggered at 500+ and 1000+ guests |
 | 024 | P2 | closed | No billing model guidance | Added "Best fit" tag on billing rows based on duration and attendance thresholds |
@@ -82,3 +82,5 @@ Static mockup of an event security quote intake portal for ShieldBox Security (P
 [2026-04-10] [ShieldBox] [docs] Clarify canonical files, archive naming, event brief preview status, and current issue tracker state
 [2026-04-10] [ShieldBox] [fix] Full 61-item audit: JS logic, security, a11y, CSS tokens, themes, docs — phases 1-5
 [2026-04-10] [ShieldBox] [feature] Content improvements: service scope qualifiers, Act 235 context, service area, CTA copy, email obfuscation
+[2026-04-10] [ShieldBox] [design] Premium dashboard refactor for `event-quote-request.html`: stronger shell hierarchy, upgraded card surfaces, sharper billing/risk scanability, and mobile polish
+[2026-04-10] [ShieldBox] [ops] Cleanup pass: removed stray duplicate preview file and realigned preview motion tokens with `SCHEMA.md`
