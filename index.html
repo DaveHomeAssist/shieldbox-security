@@ -3131,10 +3131,14 @@
       .nav-link-desktop { display: none; }
 
       .site-nav {
-        width: calc(100% - 20px);
-        min-height: 58px;
-        padding: 10px 14px;
+        top: 6px;
+        margin-top: 6px;
+        width: calc(100% - 16px);
+        min-height: 48px;
+        padding: 6px 12px;
+        flex-wrap: nowrap;
       }
+      .site-nav .nav-feature { display: none; }
 
       .nav-links {
         overflow-x: auto;
@@ -3286,36 +3290,22 @@
 
       .section-note {
         margin-left: 0;
-      } {
-        bottom: 14px;
-        right: 14px;
-      } {
-        right: 14px;
-        width: calc(100vw - 28px);
+      }
+      #toast {
+        right: 10px;
+        bottom: 10px;
+        width: calc(100vw - 20px);
+        padding: 9px 10px;
+        font-size: 0.78rem;
       }
 
       .confirm-grid {
         grid-template-columns: 1fr;
       }
 
-      /* Mobile action dock — visible at ≤640px */
-      body { padding-bottom: 84px; }
+      /* Mobile action dock — hidden on mobile to maximize form area; in-form submit CTA is primary */
       .mobile-action-dock {
-        position: fixed;
-        left: 10px;
-        right: 10px;
-        bottom: 10px;
-        z-index: 120;
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 10px;
-        padding: 10px;
-        border: 1px solid var(--line);
-        border-radius: 14px;
-        background: color-mix(in srgb, var(--bg) 94%, transparent);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        box-shadow: var(--shadow-soft);
+        display: none !important;
       }
       .mobile-action-dock a {
         display: inline-flex;
@@ -3574,6 +3564,18 @@
     }
 
     @media (max-width: 640px) {
+      .progress-bar {
+        flex-wrap: wrap;
+        gap: 4px 2px;
+        margin-bottom: 10px;
+      }
+      .progress-step {
+        padding: 4px 7px;
+        font-size: 0.6rem;
+        letter-spacing: 0.05em;
+      }
+      .progress-sep { width: 8px; }
+
       .intake-restore {
         border-radius: 14px;
         padding: 10px 12px;
@@ -3907,6 +3909,29 @@
                   <input id="fieldAttendance" name="expected_attendance" type="number" min="1" max="10000" required placeholder="Estimated guest count" />
                   <p id="attendanceWarning" class="field-note is-warn" hidden>Large event — custom quote recommended</p>
                 </div>
+                <div class="form-field">
+                  <label for="fieldEventType">Event Type</label>
+                  <select id="fieldEventType" name="event_type" required>
+                    <option value="" disabled selected>Select event type</option>
+                    <option value="Corporate / Conference">Corporate / Conference</option>
+                    <option value="Concert / Live Music">Concert / Live Music</option>
+                    <option value="Private Party / Wedding">Private Party / Wedding</option>
+                    <option value="Festival / Outdoor Event">Festival / Outdoor Event</option>
+                    <option value="Sporting Event">Sporting Event</option>
+                    <option value="Nonprofit / Fundraiser">Nonprofit / Fundraiser</option>
+                    <option value="Trade Show / Expo">Trade Show / Expo</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div class="form-field">
+                  <label for="fieldVenueType">Indoor / Outdoor</label>
+                  <select id="fieldVenueType" name="venue_type" required>
+                    <option value="" disabled selected>Select venue type</option>
+                    <option value="Indoor">Indoor</option>
+                    <option value="Outdoor">Outdoor</option>
+                    <option value="Mixed (Indoor + Outdoor)">Mixed (Indoor + Outdoor)</option>
+                  </select>
+                </div>
               </div>
               <details class="optional-fields">
                 <summary>
@@ -3955,6 +3980,7 @@
                   <tr><td>Event Name</td><td id="summaryEventName">—</td></tr>
                   <tr><td>Event Type</td><td id="summaryEventType">General event security request</td></tr>
                   <tr><td>Venue Address</td><td id="summaryLocation">—</td></tr>
+                  <tr><td>Indoor / Outdoor</td><td id="summaryVenueType">—</td></tr>
                   <tr><td>Event Date</td><td id="summaryDate">—</td></tr>
                   <tr><td>Expected Attendance</td><td id="summaryAttendance">—</td></tr>
                   <tr><td>Coverage Hours</td><td id="summaryDuration">—</td></tr>
@@ -3972,6 +3998,8 @@
               <span class="core-chip">Event Location</span>
               <span class="core-chip">Event Duration</span>
               <span class="core-chip">Expected Attendance</span>
+              <span class="core-chip">Event Type</span>
+              <span class="core-chip">Indoor / Outdoor</span>
             </div>
           </div>
         </section>
@@ -4343,6 +4371,8 @@
       const fieldLocation = document.getElementById("fieldLocation");
       const fieldDuration = document.getElementById("fieldDuration");
       const fieldAttendance = document.getElementById("fieldAttendance");
+      const fieldEventType = document.getElementById("fieldEventType");
+      const fieldVenueType = document.getElementById("fieldVenueType");
       const fieldSubmissionToken = document.getElementById("fieldSubmissionToken");
       const durationFormatNote = document.getElementById("durationFormatNote");
       const attendanceWarning = document.getElementById("attendanceWarning");
@@ -4370,6 +4400,7 @@
       const summaryEventName = document.getElementById("summaryEventName");
       const summaryEventType = document.getElementById("summaryEventType");
       const summaryLocation = document.getElementById("summaryLocation");
+      const summaryVenueType = document.getElementById("summaryVenueType");
       const summaryDate = document.getElementById("summaryDate");
       const summaryAttendance = document.getElementById("summaryAttendance");
       const summaryDuration = document.getElementById("summaryDuration");
@@ -4541,8 +4572,10 @@
         setNodeValue(summaryEmail, fieldEmail && fieldEmail.value.trim(), fieldEmail && fieldEmail.value.trim() ? `mailto:${fieldEmail.value.trim()}` : "");
         setNodeValue(summaryPhone, fieldPhone && fieldPhone.value.trim());
         setNodeValue(summaryEventName, fieldEventName && fieldEventName.value.trim());
-        setNodeValue(summaryEventType, inferEventTypeLabel(scopes));
+        const selectedEventType = fieldEventType && fieldEventType.value.trim();
+        setNodeValue(summaryEventType, selectedEventType || inferEventTypeLabel(scopes));
         setNodeValue(summaryLocation, fieldLocation && fieldLocation.value.trim());
+        setNodeValue(summaryVenueType, fieldVenueType && fieldVenueType.value.trim());
         setNodeValue(summaryDate, formatDate(fieldDate && fieldDate.value));
         setNodeValue(summaryAttendance, fieldAttendance && fieldAttendance.value ? `${fieldAttendance.value} guests` : "");
         setNodeValue(summaryDuration, fieldDuration && fieldDuration.value ? `${fieldDuration.value} hours` : "");
@@ -4899,7 +4932,7 @@
         data.append("_template", "table");
         data.append("_url", location.href);
         data.append("reference", submissionReference);
-        data.append("event_type", summaryEventType.textContent.trim());
+        data.set("event_type", summaryEventType.textContent.trim());
         data.append("alcohol_service", summaryAlcohol.textContent.trim());
         data.append("vip_or_talent", summaryVip.textContent.trim());
         data.append("schedule_windows", collectCheckedLabels('#schedule input[type="checkbox"]'));
@@ -5168,7 +5201,7 @@
           let done = false;
           switch (track) {
             case "contact":
-              done = Boolean(fieldName.value.trim() && fieldEmail.value.trim() && fieldPhone.value.trim() && fieldDate.value && fieldLocation.value.trim() && fieldDuration.value && fieldAttendance.value);
+              done = Boolean(fieldName.value.trim() && fieldEmail.value.trim() && fieldPhone.value.trim() && fieldDate.value && fieldLocation.value.trim() && fieldDuration.value && fieldAttendance.value && fieldEventType.value && fieldVenueType.value);
               break;
             case "schedule":
               done = document.querySelectorAll('#schedule input[type="checkbox"]:checked').length > 0;
