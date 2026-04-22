@@ -1830,6 +1830,27 @@
       letter-spacing: 0.04em;
     }
 
+    .hero-contact-strip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+      color: var(--ink-soft);
+      font-size: 0.84rem;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-contact-link {
+      color: color-mix(in srgb, var(--ink) 86%, var(--ink-soft));
+      text-decoration: none;
+    }
+    .hero-contact-link:hover { color: var(--accent-strong); }
+
+    .hero-contact-sep {
+      color: color-mix(in srgb, var(--accent-strong) 72%, var(--ink-soft));
+    }
+
     .hero-metrics {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
