@@ -139,10 +139,21 @@
               <a href="#next" class="progress-step" data-track="submit" aria-label="Submit"><span class="step-dot"></span><span>Submit</span></a>
             </nav>
             <div class="intake-restore" id="intakeRestore" hidden>
-              <span>Welcome back — restore your last contact details?</span>
+              <span>Welcome back. Restore your last contact details and playbook?</span>
               <button class="tiny-action" id="restoreFieldsBtn" type="button">Restore</button>
               <button class="tiny-action" id="dismissRestoreBtn" type="button">Dismiss</button>
             </div>
+            <section class="playbook-panel" aria-labelledby="playbookHeading">
+              <div class="playbook-head">
+                <div>
+                  <div class="playbook-eyebrow">One Click Event Playbooks</div>
+                  <h3 class="playbook-title" id="playbookHeading">Start from a coverage pattern</h3>
+                </div>
+                <p class="playbook-copy">Apply a proven starting point, then adjust any field before you send the request.</p>
+              </div>
+              <div class="playbook-grid" id="playbookGrid" role="list" aria-label="Event playbooks"></div>
+              <p class="playbook-applied" id="playbookApplied" hidden></p>
+            </section>
             <form id="intakeForm" class="intake-form" novalidate aria-labelledby="intakeFormTitle">
               <h3 id="intakeFormTitle" class="form-title">Required Intake Fields</h3>
               <p class="form-help">Complete the required values below. When you submit, the intake routes directly to ShieldBox ops at <a href="mailto:shieldbox.sec@gmail.com">shieldbox.sec@gmail.com</a>. For time sensitive coordination, call <a href="tel:+12672765287">+1 267-276-5287</a>.</p>
@@ -480,6 +491,7 @@
           <p class="next-copy">When you send your quote request, your intake routes directly to <a href="mailto:shieldbox.sec@gmail.com">shieldbox.sec@gmail.com</a>. If you need to flag an urgent change after submission, call <a href="tel:+12672765287">+1 267-276-5287</a>. ShieldBox reviews every request manually and follows up within <strong>24 hours</strong>.</p>
           <div class="next-actions">
             <button id="requestButton" class="cta" type="submit" form="intakeForm">Send Quote Request</button>
+            <button id="previewBriefButton" class="cta cta-secondary" type="button">Preview Brief</button>
             <button id="printButton" class="cta cta-secondary" type="button">Download as PDF</button>
           </div>
           <p class="next-helper">One primary action from here: submit the request. Everything above simply improves pricing accuracy and speeds ops review.</p>
@@ -548,6 +560,7 @@
           </div>
           <p class="confirm-copy">If anything changes before the final quote is issued, email <a href="mailto:shieldbox.sec@gmail.com">shieldbox.sec@gmail.com</a> or call <a href="tel:+12672765287">+1 267-276-5287</a> and include the reference above so operations can update the same request.</p>
           <div class="confirm-actions">
+            <button id="previewConfirmationButton" class="cta cta-secondary" type="button">Preview Brief</button>
             <button id="printConfirmationButton" class="cta cta-secondary" type="button">Download as PDF</button>
             <button id="newRequestButton" class="cta" type="button">Start Another Quote</button>
           </div>
@@ -646,6 +659,7 @@
       const attendanceWarning = document.getElementById("attendanceWarning");
       const emailSuggestion = document.getElementById("emailSuggestion");
       const requestBtn = document.getElementById("requestButton");
+      const previewBriefButton = document.getElementById("previewBriefButton");
       const printBtn = document.getElementById("printButton");
       const quoteSection = document.getElementById("quoteStart");
       const submissionConfirmation = document.getElementById("submissionConfirmation");
@@ -653,6 +667,7 @@
       const confirmationReference = document.getElementById("confirmationReference");
       const confirmationClientEmail = document.getElementById("confirmationClientEmail");
       const referencePreview = document.getElementById("referencePreview");
+      const previewConfirmationButton = document.getElementById("previewConfirmationButton");
       const printConfirmationButton = document.getElementById("printConfirmationButton");
       const newRequestButton = document.getElementById("newRequestButton");
       const quoteLayout = quoteSection ? quoteSection.querySelector(".layout") : null;
@@ -675,15 +690,100 @@
       const summaryAlcohol = document.getElementById("summaryAlcohol");
       const summaryVip = document.getElementById("summaryVip");
       const summaryEstimateRange = document.getElementById("summaryEstimateRange");
+      const summaryEstimateNote = document.getElementById("summaryEstimateNote");
+      const playbookGrid = document.getElementById("playbookGrid");
+      const playbookApplied = document.getElementById("playbookApplied");
 
       const opsEmail = "shieldbox.sec@gmail.com";
       const opsPhoneDisplay = "+1 267-276-5287";
       const formSubmitEndpoint = "https://formsubmit.co/ajax/shieldbox.sec@gmail.com";
+      const briefPreviewKey = "sb-live-brief-preview";
+      const briefPreviewUrl = "event-quote-request.html?preview=live";
       const quoteHashes = new Set(["#quoteStart", "#overview", "#schedule", "#scope", "#risk", "#billing", "#next"]);
+      const billingCatalog = {
+        hourly: { label: "Hourly Rate", price: "$42", unit: "per guard / hr" },
+        person: { label: "Per Guard / Shift", price: "$325", unit: "per 8-hr shift" },
+        flat: { label: "Flat Event Rate", price: "$2,950", unit: "all-inclusive" }
+      };
+      const playbookConfigs = {
+        concert_doors: {
+          label: "Concert Doors",
+          description: "Entry control, floor coverage, and backstage movement for indoor live music rooms.",
+          eventType: "Concert / Live Music",
+          venueType: "Indoor",
+          eventName: "Concert Doors Coverage",
+          attendance: 650,
+          duration: 6,
+          billing: "flat",
+          schedule: ["schedule_loadin", "schedule_doors", "schedule_coverage", "schedule_loadout"],
+          scheduleWindows: {
+            schedule_loadin: "3 hours before doors",
+            schedule_doors: "Doors open coverage",
+            schedule_coverage: "Main performance window",
+            schedule_loadout: "Post-show exit and strike"
+          },
+          scope: ["scope_access", "scope_frontofhouse", "scope_crowd", "scope_talent"]
+        },
+        wedding_reception: {
+          label: "Wedding Reception",
+          description: "Guest entry, room presence, and discreet issue response for private receptions.",
+          eventType: "Private Party / Wedding",
+          venueType: "Indoor",
+          eventName: "Wedding Reception Coverage",
+          attendance: 180,
+          duration: 5,
+          billing: "hourly",
+          schedule: ["schedule_doors", "schedule_coverage", "schedule_loadout"],
+          scheduleWindows: {
+            schedule_doors: "Guest arrival and credential check",
+            schedule_coverage: "Reception coverage window",
+            schedule_loadout: "Vendor clear and venue wrap"
+          },
+          scope: ["scope_access", "scope_frontofhouse", "scope_crowd"]
+        },
+        corporate_conference: {
+          label: "Corporate Conference",
+          description: "Front desk control, speaker movement, and credential support across a full conference day.",
+          eventType: "Corporate / Conference",
+          venueType: "Indoor",
+          eventName: "Corporate Conference Coverage",
+          attendance: 320,
+          duration: 8,
+          billing: "person",
+          schedule: ["schedule_loadin", "schedule_doors", "schedule_coverage", "schedule_loadout"],
+          scheduleWindows: {
+            schedule_loadin: "Morning access and registration setup",
+            schedule_doors: "Guest and staff arrival",
+            schedule_coverage: "Session coverage window",
+            schedule_loadout: "Speaker exit and strike"
+          },
+          scope: ["scope_access", "scope_frontofhouse", "scope_talent"]
+        },
+        festival_perimeter: {
+          label: "Festival Perimeter",
+          description: "Outdoor perimeter control, crowd movement, and overnight asset watch for multi-zone events.",
+          eventType: "Festival / Outdoor Event",
+          venueType: "Outdoor",
+          eventName: "Festival Perimeter Coverage",
+          attendance: 1200,
+          duration: 10,
+          billing: "flat",
+          schedule: ["schedule_loadin", "schedule_doors", "schedule_coverage", "schedule_loadout", "schedule_overnight"],
+          scheduleWindows: {
+            schedule_loadin: "Vendor ingress and perimeter setup",
+            schedule_doors: "Public entry and bag check",
+            schedule_coverage: "Festival live operations",
+            schedule_loadout: "Public egress and strike",
+            schedule_overnight: "Overnight asset watch"
+          },
+          scope: ["scope_access", "scope_frontofhouse", "scope_perimeter", "scope_crowd"]
+        }
+      };
       let currentReference = "";
       let lastSuccessfulSubmissionAt = 0;
       let isSubmitting = false;
       let durationColonHint = false;
+      let selectedPlaybookKey = "";
 
       if (fieldDate) fieldDate.min = new Date().toISOString().split("T")[0];
       intakeForm.querySelectorAll("input, select, textarea").forEach(el => {
@@ -893,6 +993,68 @@
         return Number(checked?.closest(".billing-row")?.dataset.rate || 0);
       }
 
+      function currentPlaybook() {
+        return playbookConfigs[selectedPlaybookKey] || null;
+      }
+
+      function setCheckboxValues(selector, checkedNames) {
+        const wanted = new Set(checkedNames);
+        document.querySelectorAll(selector).forEach(input => {
+          input.checked = wanted.has(input.name);
+        });
+      }
+
+      function setBillingModel(value) {
+        const radio = document.querySelector(`input[name="billingModel"][value="${value}"]`);
+        if (!radio) return;
+        radio.checked = true;
+        syncBilling();
+      }
+
+      function syncPlaybookButtons() {
+        if (!playbookGrid) return;
+        playbookGrid.querySelectorAll(".playbook-chip").forEach(button => {
+          button.classList.toggle("is-active", button.dataset.playbookKey === selectedPlaybookKey);
+        });
+      }
+
+      function savePlaybookPreference(playbookKey) {
+        const saved = loadClientData() || {
+          v: 1,
+          contact: {},
+          preferences: {},
+          dismissed: { restoreBar: false, scopeSuggestions: false }
+        };
+        saved.preferences = saved.preferences || {};
+        saved.preferences.playbook = playbookKey;
+        try { localStorage.setItem(clientKey, JSON.stringify(saved)); } catch {}
+      }
+
+      function renderPlaybooks() {
+        if (!playbookGrid) return;
+        playbookGrid.replaceChildren();
+        Object.entries(playbookConfigs).forEach(([key, config]) => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "playbook-chip";
+          button.dataset.playbookKey = key;
+          button.setAttribute("role", "listitem");
+
+          const title = document.createElement("span");
+          title.className = "playbook-chip-title";
+          title.textContent = config.label;
+
+          const copy = document.createElement("span");
+          copy.className = "playbook-chip-copy";
+          copy.textContent = config.description;
+
+          button.append(title, copy);
+          button.addEventListener("click", () => applyPlaybook(key));
+          playbookGrid.appendChild(button);
+        });
+        syncPlaybookButtons();
+      }
+
       function scopeSelections() {
         return Array.from(document.querySelectorAll('#scope input[type="checkbox"]')).filter(input => input.checked);
       }
@@ -937,6 +1099,225 @@
         if (overallLabel === "HIGH" || overallLabel === "CRITICAL") return "Manual review";
         if (overallLabel === "MEDIUM") return "Ops review";
         return "Standard review";
+      }
+
+      function riskToneFromNode(node) {
+        if (!node) return "medium";
+        if (node.classList.contains("is-high")) return "high";
+        if (node.classList.contains("is-low")) return "low";
+        return "medium";
+      }
+
+      function checkedScheduleRows() {
+        const scheduleInputs = Array.from(document.querySelectorAll('#schedule input[type="checkbox"]:checked'));
+        const playbook = currentPlaybook();
+        const formattedDate = fieldDate.value ? formatDate(fieldDate.value) : "Date to confirm";
+        const totalDuration = fieldDuration.value ? `${fieldDuration.value} hrs requested` : "Coverage to confirm";
+        if (!scheduleInputs.length) {
+          return [{
+            phase: "Coverage Window",
+            date: formattedDate,
+            window: "Requested during intake",
+            duration: totalDuration,
+            notes: "Ops will confirm phase timing during follow up."
+          }];
+        }
+        return scheduleInputs.map(input => {
+          const label = input.closest("label")?.querySelector(".check-label")?.textContent.trim() || input.name;
+          const notes = input.closest("label")?.querySelector(".check-copy")?.textContent.trim() || "Requested in intake.";
+          const duration = input.name === "schedule_coverage"
+            ? totalDuration
+            : input.name === "schedule_overnight"
+              ? "Overnight"
+              : "Included";
+          return {
+            phase: label,
+            date: formattedDate,
+            window: playbook?.scheduleWindows?.[input.name] || "Window to confirm with ops",
+            duration,
+            notes
+          };
+        });
+      }
+
+      function buildBriefData() {
+        const playbook = currentPlaybook();
+        const scheduleRows = checkedScheduleRows();
+        const selectedScopes = Array.from(document.querySelectorAll('#scope input[type="checkbox"]:checked')).map(input => ({
+          name: input.closest("label")?.querySelector(".check-label")?.textContent.trim() || input.name,
+          description: input.closest("label")?.querySelector(".check-copy")?.textContent.trim() || "Requested in intake."
+        }));
+        const unselectedScopes = Array.from(document.querySelectorAll('#scope input[type="checkbox"]:not(:checked)')).map(input => ({
+          name: input.closest("label")?.querySelector(".check-label")?.textContent.trim() || input.name,
+          description: input.closest("label")?.querySelector(".check-copy")?.textContent.trim() || "Available if scope expands."
+        }));
+        const staffingRows = [
+          { label: "Site Lead", count: staffSiteLead.textContent.trim() },
+          { label: "Event Security", count: staffEventSecurity.textContent.trim() },
+          { label: "Entry Screeners", count: staffEntryScreeners.textContent.trim() },
+          { label: "Overnight Watch", count: staffOvernight.textContent.trim() }
+        ].filter(item => item.count !== "x0");
+        const billingOptions = Array.from(document.querySelectorAll("#billingRows .billing-row")).map(row => {
+          const modelKey = row.dataset.model || "";
+          const pricing = billingCatalog[modelKey] || { label: modelKey, price: "", unit: "" };
+          return {
+            key: modelKey,
+            label: pricing.label,
+            description: row.querySelector(".billing-desc")?.textContent.trim() || "",
+            price: pricing.price,
+            unit: pricing.unit,
+            selected: Boolean(row.querySelector(".billing-input")?.checked)
+          };
+        });
+        const selectedBilling = billingOptions.find(option => option.selected) || billingOptions[0] || null;
+        const locationValue = fieldLocation.value.trim();
+        const eventTypeValue = fieldEventType.value.trim();
+        const venueTypeValue = fieldVenueType.value.trim();
+        const eventNameValue = fieldEventName.value.trim() || playbook?.eventName || `${eventTypeValue || "Live event"} coverage`;
+        const organizationValue = fieldOrganization.value.trim() || "Organizer to confirm";
+        const contactNameValue = fieldName.value.trim() || "Primary contact to confirm";
+        const contactEmailValue = fieldEmail.value.trim() || "";
+        const contactPhoneValue = fieldPhone.value.trim() || "Callback number to confirm";
+        const formattedDate = fieldDate.value ? formatDate(fieldDate.value) : "Date to confirm";
+        return {
+          mode: "live-preview",
+          generatedAt: new Date().toISOString(),
+          reference: currentReference || buildReference(),
+          playbook: {
+            key: selectedPlaybookKey,
+            label: playbook?.label || "Custom intake",
+            description: playbook?.description || "Preview generated from the current quote form state."
+          },
+          event: {
+            title: eventNameValue,
+            organization: organizationValue,
+            contactName: contactNameValue,
+            contactEmail: contactEmailValue,
+            contactPhone: contactPhoneValue,
+            eventType: eventTypeValue || "Event type to confirm",
+            attendance: fieldAttendance.value ? `${fieldAttendance.value} guests` : "Attendance to confirm",
+            location: locationValue || "Venue details to confirm",
+            venueType: venueTypeValue || "Venue type to confirm",
+            date: formattedDate,
+            duration: fieldDuration.value ? `${fieldDuration.value} hours requested` : "Coverage hours to confirm",
+            alcoholLabel: summaryAlcohol.textContent.trim(),
+            vipLabel: summaryVip.textContent.trim()
+          },
+          schedule: {
+            note: "Schedule rows below reflect the current intake checklist and any selected playbook defaults. Exact timing is confirmed during ops review.",
+            rows: scheduleRows
+          },
+          scope: {
+            selected: selectedScopes,
+            unselected: unselectedScopes
+          },
+          risk: {
+            reviewLane: currentReviewLane(),
+            items: [
+              {
+                name: fieldAttendance.value ? `Crowd Density (${fieldAttendance.value} guests)` : "Crowd Density",
+                level: riskAttendance.textContent.trim(),
+                tone: riskToneFromNode(riskAttendance)
+              },
+              {
+                name: "Alcohol",
+                level: riskAlcohol.textContent.trim(),
+                tone: riskToneFromNode(riskAlcohol)
+              },
+              {
+                name: "Duration",
+                level: riskCrowd.textContent.trim(),
+                tone: riskToneFromNode(riskCrowd)
+              },
+              {
+                name: "Access Complexity",
+                level: riskVenueComplexity.textContent.trim(),
+                tone: riskToneFromNode(riskVenueComplexity)
+              },
+              {
+                name: "Overall Profile",
+                level: riskOverall.textContent.trim(),
+                tone: riskToneFromNode(riskOverall)
+              }
+            ]
+          },
+          staffing: {
+            title: `${eventNameValue} staffing recommendation`,
+            rows: staffingRows.length ? staffingRows : [{ label: "Ops review", count: "Pending" }],
+            note: recommendNote.textContent.trim()
+          },
+          billing: {
+            selected: selectedBilling,
+            options: billingOptions,
+            estimateRange: summaryEstimateRange.textContent.trim(),
+            estimateNote: summaryEstimateNote?.textContent.trim() || ""
+          },
+          ops: {
+            email: opsEmail,
+            phone: opsPhoneDisplay,
+            turnaround: "Within 24 hours",
+            replyContact: contactEmailValue || opsEmail
+          },
+          supporting: {
+            created: new Date().toLocaleDateString("en-US", {
+              month: "long",
+              day: "numeric",
+              year: "numeric"
+            }),
+            source: "Website",
+            status: "Prospect",
+            type: playbook?.label || "Live preview",
+            website: "https://shieldboxsecurity.com/",
+            notes: `Preview generated from the live quote form. ${playbook?.description || "Edit the intake and reopen preview to refresh this brief."}`
+          }
+        };
+      }
+
+      function openBriefPreview() {
+        const briefData = buildBriefData();
+        currentReference = briefData.reference;
+        syncReference();
+        try {
+          sessionStorage.setItem(briefPreviewKey, JSON.stringify({ v: 1, brief: briefData }));
+        } catch {}
+        const previewWindow = window.open(briefPreviewUrl, "_blank");
+        if (previewWindow) {
+          previewWindow.focus();
+        } else {
+          window.location.href = briefPreviewUrl;
+        }
+      }
+
+      function applyPlaybook(key, { persist = true, announce = true } = {}) {
+        const playbook = playbookConfigs[key];
+        if (!playbook) return;
+        const previousPlaybook = currentPlaybook();
+        selectedPlaybookKey = key;
+        fieldEventType.value = playbook.eventType;
+        fieldVenueType.value = playbook.venueType;
+        fieldAttendance.value = String(playbook.attendance);
+        fieldDuration.value = String(playbook.duration);
+        if (!fieldEventName.value.trim() || fieldEventName.value.trim() === previousPlaybook?.eventName) {
+          fieldEventName.value = playbook.eventName;
+        }
+        setCheckboxValues('#schedule input[type="checkbox"]', playbook.schedule);
+        setCheckboxValues('#scope input[type="checkbox"]', playbook.scope);
+        setBillingModel(playbook.billing);
+        if (playbookApplied) {
+          playbookApplied.textContent = `${playbook.label} applied. Defaults are loaded and ready to edit.`;
+          playbookApplied.hidden = false;
+        }
+        syncPlaybookButtons();
+        syncDurationFormatNote();
+        syncAttendanceWarning();
+        syncOverviewSnapshot();
+        updateQuoteAndRisk();
+        syncScopeSuggestions();
+        syncBillingFit();
+        syncNextPrompt();
+        syncProgress();
+        if (persist) savePlaybookPreference(key);
+        if (announce) flashFeedback(playbookGrid, "success");
       }
 
       function syncEmailSuggestion() {
@@ -1271,6 +1652,8 @@
         requestBtn.disabled = true;
       });
 
+      previewBriefButton.addEventListener("click", openBriefPreview);
+      previewConfirmationButton.addEventListener("click", openBriefPreview);
       printBtn.addEventListener("click", () => window.print());
       printConfirmationButton.addEventListener("click", () => window.print());
       newRequestButton.addEventListener("click", () => {
@@ -1307,6 +1690,9 @@
         if (fitPerson) fitPerson.hidden = true;
         if (fitFlat) fitFlat.hidden = true;
         document.querySelectorAll("[data-scope-suggest]").forEach(b => b.hidden = true);
+        selectedPlaybookKey = "";
+        if (playbookApplied) playbookApplied.hidden = true;
+        syncPlaybookButtons();
         syncProgress();
         requestAnimationFrame(() => fieldName.focus());
       });
@@ -1348,7 +1734,8 @@
           preferences: {
             billing: billingChecked ? billingChecked.value : "flat",
             theme: "default",
-            scopeDefaults: scopeChecked
+            scopeDefaults: scopeChecked,
+            playbook: selectedPlaybookKey
           },
           lastSubmission: {
             reference: currentReference,
@@ -1363,16 +1750,22 @@
 
       function showRestoreBar() {
         const saved = loadClientData();
-        if (!saved || !saved.contact || !saved.contact.name) return;
+        if (!saved) return;
+        const hasSavedContact = Boolean(saved.contact && saved.contact.name);
+        const hasSavedPlaybook = Boolean(saved.preferences && saved.preferences.playbook);
+        if (!hasSavedContact && !hasSavedPlaybook) return;
         if (saved.dismissed && saved.dismissed.restoreBar) return;
-        if (fieldName.value.trim() || fieldEmail.value.trim()) return;
+        if (fieldName.value.trim() || fieldEmail.value.trim() || selectedPlaybookKey) return;
         intakeRestore.hidden = false;
       }
 
       function restoreFields() {
         const saved = loadClientData();
-        if (!saved || !saved.contact) return;
-        const c = saved.contact;
+        if (!saved) return;
+        const c = saved.contact || {};
+        if (saved.preferences && saved.preferences.playbook) {
+          applyPlaybook(saved.preferences.playbook, { persist: false, announce: false });
+        }
         if (c.name) fieldName.value = c.name;
         if (c.phone) fieldPhone.value = c.phone;
         if (c.email) fieldEmail.value = c.email;
@@ -1389,6 +1782,10 @@
         }
         intakeRestore.hidden = true;
         syncOverviewSnapshot();
+        updateQuoteAndRisk();
+        syncScopeSuggestions();
+        syncBillingFit();
+        syncNextPrompt();
         syncProgress();
         showToast("Details restored", "Contact info loaded from your last submission.");
       }
@@ -1490,6 +1887,7 @@
       }
 
       /* Initial sync */
+      renderPlaybooks();
       showRestoreBar();
       syncScopeSuggestions();
       syncBillingFit();

@@ -3075,6 +3075,257 @@ a:hover { text-decoration: underline; }
       });
     }
 
+    var previewParams = new URLSearchParams(window.location.search);
+    var livePreviewMode = previewParams.get('preview') === 'live';
+    var livePreviewData = null;
+
+    if (livePreviewMode) {
+      try {
+        var previewRaw = sessionStorage.getItem('sb-live-brief-preview');
+        var previewPayload = previewRaw ? JSON.parse(previewRaw) : null;
+        if (previewPayload && previewPayload.v === 1 && previewPayload.brief) {
+          livePreviewData = previewPayload.brief;
+        }
+      } catch (error) {
+        livePreviewData = null;
+      }
+    }
+
+    function escapeHtml(value) {
+      return String(value == null ? '' : value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function safeText(value, fallback) {
+      var text = String(value == null ? '' : value).trim();
+      return text || fallback;
+    }
+
+    function safeHref(kind, value) {
+      var text = String(value == null ? '' : value).trim();
+      if (!text) return '';
+      if (kind === 'mailto' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(text)) return 'mailto:' + text;
+      if (kind === 'tel' && /^[\d\s\-\+\(\)]+$/.test(text)) return 'tel:' + text.replace(/[^\d+]/g, '');
+      if (kind === 'url' && /^https?:\/\//.test(text)) return text;
+      return '';
+    }
+
+    function toneClass(tone) {
+      if (tone === 'high') return 'is-high';
+      if (tone === 'low') return 'is-low';
+      return 'is-medium';
+    }
+
+    function renderLinkedValue(kind, value, fallback) {
+      var safeValue = safeText(value, fallback);
+      var href = safeHref(kind, value);
+      if (!href) return escapeHtml(safeValue);
+      return '<a href="' + escapeHtml(href) + '">' + escapeHtml(safeValue) + '</a>';
+    }
+
+    function renderPill(text, klass) {
+      return '<span class="pill ' + klass + '">' + escapeHtml(text) + '</span>';
+    }
+
+    function renderBriefPreview(data) {
+      data = data && typeof data === 'object' ? data : {};
+      data.playbook = data.playbook && typeof data.playbook === 'object' ? data.playbook : {};
+      data.ops = data.ops && typeof data.ops === 'object' ? data.ops : {};
+      data.supporting = data.supporting && typeof data.supporting === 'object' ? data.supporting : {};
+      data.event = data.event && typeof data.event === 'object' ? data.event : {};
+      data.schedule = data.schedule && typeof data.schedule === 'object' ? data.schedule : {};
+      data.schedule.rows = Array.isArray(data.schedule.rows) ? data.schedule.rows : [];
+      data.scope = data.scope && typeof data.scope === 'object' ? data.scope : {};
+      data.scope.selected = Array.isArray(data.scope.selected) ? data.scope.selected : [];
+      data.scope.unselected = Array.isArray(data.scope.unselected) ? data.scope.unselected : [];
+      data.risk = data.risk && typeof data.risk === 'object' ? data.risk : {};
+      data.risk.items = Array.isArray(data.risk.items) ? data.risk.items : [];
+      data.staffing = data.staffing && typeof data.staffing === 'object' ? data.staffing : {};
+      data.staffing.rows = Array.isArray(data.staffing.rows) ? data.staffing.rows : [];
+      data.billing = data.billing && typeof data.billing === 'object' ? data.billing : {};
+      data.billing.options = Array.isArray(data.billing.options) ? data.billing.options : [];
+
+      var pageOverline = document.querySelector('.page-overline');
+      var pageTitle = document.querySelector('.page-title');
+      var pageSub = document.querySelector('.page-sub');
+      var pageChips = document.querySelector('.page-chips');
+      var quickRef = document.querySelector('.sb-info-val');
+      var briefGrid = document.querySelector('#overview .brief-grid');
+      var overviewGrid = document.querySelector('#section-a .form-grid');
+      var scheduleIntro = document.querySelector('#section-b .section-intro');
+      var scheduleNote = document.querySelector('#section-b .section-note');
+      var scheduleBody = document.querySelector('#section-b tbody');
+      var scopeIntro = document.querySelector('#section-c .section-intro');
+      var scopeGrid = document.querySelector('#section-c .check-grid');
+      var riskIntro = document.querySelector('#section-d .section-intro');
+      var riskGrid = document.querySelector('#section-d .risk-grid');
+      var recommendTitle = document.querySelector('#section-d .recommend-title');
+      var recommendList = document.querySelector('#section-d .recommend-list');
+      var recommendNote = document.querySelector('#section-d .recommend-note');
+      var billingBody = document.querySelector('#section-e tbody');
+      var billingNote = document.querySelector('#section-e .billing-note');
+      var nextTitle = document.querySelector('#next .next-title');
+      var nextCopy = document.querySelector('#next .next-copy');
+      var nextTurnaround = document.querySelector('#next .next-turnaround');
+      var noteText = document.querySelector('.note-text');
+      var propertyGrid = document.querySelector('#record .property-grid');
+      var notesCopy = document.querySelector('#record .notes-copy');
+      var footerNote = document.querySelector('.footer-note');
+      var cta = document.getElementById('cta-btn');
+
+      if (pageOverline) pageOverline.textContent = 'ShieldBox Security · ' + safeText(data.playbook.label, 'Live Preview');
+      if (pageTitle) pageTitle.textContent = 'Live Ops Brief Preview';
+      if (pageSub) pageSub.textContent = 'This brief is generated from the current quote intake. Edit the live quote page, then reopen preview to refresh the record.';
+      if (pageChips) {
+        pageChips.innerHTML =
+          '<div class="chip">' + escapeHtml(safeText(data.playbook.label, 'Custom Intake')) + '</div>' +
+          '<div class="chip">Live Preview</div>' +
+          '<div class="chip">' + escapeHtml(safeText(data.ops.turnaround, 'Within 24 hours')) + '</div>' +
+          '<div class="chip">Ref: ' + escapeHtml(safeText(data.reference, 'Pending')) + '</div>';
+      }
+      if (quickRef) {
+        quickRef.innerHTML =
+          'Created: ' + escapeHtml(safeText(data.supporting.created, 'Today')) + '<br>' +
+          'Ref: ' + escapeHtml(safeText(data.reference, 'Pending')) + '<br>' +
+          'Turnaround: ' + escapeHtml(safeText(data.ops.turnaround, 'Within 24 hours')) + '<br>' +
+          'Lane: ' + escapeHtml(safeText(data.risk.reviewLane, 'Ops review'));
+      }
+      if (briefGrid) {
+        briefGrid.innerHTML =
+          '<article class="brief-card">' +
+            '<div class="brief-kicker">Event</div>' +
+            '<h3 class="brief-title">' + escapeHtml(safeText(data.event.title, 'Event coverage')) + '</h3>' +
+            '<p class="brief-copy">' + escapeHtml(safeText(data.playbook.description, 'Preview generated from the current intake.')) + '</p>' +
+            '<ul class="brief-list">' +
+              '<li><span class="brief-label">Organization</span><span class="brief-value">' + escapeHtml(safeText(data.event.organization, 'Organizer to confirm')) + '</span></li>' +
+              '<li><span class="brief-label">Attendance</span><span class="brief-value">' + escapeHtml(safeText(data.event.attendance, 'Attendance to confirm')) + '</span></li>' +
+              '<li><span class="brief-label">Venue</span><span class="brief-value">' + escapeHtml(safeText(data.event.location, 'Venue details to confirm')) + '</span></li>' +
+            '</ul>' +
+          '</article>' +
+          '<article class="brief-card">' +
+            '<div class="brief-kicker">Lead Contact</div>' +
+            '<h3 class="brief-title">' + escapeHtml(safeText(data.event.contactName, 'Primary contact to confirm')) + '</h3>' +
+            '<p class="brief-copy">' + escapeHtml(safeText(data.schedule.note, 'Schedule details will be confirmed during ops review.')) + '</p>' +
+            '<ul class="brief-list">' +
+              '<li><span class="brief-label">Email</span><span class="brief-value">' + renderLinkedValue('mailto', data.event.contactEmail, 'Email to confirm') + '</span></li>' +
+              '<li><span class="brief-label">Phone</span><span class="brief-value">' + escapeHtml(safeText(data.event.contactPhone, 'Callback number to confirm')) + '</span></li>' +
+              '<li><span class="brief-label">Primary Window</span><span class="brief-value">' + escapeHtml(safeText(data.event.duration, 'Coverage hours to confirm')) + '</span></li>' +
+            '</ul>' +
+          '</article>' +
+          '<article class="brief-card">' +
+            '<div class="brief-kicker">Proposal Track</div>' +
+            '<h3 class="brief-title">' + escapeHtml(safeText(data.billing.selected && data.billing.selected.label, 'Billing preference to confirm')) + '</h3>' +
+            '<p class="brief-copy">' + escapeHtml(safeText(data.billing.estimateNote, 'Planning estimate only. Final pricing confirmed after review.')) + '</p>' +
+            '<ul class="brief-list">' +
+              '<li><span class="brief-label">Review Lane</span><span class="brief-value">' + escapeHtml(safeText(data.risk.reviewLane, 'Ops review')) + '</span></li>' +
+              '<li><span class="brief-label">Estimated Range</span><span class="brief-value">' + escapeHtml(safeText(data.billing.estimateRange, 'Planning range pending')) + '</span></li>' +
+              '<li><span class="brief-label">Reference</span><span class="brief-value">' + escapeHtml(safeText(data.reference, 'Pending')) + '</span></li>' +
+            '</ul>' +
+            '<div class="brief-flags">' +
+              renderPill(safeText(data.event.alcoholLabel, 'Alcohol to confirm'), 'pill-ok') +
+              renderPill(safeText(data.event.vipLabel, 'VIP status to confirm'), 'pill-ok') +
+              renderPill(safeText(data.risk.items[data.risk.items.length - 1] && data.risk.items[data.risk.items.length - 1].level, 'Risk to confirm'), 'pill-accent') +
+            '</div>' +
+          '</article>';
+      }
+      if (overviewGrid) {
+        overviewGrid.innerHTML =
+          '<div class="form-field"><label>Organization Name</label><div class="field-val">' + escapeHtml(safeText(data.event.organization, 'Organizer to confirm')) + '</div></div>' +
+          '<div class="form-field"><label>Point of Contact</label><div class="field-val">' + escapeHtml(safeText(data.event.contactName, 'Primary contact to confirm')) + '</div></div>' +
+          '<div class="form-field"><label>Email</label><div class="field-val">' + renderLinkedValue('mailto', data.event.contactEmail, 'Email to confirm') + '</div></div>' +
+          '<div class="form-field"><label>Phone</label><div class="field-val">' + escapeHtml(safeText(data.event.contactPhone, 'Callback number to confirm')) + '</div></div>' +
+          '<div class="form-field span2"><label>Event Name</label><div class="field-val field-val--display">' + escapeHtml(safeText(data.event.title, 'Event coverage')) + '</div></div>' +
+          '<div class="form-field"><label>Event Type</label><div class="field-val">' + escapeHtml(safeText(data.event.eventType, 'Event type to confirm')) + '</div></div>' +
+          '<div class="form-field"><label>Expected Attendance</label><div class="field-val">' + escapeHtml(safeText(data.event.attendance, 'Attendance to confirm')) + '</div></div>' +
+          '<div class="form-field span2"><label>Venue Address</label><div class="field-val">' + escapeHtml(safeText(data.event.location, 'Venue details to confirm')) + '</div></div>' +
+          '<div class="form-field"><label>Venue Type</label><div class="field-val">' + escapeHtml(safeText(data.event.venueType, 'Venue type to confirm')) + '</div></div>' +
+          '<div class="form-field"><label>Event Date</label><div class="field-val">' + escapeHtml(safeText(data.event.date, 'Date to confirm')) + '</div></div>' +
+          '<div class="form-field last-row"><label>Alcohol Served</label><div class="field-val">' + renderPill(safeText(data.event.alcoholLabel, 'Alcohol to confirm'), data.event.alcoholLabel && data.event.alcoholLabel.toLowerCase().indexOf('not') !== -1 ? 'pill-warn' : 'pill-ok') + '</div></div>' +
+          '<div class="form-field last-row"><label>VIP or Talent Present</label><div class="field-val">' + renderPill(safeText(data.event.vipLabel, 'VIP status to confirm'), data.event.vipLabel && data.event.vipLabel.toLowerCase().indexOf('no ') !== -1 ? 'pill-warn' : 'pill-ok') + '</div></div>';
+      }
+      if (scheduleIntro) scheduleIntro.textContent = data.schedule.note;
+      if (scheduleNote) scheduleNote.textContent = safeText(data.event.date, 'Date to confirm');
+      if (scheduleBody) {
+        scheduleBody.innerHTML = data.schedule.rows.map(function(row) {
+          return '<tr>' +
+            '<td><span class="t-phase">' + escapeHtml(safeText(row.phase, 'Coverage')) + '</span></td>' +
+            '<td><span class="t-tag">' + escapeHtml(safeText(row.date, 'Date to confirm')) + '</span></td>' +
+            '<td><span class="t-tag">' + escapeHtml(safeText(row.window, 'Window to confirm')) + '</span></td>' +
+            '<td><span class="t-dur">' + escapeHtml(safeText(row.duration, 'Included')) + '</span></td>' +
+            '<td class="t-note">' + escapeHtml(safeText(row.notes, 'Ops to confirm notes.')) + '</td>' +
+          '</tr>';
+        }).join('');
+      }
+      if (scopeIntro) scopeIntro.textContent = 'Scope below reflects the current intake and any selected playbook defaults.';
+      if (scopeGrid) {
+        scopeGrid.innerHTML = data.scope.selected.concat(data.scope.unselected).map(function(item, index) {
+          var checked = index < data.scope.selected.length;
+          return '<div class="check-item' + (checked ? ' checked' : '') + '" tabindex="-1" role="checkbox" aria-checked="' + (checked ? 'true' : 'false') + '">' +
+            '<div class="chk-box"><svg viewBox="0 0 12 10"><polyline points="1,5 4.5,8.5 11,1"/></svg></div>' +
+            '<div><div class="check-label">' + escapeHtml(safeText(item.name, 'Coverage item')) + '</div><div class="check-copy">' + escapeHtml(safeText(item.description, 'Scope detail to confirm.')) + '</div></div>' +
+          '</div>';
+        }).join('');
+      }
+      if (riskIntro) riskIntro.textContent = 'Risk profile below is generated from the current live quote inputs.';
+      if (riskGrid) {
+        riskGrid.innerHTML = data.risk.items.map(function(item) {
+          return '<div class="risk-item" role="listitem">' +
+            '<span class="risk-name">' + escapeHtml(safeText(item.name, 'Risk factor')) + '</span>' +
+            '<span class="risk-level ' + toneClass(item.tone) + '">' + escapeHtml(safeText(item.level, 'Medium')) + '</span>' +
+          '</div>';
+        }).join('');
+      }
+      if (recommendTitle) recommendTitle.textContent = safeText(data.staffing.title, 'Recommended coverage');
+      if (recommendList) {
+        recommendList.innerHTML = data.staffing.rows.map(function(row) {
+          return '<div class="recommend-row"><span>' + escapeHtml(safeText(row.label, 'Role')) + '</span><span>' + escapeHtml(safeText(row.count, 'Pending')) + '</span></div>';
+        }).join('');
+      }
+      if (recommendNote) recommendNote.textContent = safeText(data.staffing.note, 'Ops will confirm staffing during review.');
+      if (billingBody) {
+        billingBody.innerHTML = data.billing.options.map(function(option) {
+          return '<tr class="billing-row' + (option.selected ? ' is-selected' : '') + '">' +
+            '<td><div class="billing-model">' + escapeHtml(safeText(option.label, 'Billing model')) + '</div><div class="billing-desc">' + escapeHtml(safeText(option.description, 'Billing detail to confirm')) + '</div></td>' +
+            '<td><div class="billing-price">' + escapeHtml(safeText(option.price, 'TBD')) + '</div></td>' +
+            '<td><div class="billing-unit">' + escapeHtml(safeText(option.unit, 'pricing unit')) + '</div></td>' +
+            '<td><div class="billing-choice"><input class="billing-input" type="radio" disabled' + (option.selected ? ' checked' : '') + ' /><span class="billing-choice-text">' + (option.selected ? 'Selected' : 'Available') + '</span></div></td>' +
+          '</tr>';
+        }).join('');
+      }
+      if (billingNote) billingNote.textContent = safeText(data.billing.estimateNote, 'Planning estimate only. Final pricing confirmed after review.') + ' Current range: ' + safeText(data.billing.estimateRange, 'Planning range pending') + '.';
+      if (nextTitle) nextTitle.textContent = 'Preview Next Step';
+      if (nextCopy) nextCopy.textContent = 'This live preview is generated from the current quote intake. Return to the quote page if you want to adjust scope, schedule, or billing before sending.';
+      if (nextTurnaround) nextTurnaround.textContent = 'Live preview · Ref: ' + safeText(data.reference, 'Pending');
+      if (cta) cta.textContent = 'Back to Live Quote';
+      if (noteText) noteText.textContent = 'This page is a live preview built from the current quote form. Update the live intake and reopen preview when you need a fresh brief.';
+      if (propertyGrid) {
+        propertyGrid.innerHTML =
+          '<div class="property"><div class="property-label">Created</div><div class="property-value">' + escapeHtml(safeText(data.supporting.created, 'Today')) + '</div></div>' +
+          '<div class="property"><div class="property-label">Ops Email</div><div class="property-value">' + renderLinkedValue('mailto', data.ops.email, 'Ops email') + '</div></div>' +
+          '<div class="property"><div class="property-label">Industry</div><div class="property-value">Security</div></div>' +
+          '<div class="property"><div class="property-label">Ops Phone</div><div class="property-value">' + renderLinkedValue('tel', data.ops.phone, 'Ops phone') + '</div></div>' +
+          '<div class="property"><div class="property-label">Primary Contact</div><div class="property-value">' + escapeHtml(safeText(data.event.contactName, 'Primary contact to confirm')) + '</div></div>' +
+          '<div class="property"><div class="property-label">Source</div><div class="property-value">' + escapeHtml(safeText(data.supporting.source, 'Website')) + '</div></div>' +
+          '<div class="property no-bottom"><div class="property-label">Status</div><div class="property-value">' + renderPill(safeText(data.supporting.status, 'Prospect'), 'pill-warn') + '</div></div>' +
+          '<div class="property no-bottom"><div class="property-label">Type</div><div class="property-value">' + renderPill(safeText(data.supporting.type, 'Live preview'), 'pill-accent') + '</div></div>' +
+          '<div class="property no-bottom"><div class="property-label">Website</div><div class="property-value">' + renderLinkedValue('url', data.supporting.website, 'shieldboxsecurity.com') + '</div></div>';
+      }
+      if (notesCopy) notesCopy.textContent = safeText(data.supporting.notes, 'Preview generated from the live quote form.');
+      if (footerNote) {
+        footerNote.innerHTML = 'ShieldBox Security · Philadelphia Event Security<br>Licensed &amp; Insured · PA Act 235 Certified Team<br><br>Live preview generated from the current quote intake.<br>Return to the live quote page to edit the request.';
+      }
+
+      document.title = 'Live Ops Brief Preview | ShieldBox Security';
+    }
+
+    if (livePreviewData) {
+      renderBriefPreview(livePreviewData);
+    }
+
     bindPressFeedback('.nav-links a, .nav-cta, .sb-link, .check-item, .billing-row, .cta, .cta-secondary, .supporting-details summary');
 
     /* — Sidebar scroll spy — */
@@ -3095,52 +3346,58 @@ a:hover { text-decoration: underline; }
     updateSpy();
 
     /* — Scope / checkbox toggles — */
-    document.querySelectorAll('.check-item').forEach(function(el) {
-      function toggle() {
-        el.classList.toggle('checked');
-        el.setAttribute('aria-checked', el.classList.contains('checked').toString());
-        flashFeedback(el, 'success');
-      }
-      el.addEventListener('click', toggle);
-      el.addEventListener('keydown', function(e) {
-        if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); toggle(); }
+    if (!livePreviewData) {
+      document.querySelectorAll('.check-item').forEach(function(el) {
+        function toggle() {
+          el.classList.toggle('checked');
+          el.setAttribute('aria-checked', el.classList.contains('checked').toString());
+          flashFeedback(el, 'success');
+        }
+        el.addEventListener('click', toggle);
+        el.addEventListener('keydown', function(e) {
+          if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); toggle(); }
+        });
       });
-    });
+    }
 
     /* — Billing row highlight on radio change — */
-    document.querySelectorAll('.billing-input').forEach(function(input) {
-      input.addEventListener('change', function() {
-        document.querySelectorAll('.billing-row').forEach(function(r) {
-          r.classList.remove('is-selected');
+    if (!livePreviewData) {
+      document.querySelectorAll('.billing-input').forEach(function(input) {
+        input.addEventListener('change', function() {
+          document.querySelectorAll('.billing-row').forEach(function(r) {
+            r.classList.remove('is-selected');
+          });
+          input.closest('.billing-row').classList.add('is-selected');
+          input.closest('.billing-row').querySelector('.billing-choice-text').textContent = 'Selected';
+          document.querySelectorAll('.billing-choice-text').forEach(function(t) {
+            if (t !== input.closest('.billing-row').querySelector('.billing-choice-text')) {
+              t.textContent = 'Choose';
+            }
+          });
+          flashFeedback(input.closest('.billing-row'), 'success');
         });
-        input.closest('.billing-row').classList.add('is-selected');
-        input.closest('.billing-row').querySelector('.billing-choice-text').textContent = 'Selected';
-        document.querySelectorAll('.billing-choice-text').forEach(function(t) {
-          if (t !== input.closest('.billing-row').querySelector('.billing-choice-text')) {
-            t.textContent = 'Choose';
+      });
+    }
+
+    if (!livePreviewData) {
+      document.querySelectorAll('.billing-row').forEach(function(row) {
+        row.addEventListener('click', function(event) {
+          if (event.target.closest('.billing-input')) return;
+          var input = row.querySelector('.billing-input');
+          if (input && !input.checked) {
+            input.checked = true;
+            input.dispatchEvent(new Event('change', { bubbles: true }));
           }
         });
-        flashFeedback(input.closest('.billing-row'), 'success');
       });
-    });
-
-    document.querySelectorAll('.billing-row').forEach(function(row) {
-      row.addEventListener('click', function(event) {
-        if (event.target.closest('.billing-input')) return;
-        var input = row.querySelector('.billing-input');
-        if (input && !input.checked) {
-          input.checked = true;
-          input.dispatchEvent(new Event('change', { bubbles: true }));
-        }
-      });
-    });
+    }
 
     /* — CTA toast — */
     var toast   = document.getElementById('toast');
     var toastTitle = document.getElementById('toastTitle');
     var toastBody = document.getElementById('toastBody');
     var ctaBtn  = document.getElementById('cta-btn');
-    var liveQuoteUrl = 'index.html#quoteStart';
+    var liveQuoteUrl = livePreviewData ? 'quote.html' : 'index.html#quoteStart';
     var tTimer;
 
     function showToast(title, body, tone) {
@@ -3160,6 +3417,14 @@ a:hover { text-decoration: underline; }
     }
 
     ctaBtn.addEventListener('click', function() {
+      if (livePreviewData) {
+        flashFeedback(ctaBtn, 'success');
+        showToast('Opening live quote form', 'Go back to the live quote page to keep editing this request.', 'success');
+        setTimeout(function() {
+          window.location.href = liveQuoteUrl;
+        }, reduceMotionQuery.matches ? 0 : 140);
+        return;
+      }
       var selectedScope = document.querySelectorAll('.check-item.checked').length;
       var selectedBilling = document.querySelector('.billing-input:checked');
       if (!selectedScope || !selectedBilling) {

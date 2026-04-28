@@ -1,2 +1,7 @@
 .DS_Store
 archives/
+
+# secrets
+.env
+.env.local
+.env.*.local
