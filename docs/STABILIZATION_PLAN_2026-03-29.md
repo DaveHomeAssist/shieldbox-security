@@ -57,8 +57,8 @@
 - Evidence:
   - known project constraints already note pending wording/image review
   - current redesign still uses:
-    - `Since 2004`
-    - `Licensed · Bonded · Insured · Local`
+    - `Since 2024`
+    - `Insured · Act 235 · Owner-led`
     - Philadelphia-heavy geographic framing
 - Impact:
   - design can ship visually while still carrying unverified sales claims or phrasing

@@ -6,7 +6,7 @@ Inherits root rules from `/Users/daverobertson/Desktop/Code/AGENTS.md`.
 
 ## Project Overview
 
-Static mockup of an event security quote intake portal for ShieldBox Security (Philadelphia). Users configure event details (type, size, billing, scope) and receive a quote estimate. The v4 gold master is a historical snapshot from the March 18 redesign. `index.html` is the canonical development file. The `archives/` directory contains previous iterations: v0 original, v1 gemini, v2 codex, v3 claude, v4 pre-audit snapshot.
+Static event security quote intake site for ShieldBox Security (Philadelphia). Users configure event details (type, size, billing, scope) and receive a quote estimate. The v4 gold master is a historical snapshot from the March 18 redesign. `index.html` is the canonical development file. The `archives/` directory contains previous iterations: v0 original, v1 gemini, v2 codex, v3 claude, v4 pre-audit snapshot.
 
 ## Stack
 

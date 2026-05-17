@@ -13,7 +13,7 @@
     <meta property="og:title" content="ShieldBox Security | Philadelphia Event Security">
     <meta property="og:description" content="Request a quote for professional event security services in Philadelphia from ShieldBox Security.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://shieldboxsecurity.com/">
+    <meta property="og:url" content="https://shieldboxsecurity.com/quote.html">
     <meta property="og:image" content="https://shieldboxsecurity.com/assets/icons/favicon/android-chrome-512.png">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="ShieldBox Security | Philadelphia Event Security">
@@ -25,6 +25,7 @@
       "@context": "https://schema.org",
       "@type": ["LocalBusiness", "SecurityService"],
       "name": "ShieldBox Security",
+      "legalName": "ShieldBox Security LLC",
       "description": "Professional, armed and unarmed event security in Philadelphia. Trained personnel, visible presence, and disciplined protection for events, venues, and private clients.",
       "url": "https://shieldboxsecurity.com/",
       "email": "shieldbox.sec@gmail.com",
@@ -37,8 +38,11 @@
       },
       "areaServed": [
         { "@type": "City", "name": "Philadelphia", "sameAs": "https://en.wikipedia.org/wiki/Philadelphia" },
-        { "@type": "AdministrativeArea", "name": "Delaware County, PA" },
-        { "@type": "AdministrativeArea", "name": "Montgomery County, PA" }
+        { "@type": "State", "name": "Pennsylvania" },
+        { "@type": "State", "name": "Delaware" },
+        { "@type": "State", "name": "Maryland" },
+        { "@type": "State", "name": "New Jersey" },
+        { "@type": "State", "name": "New York" }
       ],
       "contactPoint": [
         {
@@ -46,7 +50,7 @@
           "contactType": "sales",
           "email": "shieldbox.sec@gmail.com",
           "telephone": "+1-267-276-5287",
-          "areaServed": ["PA", "NJ"],
+          "areaServed": ["PA", "DE", "MD", "NJ", "NY"],
           "availableLanguage": ["English"]
         }
       ],
@@ -490,12 +494,12 @@
           <h2 class="next-title" id="nextHeading">Next Step</h2>
           <p class="next-copy">When you send your quote request, your intake routes directly to <a href="mailto:shieldbox.sec@gmail.com">shieldbox.sec@gmail.com</a>. If you need to flag an urgent change after submission, call <a href="tel:+12672765287">+1 267-276-5287</a>. ShieldBox reviews every request manually and follows up within <strong>24 hours</strong>.</p>
           <div class="next-actions">
-            <button id="requestButton" class="cta" type="submit" form="intakeForm">Send Quote Request</button>
+            <button id="requestButton" class="cta" type="submit" form="intakeForm">Submit</button>
             <button id="previewBriefButton" class="cta cta-secondary" type="button">Preview Brief</button>
             <button id="printButton" class="cta cta-secondary" type="button">Download as PDF</button>
           </div>
           <p class="next-helper">One primary action from here: submit the request. Everything above simply improves pricing accuracy and speeds ops review.</p>
-          <div class="next-turnaround">Guaranteed 24-hour turnaround | Ref: <span id="referencePreview">—</span></div>
+          <div class="next-turnaround">Typical 24-hour turnaround | Ref: <span id="referencePreview">—</span></div>
         </section>
       </div>
 
@@ -578,7 +582,7 @@
         <a id="footerEmail" href="#"></a><br />
         <a href="tel:+12672765287">+1 267-276-5287</a>
       </address>
-      Professional event security for Philadelphia, Delaware County, Montgomery County, and South Jersey venues
+      Philadelphia-based event security serving PA, DE, MD, NJ, and NY by request
     </div>
     <div class="footer-note">
       Protect people. Support our clients. Uphold a standard of security that others can't match.<br />
@@ -1643,7 +1647,7 @@
           setTimeout(() => {
             isSubmitting = false;
             requestBtn.disabled = false;
-            requestBtn.textContent = "Send Quote Request";
+            requestBtn.textContent = "Submit";
           }, 3000);
           return;
         }
@@ -1670,7 +1674,7 @@
         isSubmitting = false;
         requestBtn.disabled = false;
         requestBtn.classList.remove("is-loading");
-        requestBtn.textContent = "Send Quote Request";
+        requestBtn.textContent = "Submit";
         setVal("", "");
         durationColonHint = false;
         syncDurationFormatNote();

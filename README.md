@@ -1,6 +1,6 @@
 # ShieldBox Security Event Quote Request
 
-Static single-file HTML mockup for a fictional ShieldBox Security event quote intake portal.
+Static ShieldBox Security event quote intake site.
 
 - Primary entry point: `index.html`
 - Static preview brief: `event-quote-request.html` (`noindex`/`nofollow`, read-only example surface)
