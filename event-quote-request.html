@@ -2416,7 +2416,7 @@ a:hover { text-decoration: underline; }
           </div>
           <div class="chip">
             <svg width="11" height="11" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0a8 8 0 100 16A8 8 0 008 0zm.5 4v4.5l3.5 2-.7 1.2-4-2.3V4h1.2z"/></svg>
-            24-Hour Turnaround
+            Manual Review
           </div>
           <div class="chip">
             <div class="chip-dot"></div>
@@ -2794,7 +2794,7 @@ a:hover { text-decoration: underline; }
                     <div class="billing-desc">Billed per guard per active hour</div>
                   </td>
                   <td>
-                    <div class="billing-price">$42</div>
+                    <div class="billing-price">Quoted</div>
                   </td>
                   <td><div class="billing-unit">per guard / hr</div></td>
                   <td>
@@ -2810,7 +2810,7 @@ a:hover { text-decoration: underline; }
                     <div class="billing-desc">Flat rate per guard per 8-hour block</div>
                   </td>
                   <td>
-                    <div class="billing-price">$325</div>
+                    <div class="billing-price">Quoted</div>
                   </td>
                   <td><div class="billing-unit">per 8-hr shift</div></td>
                   <td>
@@ -2826,7 +2826,7 @@ a:hover { text-decoration: underline; }
                     <div class="billing-desc">All-inclusive, full coverage package</div>
                   </td>
                   <td>
-                    <div class="billing-price">$2,950</div>
+                    <div class="billing-price">Quoted</div>
                   </td>
                   <td><div class="billing-unit">all-inclusive</div></td>
                   <td>
@@ -2840,7 +2840,7 @@ a:hover { text-decoration: underline; }
             </table>
           </div>
           <div class="billing-note">
-            Pricing reflects standard ShieldBox rates for this event tier. Final pricing may vary based on confirmed headcount, site conditions, revised scope, or overnight extensions. A detailed line-item breakdown is included in the final quote.
+            Pricing is quoted per event after manual review and may vary based on confirmed headcount, site conditions, revised scope, or overnight extensions. A detailed line-item breakdown is included in the final quote.
           </div>
         </div>
       </section>
@@ -2863,11 +2863,11 @@ a:hover { text-decoration: underline; }
           <div class="promise-points">
             <div class="promise-point">
               <div class="p-check"><svg viewBox="0 0 12 10"><polyline points="1,5 4.5,8.5 11,1"/></svg></div>
-              <div class="promise-point-text"><strong>Owner on site, every event.</strong> Carl Mercer leads from the floor. No delegate management, no subcontracted strangers.</div>
+              <div class="promise-point-text"><strong>Owner-led operation.</strong> Carl Duffield leads from the floor. No delegate management.</div>
             </div>
             <div class="promise-point">
               <div class="p-check"><svg viewBox="0 0 12 10"><polyline points="1,5 4.5,8.5 11,1"/></svg></div>
-              <div class="promise-point-text"><strong>Trained, in-house team.</strong> Every ShieldBox guard is vetted, trained, and familiar with our operational standards before setting foot on your event.</div>
+              <div class="promise-point-text"><strong>Trained, vetted team.</strong> Every ShieldBox guard is vetted, trained, and familiar with our operational standards before setting foot on your event.</div>
             </div>
             <div class="promise-point">
               <div class="p-check"><svg viewBox="0 0 12 10"><polyline points="1,5 4.5,8.5 11,1"/></svg></div>
@@ -2879,7 +2879,7 @@ a:hover { text-decoration: underline; }
             </div>
             <div class="promise-point">
               <div class="p-check"><svg viewBox="0 0 12 10"><polyline points="1,5 4.5,8.5 11,1"/></svg></div>
-              <div class="promise-point-text"><strong>Proposal returned within 24 hours.</strong> You receive a detailed, itemized quote — not a template with your name swapped in.</div>
+              <div class="promise-point-text"><strong>Personally prepared proposal.</strong> You receive a detailed, itemized quote — not a template with your name swapped in.</div>
             </div>
           </div>
 
@@ -2912,7 +2912,7 @@ a:hover { text-decoration: underline; }
               Export as PDF
             </button>
           </div>
-          <div class="next-turnaround">Typical 24-hour turnaround · Example Ref: SBX-2024-0314-001</div>
+          <div class="next-turnaround">Manual review on every request · Example Ref: SBX-2024-0314-001</div>
         </div>
       </section>
 
@@ -2969,7 +2969,7 @@ a:hover { text-decoration: underline; }
                 </div>
                 <div class="property">
                   <div class="property-label">Primary Contact</div>
-                  <div class="property-value">Carl Mercer</div>
+                  <div class="property-value">Carl Duffield</div>
                 </div>
                 <div class="property">
                   <div class="property-label">Source</div>
@@ -3014,7 +3014,7 @@ a:hover { text-decoration: underline; }
       </div>
       <div class="footer-note">
         ShieldBox Security · Philadelphia Event Security<br>
-        Insured · Act 235 armed certification<br><br>
+        Act 235-certified leadership<br><br>
         Illustrative brief example only.<br>
         Start live requests from the main quote desk.
       </div>
@@ -3024,7 +3024,7 @@ a:hover { text-decoration: underline; }
   <!-- TOAST -->
   <div id="toast" role="status" aria-live="polite" hidden>
     <strong id="toastTitle">Request Sent</strong>
-    <span id="toastBody">Forwarded to shieldbox.sec@gmail.com. Expect follow-up within 24 hours.</span>
+    <span id="toastBody">Forwarded to shieldbox.sec@gmail.com. A team member will follow up personally.</span>
   </div>
 
   <!-- ============================================================
@@ -3184,14 +3184,14 @@ a:hover { text-decoration: underline; }
         pageChips.innerHTML =
           '<div class="chip">' + escapeHtml(safeText(data.playbook.label, 'Custom Intake')) + '</div>' +
           '<div class="chip">Live Preview</div>' +
-          '<div class="chip">' + escapeHtml(safeText(data.ops.turnaround, 'Within 24 hours')) + '</div>' +
+          '<div class="chip">' + escapeHtml(safeText(data.ops.turnaround, 'Personal manual review')) + '</div>' +
           '<div class="chip">Ref: ' + escapeHtml(safeText(data.reference, 'Pending')) + '</div>';
       }
       if (quickRef) {
         quickRef.innerHTML =
           'Created: ' + escapeHtml(safeText(data.supporting.created, 'Today')) + '<br>' +
           'Ref: ' + escapeHtml(safeText(data.reference, 'Pending')) + '<br>' +
-          'Turnaround: ' + escapeHtml(safeText(data.ops.turnaround, 'Within 24 hours')) + '<br>' +
+          'Turnaround: ' + escapeHtml(safeText(data.ops.turnaround, 'Personal manual review')) + '<br>' +
           'Lane: ' + escapeHtml(safeText(data.risk.reviewLane, 'Ops review'));
       }
       if (briefGrid) {
@@ -3316,7 +3316,7 @@ a:hover { text-decoration: underline; }
       }
       if (notesCopy) notesCopy.textContent = safeText(data.supporting.notes, 'Preview generated from the live quote form.');
       if (footerNote) {
-        footerNote.innerHTML = 'ShieldBox Security · Philadelphia Event Security<br>Insured · Act 235 armed certification<br><br>Live preview generated from the current quote intake.<br>Return to the live quote page to edit the request.';
+        footerNote.innerHTML = 'ShieldBox Security · Philadelphia Event Security<br>Act 235-certified leadership<br><br>Live preview generated from the current quote intake.<br>Return to the live quote page to edit the request.';
       }
 
       document.title = 'Live Ops Brief Preview | ShieldBox Security';

@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: https:; script-src 'self' 'unsafe-inline'; form-action 'self'">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Request a quote from ShieldBox Security — professional event security in Philadelphia. Fill out the intake form and receive a 24-hour response from operations.">
+  <meta name="description" content="Request a quote from ShieldBox Security — professional event security in Philadelphia. Fill out the intake form and ShieldBox operations reviews every request personally.">
   <title>Request a Quote | ShieldBox Security</title>
     <link rel="icon" type="image/svg+xml" href="assets/icons/favicon/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon/favicon-32.png" />
@@ -38,11 +38,7 @@
       },
       "areaServed": [
         { "@type": "City", "name": "Philadelphia", "sameAs": "https://en.wikipedia.org/wiki/Philadelphia" },
-        { "@type": "State", "name": "Pennsylvania" },
-        { "@type": "State", "name": "Delaware" },
-        { "@type": "State", "name": "Maryland" },
-        { "@type": "State", "name": "New Jersey" },
-        { "@type": "State", "name": "New York" }
+        { "@type": "State", "name": "Pennsylvania" }
       ],
       "contactPoint": [
         {
@@ -50,11 +46,11 @@
           "contactType": "sales",
           "email": "shieldbox.sec@gmail.com",
           "telephone": "+1-267-276-5287",
-          "areaServed": ["PA", "DE", "MD", "NJ", "NY"],
+          "areaServed": ["PA"],
           "availableLanguage": ["English"]
         }
       ],
-      "serviceType": ["Event Security", "Crowd Management", "VIP Protection", "Overnight Watch", "Commercial Security"],
+      "serviceType": ["Event Security", "Crowd Management", "Talent Protection", "Overnight Watch"],
       "priceRange": "$$"
     }
     </script>
@@ -105,8 +101,8 @@
                 <div class="property-value"><a href="tel:+12672765287">+1 267-276-5287</a></div>
               </div>
               <div class="property">
-                <div class="property-label">Response Time</div>
-                <div class="property-value">Within 24 hours</div>
+                <div class="property-label">Review Process</div>
+                <div class="property-value">Every request reviewed personally</div>
               </div>
               <div class="property">
                 <div class="property-label">Service Focus</div>
@@ -174,6 +170,18 @@
                   <label for="fieldEmail">Email</label>
                   <input id="fieldEmail" name="email" type="email" required autocomplete="email" placeholder="name@company.com" />
                   <p id="emailSuggestion" class="field-note is-warn" hidden></p>
+                </div>
+                <div class="form-field">
+                  <label for="fieldLeadSource">How did you hear about us?</label>
+                  <select id="fieldLeadSource" name="lead_source">
+                    <option value="" selected>Select one (optional)</option>
+                    <option value="Google search">Google search</option>
+                    <option value="Referral / word of mouth">Referral / word of mouth</option>
+                    <option value="Social media">Social media</option>
+                    <option value="Venue recommendation">Venue recommendation</option>
+                    <option value="Worked with ShieldBox before">Worked with ShieldBox before</option>
+                    <option value="Other">Other</option>
+                  </select>
                 </div>
                 <div class="form-field">
                   <label for="fieldDate">Event Date</label>
@@ -440,7 +448,7 @@
                 <tbody id="billingRows" aria-label="Billing preference options">
                   <tr class="billing-row" data-model="hourly" data-rate="42">
                     <td><div class="billing-model">Hourly Rate <span class="billing-fit-tag" id="fitHourly" hidden>Best fit</span></div></td>
-                    <td><div class="billing-desc">Best for flexible schedules ($42/hr per guard)</div></td>
+                    <td><div class="billing-desc">Best for flexible schedules — billed per guard, per hour</div></td>
                     <td>
                       <label class="billing-choice">
                         <input class="billing-input" type="radio" name="billingModel" value="hourly" />
@@ -450,7 +458,7 @@
                   </tr>
                   <tr class="billing-row" data-model="person" data-rate="40.625">
                     <td><div class="billing-model">Per Guard / Shift <span class="billing-fit-tag" id="fitPerson" hidden>Best fit</span></div></td>
-                    <td><div class="billing-desc">Fixed cost per guard per 8-hour shift ($325/pp)</div></td>
+                    <td><div class="billing-desc">Fixed cost per guard per 8-hour shift</div></td>
                     <td>
                       <label class="billing-choice">
                         <input class="billing-input" type="radio" name="billingModel" value="person" />
@@ -460,7 +468,7 @@
                   </tr>
                   <tr class="billing-row is-selected" data-model="flat" data-rate="368.75">
                     <td><div class="billing-model">Flat Event Rate <span class="billing-fit-tag" id="fitFlat" hidden>Best fit</span></div></td>
-                    <td><div class="billing-desc">All-inclusive single price for the full run ($2,950)</div></td>
+                    <td><div class="billing-desc">All-inclusive single price for the full run</div></td>
                     <td>
                       <label class="billing-choice">
                         <input class="billing-input" type="radio" name="billingModel" value="flat" checked />
@@ -492,14 +500,14 @@
         <!-- NEXT STEP -->
         <section class="next-step" id="next" aria-labelledby="nextHeading">
           <h2 class="next-title" id="nextHeading">Next Step</h2>
-          <p class="next-copy">When you send your quote request, your intake routes directly to <a href="mailto:shieldbox.sec@gmail.com">shieldbox.sec@gmail.com</a>. If you need to flag an urgent change after submission, call <a href="tel:+12672765287">+1 267-276-5287</a>. ShieldBox reviews every request manually and follows up within <strong>24 hours</strong>.</p>
+          <p class="next-copy">When you send your quote request, your intake routes directly to <a href="mailto:shieldbox.sec@gmail.com">shieldbox.sec@gmail.com</a>. If you need to flag an urgent change after submission, call <a href="tel:+12672765287">+1 267-276-5287</a>. ShieldBox reviews every request manually and follows up <strong>personally</strong>.</p>
           <div class="next-actions">
             <button id="requestButton" class="cta" type="submit" form="intakeForm">Submit</button>
             <button id="previewBriefButton" class="cta cta-secondary" type="button">Preview Brief</button>
             <button id="printButton" class="cta cta-secondary" type="button">Download as PDF</button>
           </div>
           <p class="next-helper">One primary action from here: submit the request. Everything above simply improves pricing accuracy and speeds ops review.</p>
-          <div class="next-turnaround">Typical 24-hour turnaround | Ref: <span id="referencePreview">—</span></div>
+          <div class="next-turnaround">Manual review on every request | Ref: <span id="referencePreview">—</span></div>
         </section>
       </div>
 
@@ -528,7 +536,7 @@
           <div class="summary-estimate">
             <div class="summary-estimate-label">Estimated Range</div>
             <div class="summary-estimate-value" id="summaryEstimateRange">$2,000 – $3,000</div>
-            <p class="summary-estimate-note" id="summaryEstimateNote">Planning estimate only. Final pricing confirmed after review.</p>
+            <p class="summary-estimate-note" id="summaryEstimateNote">Typical starting range — varies by hours, guard count, and scope. Final pricing confirmed after review.</p>
           </div>
         </section>
       </aside>
@@ -555,7 +563,7 @@
             </div>
             <div class="confirm-item">
               <div class="confirm-label">Follow-Up Window</div>
-              <div class="confirm-value">A ShieldBox team member will follow up within 24 hours.</div>
+              <div class="confirm-value">A ShieldBox team member will follow up personally.</div>
             </div>
             <div class="confirm-item">
               <div class="confirm-label">Reply Contact</div>
@@ -582,11 +590,11 @@
         <a id="footerEmail" href="#"></a><br />
         <a href="tel:+12672765287">+1 267-276-5287</a>
       </address>
-      Philadelphia-based event security serving PA, DE, MD, NJ, and NY by request
+      Based in Philadelphia, serving Pennsylvania. Out-of-state events considered case-by-case, subject to state licensing.
     </div>
     <div class="footer-note">
-      Protect people. Support our clients. Uphold a standard of security that others can't match.<br />
-      Quote requests are reviewed manually and followed up within 24 hours.
+      Protect people. Support our clients. Uphold a standard of professionalism our clients can count on.<br />
+      Quote requests are reviewed manually and followed up personally.
     </div>
   </footer>
 
@@ -705,9 +713,9 @@
       const briefPreviewUrl = "event-quote-request.html?preview=live";
       const quoteHashes = new Set(["#quoteStart", "#overview", "#schedule", "#scope", "#risk", "#billing", "#next"]);
       const billingCatalog = {
-        hourly: { label: "Hourly Rate", price: "$42", unit: "per guard / hr" },
-        person: { label: "Per Guard / Shift", price: "$325", unit: "per 8-hr shift" },
-        flat: { label: "Flat Event Rate", price: "$2,950", unit: "all-inclusive" }
+        hourly: { label: "Hourly Rate", price: "Quoted after review", unit: "per guard / hr" },
+        person: { label: "Per Guard / Shift", price: "Quoted after review", unit: "per 8-hr shift" },
+        flat: { label: "Flat Event Rate", price: "Quoted after review", unit: "all-inclusive" }
       };
       const playbookConfigs = {
         concert_doors: {
@@ -1259,7 +1267,7 @@
           ops: {
             email: opsEmail,
             phone: opsPhoneDisplay,
-            turnaround: "Within 24 hours",
+            turnaround: "Personal manual review",
             replyContact: contactEmailValue || opsEmail
           },
           supporting: {
@@ -1376,13 +1384,8 @@
         if (scopes.length > 2) total *= 1 + ((scopes.length - 2) * 0.08);
 
         if (summaryEstimateRange) {
-          if (total > 0) {
-            const low = roundToNearest50(total * 0.6);
-            const high = roundToNearest50(total * 0.9);
-            summaryEstimateRange.textContent = `${currency(low)} – ${currency(high)}`;
-          } else {
-            summaryEstimateRange.textContent = "Add duration, attendance, and billing model";
-          }
+          /* Static client-provided planning range; per-event pricing is quoted after manual review */
+          summaryEstimateRange.textContent = "$2,000 – $3,000";
         }
 
         const crowdRisk = attendance >= 1000 ? { tone: "high", label: "HIGH", severity: 2 } : attendance >= 200 ? { tone: "medium", label: "MEDIUM", severity: 1 } : { tone: "low", label: "LOW", severity: 0 };
