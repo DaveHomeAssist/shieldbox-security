@@ -106,3 +106,18 @@ test("local page assets resolve from the repository", async () => {
     }
   }
 });
+
+test("homepage conversion paths and coverage process remain explicit", async () => {
+  const home = await read("index.html");
+  const quote = await read("quote.html");
+
+  assert.match(home, /data-track="request-coverage"/);
+  assert.match(home, /data-track="hero-availability"/);
+  assert.match(home, /href="tel:\+12672765287"[^>]*data-track="hero-phone"/);
+  assert.match(home, /data-track="quote-form-open"/);
+  assert.match(quote, /data-track="quote-form-submit"/);
+  assert.match(home, /Philadelphia event security built for the room, the door, and the load-out\./);
+  assert.match(home, /Proposal turnaround within 24 hours\./);
+  assert.match(home, /<ol class="coverage-process-grid">/);
+  assert.equal((home.match(/class="coverage-step"/g) || []).length, 4);
+});

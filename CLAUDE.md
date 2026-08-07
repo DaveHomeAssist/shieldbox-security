@@ -102,3 +102,4 @@ governing doc.
 [2026-04-10] [ShieldBox] [design] Premium dashboard refactor for `event-quote-request.html`: stronger shell hierarchy, upgraded card surfaces, sharper billing/risk scanability, and mobile polish
 [2026-04-10] [ShieldBox] [ops] Cleanup pass: removed stray duplicate preview file and realigned preview motion tokens with `SCHEMA.md`
 [2026-08-06] [ShieldBox] [fix] Restore quote delivery CSP path, require explicit service acceptance, add accessible timeout/retry states, and remove unverified certification claims
+[2026-08-07] [ShieldBox] [conversion] Refactor homepage hero, trust proof, coverage process, quote CTAs, local SEO copy, and analytics-ready action attributes
