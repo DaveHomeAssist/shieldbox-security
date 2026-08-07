@@ -4,7 +4,21 @@ Inherits root rules from `/Users/daverobertson/Desktop/Code/AGENTS.md`.
 
 ## Project Overview
 
-Static event security quote intake site for ShieldBox Security (Philadelphia). Users configure event details (type, size, billing, scope) and receive a quote estimate. The v4 gold master is a historical snapshot from the March 18 redesign. `index.html` is the canonical development file. `event-quote-request.html` is a static read-only preview of a completed event brief, linked from `index.html`. It carries `noindex`/`nofollow`. The `archives/` directory contains previous iterations: v0 original, v1 gemini, v2 codex, v3 claude, plus `shieldbox-v4-pre-audit-snapshot.html` as the pre-audit v4 archive.
+Static event security site for ShieldBox Security (Philadelphia), served at
+shieldboxsecurity.com. `index.html` is the marketing home and canonical
+development file. `quote.html` is the live intake form where users configure
+event details (type, size, billing, scope). `event-quote-request.html` is a
+static read-only preview of a completed event brief, linked from `index.html`;
+it carries `noindex`/`nofollow`.
+
+**One working copy, no snapshot forks.** The v4 "gold master" file and its
+duplicate clone were removed 2026-08-06 — git history is the archive. Superseded
+design drafts, contracts, and brand mockups now live in
+`20-clients/active/shieldbox-security/`.
+
+**This repo is public.** Client-confidential material must never be committed
+here; it belongs in `20-clients/active/shieldbox-security/` per the 20-clients
+governing doc.
 
 ## Stack
 

@@ -5,3 +5,11 @@ archives/
 .env
 .env.local
 .env.*.local
+
+# Confidential client material belongs in 20-clients/active/shieldbox-security
+*.docx
+*.xlsx
+
+# Import staging folders — never commit
+_inbox-import-*/
+_desktop-import-*/
