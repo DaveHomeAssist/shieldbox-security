@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: https:; script-src 'self' 'unsafe-inline'; form-action 'self'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: https:; script-src 'self' 'unsafe-inline'; connect-src 'self' https://formsubmit.co; form-action 'self'">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Request a quote from ShieldBox Security — professional event security in Philadelphia. Fill out the intake form and ShieldBox operations reviews every request personally.">
@@ -186,11 +186,13 @@
                 </div>
                 <div class="form-field">
                   <label for="fieldPhone">Phone</label>
-                  <input id="fieldPhone" name="phone" type="tel" required autocomplete="tel" placeholder="Best callback number" pattern="[\d\s\-\+\(\)]{7,20}" title="Phone number" />
+                  <input id="fieldPhone" name="phone" type="tel" required autocomplete="tel" placeholder="Best callback number" pattern="[\d\s\-\+\(\)]{7,20}" title="Phone number" aria-describedby="errFieldPhone" />
+                  <p id="errFieldPhone" class="field-note field-error" hidden></p>
                 </div>
                 <div class="form-field">
                   <label for="fieldEmail">Email</label>
-                  <input id="fieldEmail" name="email" type="email" required autocomplete="email" placeholder="name@company.com" />
+                  <input id="fieldEmail" name="email" type="email" required autocomplete="email" placeholder="name@company.com" aria-describedby="errFieldEmail emailSuggestion" />
+                  <p id="errFieldEmail" class="field-note field-error" hidden></p>
                   <p id="emailSuggestion" class="field-note is-warn" hidden></p>
                 </div>
                 <div class="form-field">
@@ -207,7 +209,8 @@
                 </div>
                 <div class="form-field">
                   <label for="fieldDate">Event Date</label>
-                  <input id="fieldDate" name="event_date" type="date" required />
+                  <input id="fieldDate" name="event_date" type="date" required aria-describedby="errFieldDate" />
+                  <p id="errFieldDate" class="field-note field-error" hidden></p>
                 </div>
                 <div class="form-field">
                   <label for="fieldLocation">Event Location</label>
@@ -568,11 +571,11 @@
       <section class="section" aria-labelledby="confirmationHeading">
         <div class="section-head">
           <span class="section-icon">✓</span>
-          <h2 id="confirmationHeading" class="section-title" tabindex="-1">Quote Request Received</h2>
+          <h2 id="confirmationHeading" class="section-title" tabindex="-1">Quote Request Accepted</h2>
           <span class="section-note">Proposal Queue</span>
         </div>
         <div class="section-body">
-          <p class="confirm-lead">Your intake has been sent to ShieldBox operations. Keep the reference below for any updates, venue addenda, or insurance requests you send after this step.</p>
+          <p class="confirm-lead">Your intake was accepted for delivery to ShieldBox operations. Keep the reference below for any updates, venue addenda, or insurance requests you send after this step.</p>
           <div class="confirm-reference" id="confirmationReference">SBX-00000000-0000</div>
           <div class="confirm-grid">
             <div class="confirm-item">
@@ -620,7 +623,7 @@
     </div>
   </footer>
 
-  <div id="toast" role="status" aria-atomic="true" hidden>
+  <div id="toast" role="status" aria-live="polite" aria-atomic="true" hidden>
     <strong id="toastTitle">Submission status</strong>
     <span id="toastMessage">Please try again or email shieldbox.sec@gmail.com or call +1 267-276-5287.</span>
   </div>
@@ -1573,17 +1576,25 @@
       }
 
       function showToast(title, message, tone = "ok") {
+        clearTimeout(toastTimer);
+        clearToast();
+        const isError = tone === "error";
+        toast.setAttribute("role", isError ? "alert" : "status");
+        toast.setAttribute("aria-live", isError ? "assertive" : "polite");
         toastTitle.textContent = title;
         toastMessage.textContent = message;
-        clearTimeout(toastTimer);
         toast.hidden = false;
-        toast.classList.toggle("is-success", tone !== "error");
-        toast.classList.toggle("is-error", tone === "error");
+        toast.classList.toggle("is-success", !isError);
+        toast.classList.toggle("is-error", isError);
         requestAnimationFrame(() => toast.classList.add("show"));
         toastTimer = setTimeout(() => {
           toast.classList.remove("show");
           setTimeout(() => { toast.hidden = true; }, 200);
-        }, tone === "error" ? 4400 : 3000);
+        }, isError ? 4400 : 3000);
+      }
+
+      function submissionWasAccepted(response, result) {
+        return response.ok && (result.success === true || result.success === "true");
       }
 
       intakeForm.addEventListener("submit", async e => {
@@ -1600,10 +1611,12 @@
         }
 
         isSubmitting = true;
+        intakeForm.setAttribute("aria-busy", "true");
         requestBtn.disabled = true;
+        requestBtn.setAttribute("aria-busy", "true");
         requestBtn.classList.add("is-loading");
-        requestBtn.textContent = "Submitting…";
-        setVal("All required intake fields are complete. Sending to ShieldBox ops.", "is-ok");
+        requestBtn.textContent = "Sending request…";
+        setVal("All required intake fields are complete. Sending securely; keep this page open.", "is-ok");
 
         const submissionReference = currentReference || buildReference();
         const data = new FormData(intakeForm);
@@ -1634,15 +1647,23 @@
         data.append("ops_note", recommendNote.textContent.trim());
         data.append("submitted_from", location.href);
 
+        const submissionController = new AbortController();
+        const submissionTimeout = setTimeout(() => submissionController.abort(), 15000);
+
         try {
           const resp = await fetch(formSubmitEndpoint, {
             method: "POST",
             body: data,
-            headers: { Accept: "application/json" }
+            headers: { Accept: "application/json" },
+            signal: submissionController.signal
           });
-          const result = await resp.json().catch(() => ({}));
-          const success = resp.ok && (!Object.prototype.hasOwnProperty.call(result, "success") || result.success === true || result.success === "true");
-          if (!success) throw new Error(result.message || "Unable to submit the request.");
+          const contentType = resp.headers.get("content-type") || "";
+          if (!contentType.toLowerCase().includes("application/json")) {
+            throw new Error("The delivery service returned an unexpected response.");
+          }
+          const result = await resp.json();
+          const accepted = submissionWasAccepted(resp, result);
+          if (!accepted) throw new Error("The delivery service did not confirm acceptance.");
 
           lastSuccessfulSubmissionAt = Date.now();
           currentReference = submissionReference;
@@ -1652,10 +1673,10 @@
           quoteSection.classList.add("is-submitted");
           saveClientData();
           syncProgress();
-          requestBtn.textContent = "Request Sent";
+          requestBtn.textContent = "Request Accepted";
           requestBtn.classList.remove("is-loading");
           flashFeedback(requestBtn, "success");
-          showToast("Request sent", "ShieldBox ops received your request and reference.", "ok");
+          showToast("Request accepted", "Your request was accepted for delivery. Keep the reference shown here.", "ok");
 
           const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
           window.scrollTo({ top: quoteSection.offsetTop - 12, behavior: reduceMotion ? "auto" : "smooth" });
@@ -1665,17 +1686,31 @@
           });
         } catch (err) {
           requestBtn.classList.remove("is-loading");
-          requestBtn.textContent = "Request Failed";
+          requestBtn.textContent = "Retry available in 3s";
           requestBtn.disabled = true;
           flashFeedback(requestBtn, "error");
-          showToast("Unable to send request", `Please try again or email ${opsEmail} or call ${opsPhoneDisplay}.`, "error");
-          setVal("We could not send the request. Please try again or contact ShieldBox directly.", "is-warn");
+          const timedOut = err instanceof DOMException && err.name === "AbortError";
+          showToast(
+            timedOut ? "Request timed out" : "Delivery not confirmed",
+            `Your request was not confirmed. Try again or contact ShieldBox at ${opsPhoneDisplay}.`,
+            "error"
+          );
+          setVal(
+            timedOut
+              ? "The request timed out before delivery was confirmed. Your details remain in the form; try again."
+              : "Delivery was not confirmed. Your details remain in the form; review them and try again.",
+            "is-warn"
+          );
           setTimeout(() => {
             isSubmitting = false;
             requestBtn.disabled = false;
-            requestBtn.textContent = "Submit";
+            requestBtn.textContent = "Try Again";
           }, 3000);
           return;
+        } finally {
+          clearTimeout(submissionTimeout);
+          intakeForm.setAttribute("aria-busy", "false");
+          requestBtn.setAttribute("aria-busy", "false");
         }
 
         isSubmitting = false;
@@ -1699,6 +1734,7 @@
         quoteSection.classList.remove("is-submitted");
         isSubmitting = false;
         requestBtn.disabled = false;
+        requestBtn.setAttribute("aria-busy", "false");
         requestBtn.classList.remove("is-loading");
         requestBtn.textContent = "Submit";
         setVal("", "");

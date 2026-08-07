@@ -86,6 +86,9 @@ governing doc.
 | 040 | P2 | closed | Service area not defined | Added counties to footer, expanded JSON-LD areaServed |
 | 041 | P3 | closed | Footer email exposed to scrapers | Obfuscated with JS assembly at runtime |
 | 042 | P3 | closed | CTA button text generic ("Request a Quote") | Changed to "Get a 24-Hour Security Proposal" / "Get a 24-Hour Proposal" |
+| 043 | P0 | closed | Quote delivery blocked by CSP and accepted ambiguous HTTP 200 responses | Allowed only the required FormSubmit connection origin and now requires an explicit JSON acceptance response |
+| 044 | P0 | closed | Public Act 235 certification claim lacked documented proof and publication approval | Removed the claim from every deployed page pending approved evidence |
+| 045 | P1 | closed | Submission states could imply delivery and lacked an accessible retry path | Added bounded timeout, fail-closed copy, form/button busy states, assertive errors, and explicit retry state |
 
 ## Session Log
 
@@ -98,3 +101,4 @@ governing doc.
 [2026-04-10] [ShieldBox] [feature] Content improvements: service scope qualifiers, Act 235 context, service area, CTA copy, email obfuscation
 [2026-04-10] [ShieldBox] [design] Premium dashboard refactor for `event-quote-request.html`: stronger shell hierarchy, upgraded card surfaces, sharper billing/risk scanability, and mobile polish
 [2026-04-10] [ShieldBox] [ops] Cleanup pass: removed stray duplicate preview file and realigned preview motion tokens with `SCHEMA.md`
+[2026-08-06] [ShieldBox] [fix] Restore quote delivery CSP path, require explicit service acceptance, add accessible timeout/retry states, and remove unverified certification claims

@@ -23,3 +23,11 @@ via GitHub Pages.
 ## Conventions
 
 See `CLAUDE.md` for stack, key decisions, and the issue tracker.
+
+## Verification
+
+Run the zero-dependency production contract suite with:
+
+```sh
+node --test tests/site-contract.test.mjs
+```
