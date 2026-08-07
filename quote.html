@@ -74,7 +74,29 @@
       <a href="index.html#services" class="nav-link-desktop">Services</a>
       <a href="event-quote-request.html" class="nav-link-desktop">Brief Example</a>
     </div>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navPanel" aria-label="Open menu">
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+    </button>
+    <div class="nav-panel" id="navPanel">
+      <a href="index.html">Home</a>
+      <a href="index.html#services">Services</a>
+      <a href="event-quote-request.html">Brief Example</a>
+      <a href="tel:+12672765287" class="nav-panel-contact">Call +1 267-276-5287</a>
+      <a href="mailto:shieldbox.sec@gmail.com" class="nav-panel-contact">shieldbox.sec@gmail.com</a>
+    </div>
   </nav>
+  <noscript>
+    <style>
+      /* Without JS the hamburger cannot open, so fall back to showing the
+         links inline rather than leaving the nav unusable. */
+      @media (max-width: 640px) {
+        .nav-toggle { display: none !important; }
+        .nav-link-desktop { display: inline-flex !important; }
+      }
+    </style>
+  </noscript>
 
   <!-- =========================================================
        QUOTE REQUEST (standalone page)
@@ -602,6 +624,7 @@
     <strong id="toastTitle">Submission status</strong>
     <span id="toastMessage">Please try again or email shieldbox.sec@gmail.com or call +1 267-276-5287.</span>
   </div>
+  <script src="js/nav.js" defer></script>
   <script>
     (() => {
       /* ---- Motion helpers ---- */

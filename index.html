@@ -78,7 +78,29 @@
       <a href="event-quote-request.html" class="nav-link-desktop">Brief Example</a>
       <a href="quote.html" class="nav-cta">Get a Quote</a>
     </div>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navPanel" aria-label="Open menu">
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+    </button>
+    <div class="nav-panel" id="navPanel">
+      <a href="#services">Services</a>
+      <a href="event-quote-request.html">Brief Example</a>
+      <a href="tel:+12672765287" class="nav-panel-contact">Call +1 267-276-5287</a>
+      <a href="mailto:shieldbox.sec@gmail.com" class="nav-panel-contact">shieldbox.sec@gmail.com</a>
+      <a href="quote.html" class="nav-panel-cta">Get a Quote</a>
+    </div>
   </nav>
+  <noscript>
+    <style>
+      /* Without JS the hamburger cannot open, so fall back to showing the
+         links inline rather than leaving the nav unusable. */
+      @media (max-width: 640px) {
+        .nav-toggle { display: none !important; }
+        .nav-link-desktop { display: inline-flex !important; }
+      }
+    </style>
+  </noscript>
 
   <!-- =========================================================
        LANDING HERO
@@ -290,6 +312,7 @@
   </div>
 
   <!-- JS -->
+  <script src="js/nav.js" defer></script>
   <script>
     (() => {
       /* Obfuscate footer email from scrapers */
