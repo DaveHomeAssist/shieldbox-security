@@ -182,7 +182,8 @@
               <div class="form-grid">
                 <div class="form-field">
                   <label for="fieldName">Name</label>
-                  <input id="fieldName" name="name" type="text" required autocomplete="name" placeholder="Primary contact full name" />
+                  <input id="fieldName" name="name" type="text" required autocomplete="name" placeholder="Primary contact full name" aria-describedby="errFieldName" />
+                  <p id="errFieldName" class="field-note field-error" hidden></p>
                 </div>
                 <div class="form-field">
                   <label for="fieldPhone">Phone</label>
@@ -214,22 +215,25 @@
                 </div>
                 <div class="form-field">
                   <label for="fieldLocation">Event Location</label>
-                  <input id="fieldLocation" name="event_location" type="text" required placeholder="Venue name or full street address" />
+                  <input id="fieldLocation" name="event_location" type="text" required placeholder="Venue name or full street address" aria-describedby="errFieldLocation" />
+                  <p id="errFieldLocation" class="field-note field-error" hidden></p>
                 </div>
                 <div class="form-field">
                   <label for="fieldDuration">Event Duration</label>
-                  <input id="fieldDuration" name="event_duration" type="number" min="1" max="72" step="0.5" required placeholder="e.g. 4" />
-                  <p class="field-note">Hours on site (half-hour increments)</p>
+                  <input id="fieldDuration" name="event_duration" type="number" min="1" max="72" step="0.5" required placeholder="e.g. 4" aria-describedby="errFieldDuration durationHint durationFormatNote" />
+                  <p id="errFieldDuration" class="field-note field-error" hidden></p>
+                  <p id="durationHint" class="field-note">Hours on site (half-hour increments)</p>
                   <p id="durationFormatNote" class="field-note is-warn" hidden>Use decimal hours, e.g. 2.5 for 2 hours 30 minutes</p>
                 </div>
                 <div class="form-field">
                   <label for="fieldAttendance">Expected Attendance</label>
-                  <input id="fieldAttendance" name="expected_attendance" type="number" min="1" max="10000" required placeholder="Estimated guest count" />
+                  <input id="fieldAttendance" name="expected_attendance" type="number" min="1" max="10000" required placeholder="Estimated guest count" aria-describedby="errFieldAttendance attendanceWarning" />
+                  <p id="errFieldAttendance" class="field-note field-error" hidden></p>
                   <p id="attendanceWarning" class="field-note is-warn" hidden>Large event — custom quote recommended</p>
                 </div>
                 <div class="form-field">
                   <label for="fieldEventType">Event Type</label>
-                  <select id="fieldEventType" name="event_type" required>
+                  <select id="fieldEventType" name="event_type" required aria-describedby="errFieldEventType">
                     <option value="" disabled selected>Select event type</option>
                     <option value="Corporate / Conference">Corporate / Conference</option>
                     <option value="Concert / Live Music">Concert / Live Music</option>
@@ -240,15 +244,17 @@
                     <option value="Trade Show / Expo">Trade Show / Expo</option>
                     <option value="Other">Other</option>
                   </select>
+                  <p id="errFieldEventType" class="field-note field-error" hidden></p>
                 </div>
                 <div class="form-field">
                   <label for="fieldVenueType">Indoor / Outdoor</label>
-                  <select id="fieldVenueType" name="venue_type" required>
+                  <select id="fieldVenueType" name="venue_type" required aria-describedby="errFieldVenueType">
                     <option value="" disabled selected>Select venue type</option>
                     <option value="Indoor">Indoor</option>
                     <option value="Outdoor">Outdoor</option>
                     <option value="Mixed (Indoor + Outdoor)">Mixed (Indoor + Outdoor)</option>
                   </select>
+                  <p id="errFieldVenueType" class="field-note field-error" hidden></p>
                 </div>
               </div>
               <details class="optional-fields">
@@ -330,7 +336,7 @@
           </div>
           <div class="section-body">
             <p class="intro-copy">Please list the specific windows where ShieldBox presence is required.</p>
-            <div class="check-grid" aria-label="Schedule coverage checklist">
+            <div class="check-grid" role="group" aria-label="Schedule coverage checklist">
               <label class="check-item">
                 <input id="schedule_loadin" type="checkbox" name="schedule_loadin" checked />
                 <span>
@@ -381,7 +387,7 @@
           </div>
           <div class="section-body">
             <p class="intro-copy">Select the primary functions required.</p>
-            <div class="check-grid" aria-label="Security scope checklist">
+            <div class="check-grid" role="group" aria-label="Security scope checklist">
               <label class="check-item">
                 <input id="scope_access" type="checkbox" name="scope_access" value="Access Control" />
                 <span>
@@ -673,6 +679,25 @@
         wrapper.classList.remove("is-success", "is-error");
         if (state === "success") wrapper.classList.add("is-success");
         if (state === "error") wrapper.classList.add("is-error");
+
+        /* Announce the failure to assistive tech, not just the eye. Without this
+           a screen reader user hears the label and nothing about what is wrong,
+           so the error is unreachable and the form cannot be completed. */
+        if (!field.willValidate) return;
+        const errorNote = document.getElementById(`err${field.id.charAt(0).toUpperCase()}${field.id.slice(1)}`);
+        if (state === "error") {
+          field.setAttribute("aria-invalid", "true");
+          if (errorNote) {
+            errorNote.textContent = field.validationMessage || "This field needs attention.";
+            errorNote.hidden = false;
+          }
+        } else {
+          field.removeAttribute("aria-invalid");
+          if (errorNote) {
+            errorNote.textContent = "";
+            errorNote.hidden = true;
+          }
+        }
       }
 
       bindPressFeedback(".nav-back, .nav-links a, .nav-feature, .nav-cta, .btn, .gallery-card, .svc-card, .quote-flow-step, .side-list a, .progress-step, .tiny-action, .billing-row, #scope .check-item, .mobile-action-dock a");
@@ -868,19 +893,43 @@
         return Array.from(intakeForm.elements).find(el => el instanceof HTMLElement && el.willValidate && !el.checkValidity()) || null;
       }
 
+      function fieldLabel(field) {
+        const label = field && field.labels && field.labels[0];
+        return label ? label.textContent.trim().replace(/\s+/g, " ") : "This field";
+      }
+
       function runValidation({ report = false, scroll = false } = {}) {
         const valid = intakeForm.checkValidity();
-        setVal(valid ? "All required intake fields are complete." : "Please complete required fields before proposal handoff.", valid ? "is-ok" : "is-warn");
-        if (!valid) {
-          const invalidField = firstInvalidField();
-          if (invalidField) {
-            markFieldState(invalidField, "error");
-            flashFeedback(invalidField.closest(".form-field"), "error");
-          }
-          if (scroll && invalidField) goToSection(invalidField, invalidField);
-          if (report) intakeForm.reportValidity();
+
+        /* Mark every invalid field, not just the first. A screen reader user
+           tabbing the form needs each one to announce itself as invalid. */
+        const invalidFields = Array.from(intakeForm.elements).filter(
+          el => el instanceof HTMLElement && el.willValidate && !el.checkValidity()
+        );
+        invalidFields.forEach(el => markFieldState(el, "error"));
+
+        if (valid) {
+          setVal("All required intake fields are complete.", "is-ok");
+          return true;
         }
-        return valid;
+
+        /* Name the first offending field in the live region. The old message
+           said only "complete required fields", which gave a non-sighted user
+           no way to locate the problem. */
+        const invalidField = invalidFields[0] || firstInvalidField();
+        const reason = String(invalidField && invalidField.validationMessage || "required").replace(/\.\s*$/, "");
+        const detail = invalidField
+          ? `${invalidFields.length} field${invalidFields.length === 1 ? "" : "s"} need attention. First: ${fieldLabel(invalidField)} — ${reason}.`
+          : "Please complete required fields before proposal handoff.";
+        setVal(detail, "is-warn");
+
+        if (invalidField) {
+          flashFeedback(invalidField.closest(".form-field"), "error");
+          if (scroll) goToSection(invalidField, invalidField);
+          else if (report) invalidField.focus({ preventScroll: true });
+        }
+        if (report) intakeForm.reportValidity();
+        return false;
       }
 
       function roundToNearest50(value) {

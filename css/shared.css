@@ -1135,6 +1135,19 @@
       color: var(--warn);
     }
 
+    /* Per-field validation error, referenced by the input's aria-describedby.
+       Weight and marker make it distinguishable from an advisory note without
+       relying on color alone. */
+    .field-note.field-error {
+      color: var(--warn);
+      font-weight: 600;
+    }
+
+    .field-note.field-error::before {
+      content: "! ";
+      font-weight: 700;
+    }
+
     .email-fix-btn {
       color: var(--ink);
       background: none;
