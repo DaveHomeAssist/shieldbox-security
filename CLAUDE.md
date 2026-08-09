@@ -29,7 +29,9 @@ governing doc.
   JS in `js/nav.js`; page-specific logic stays inline per page
 - Fonts self-hosted from `fonts/` via `css/fonts.css` — the CSP blocks
   remote font CDNs (see SCHEMA.md)
-- Token based design system documented in SCHEMA.md
+- Token based design system documented in SCHEMA.md; seven dormant
+  `body[data-theme]` override blocks remain in `css/shared.css` but no page
+  sets a theme and no switcher UI ships (only the default theme renders)
 - GitHub Pages hosting
 - No build step, no bundler, no framework
 
@@ -113,3 +115,4 @@ governing doc.
 [2026-08-06] [ShieldBox] [fix] Restore quote delivery CSP path, require explicit service acceptance, add accessible timeout/retry states, and remove unverified certification claims
 [2026-08-07] [ShieldBox] [conversion] Refactor homepage hero, trust proof, coverage process, quote CTAs, local SEO copy, and analytics-ready action attributes
 [2026-08-08] [ShieldBox] [docs] Align docs with the split architecture: self-hosted fonts contract + per-page shells + page ownership table in SCHEMA.md; CLAUDE.md stack/path corrections; opened 046/047; archived March work orders; removed unreferenced BoxPics originals; added quote.html to sitemap
+[2026-08-08] [ShieldBox] [docs] SCHEMA truth pass: mark theme system dormant (no switcher ships, no page sets data-theme), drop .theme-switcher from inventory, correct sidebar 292→320px on quote.html, trust strip 5-col/≤980px collapse, and the real print hide-list

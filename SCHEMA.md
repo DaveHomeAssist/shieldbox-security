@@ -26,8 +26,15 @@ All pages load fonts from the local stylesheet — never from Google's CDN:
 
 ## Theme Contract
 
-- Default theme: tokens on `:root`
-- Theme overrides on `body[data-theme="editorial"]`, `body[data-theme="slate"]`, `body[data-theme="obsidian"]`, `body[data-theme="arctic"]`, `body[data-theme="midnight"]`, `body[data-theme="concrete"]`, and `body[data-theme="parchment"]`
+- Live theme: the default token set on `:root` in `css/shared.css`
+  (`event-quote-request.html` re-declares its own tokens in its inline
+  `<style>` block)
+- **Dormant:** seven `body[data-theme="…"]` override blocks (editorial,
+  slate, obsidian, arctic, midnight, concrete, parchment) remain in
+  `css/shared.css`, and the event brief's inline CSS carries editorial and
+  slate variants — but no shipped page sets `data-theme` to a non-empty
+  value and the former theme-switcher UI no longer exists anywhere, so only
+  the default theme can render
 - Redesign tokens and motion tokens are also declared on `:root`
 
 Every component references tokens only — never hard-coded colors.
@@ -35,6 +42,10 @@ Every component references tokens only — never hard-coded colors.
 ---
 
 ## Token Override Skeleton
+
+These blocks live at the top of `css/shared.css`. Only the `:root` set is
+reachable today — the `body[data-theme="…"]` overrides are dormant (see
+Theme Contract) but kept in sync here in case theme switching returns.
 
 ```css
 :root {
@@ -424,7 +435,8 @@ LANDING
 ├─ .btn / .btn-primary / .btn-ghost
 
 TRUST STRIP
-└─ .trust-strip           — 4-col grid (gap:1px trick)
+└─ .trust-strip           — 5-col grid on index (marketing.css overrides the
+   │                        4-col gap-trick base in shared.css)
    └─ .trust-item         — Baskerville numeral + label
 
 SERVICES
@@ -434,8 +446,8 @@ SERVICES
 
 QUOTE SECTION
 ├─ .quote-section         — max-width:1240px
-├─ .theme-switcher        — fixed pill, select dropdown
-└─ .layout                — 2-col grid (1fr + 292px sidebar)
+└─ .layout                — 2-col grid; sidebar 320px on quote.html
+                            (quote-form.css overrides the 292px shared.css base)
    ├─ .stack              — gap:22px content
    └─ .side-stack         — sticky sidebar
       └─ .side-card       — nav links / summary
@@ -507,10 +519,15 @@ TOAST
 
 ## Implementation Notes
 
-- `.layout` is a 2-col grid with fixed 292px sidebar until ≤980px where sidebar reflows above content.
-- Scope selection uses `:has(input:checked)`. For wider browser support, add a JS class fallback.
+- `.layout` is a 2-col grid with a fixed sidebar (320px on `quote.html` via
+  `css/quote-form.css`, overriding the 292px base in `css/shared.css`) until
+  ≤980px, where the sidebar reflows below the content (`order: 2`).
+- Scope selection uses `#scope .check-item:has(input:checked)` in
+  `css/shared.css`. For wider browser support, add a JS class fallback.
 - `color-mix(in srgb, ...)` is used throughout for dynamic tints — requires modern browser support.
-- Print mode overrides all tokens to light values and hides nav, hero, trust, services, sidebar, theme switcher, toast, and CTA buttons.
+- Print mode overrides the core tokens to light values and hides the nav,
+  hero, trust strip, gallery, services, sidebar, CTA row, and toast (see
+  Print section below).
 
 ---
 
@@ -518,11 +535,12 @@ TOAST
 
 | Breakpoint | Changes |
 |---|---|
-| ≤980px | Single column layout, sidebar reflows to top, risk/form/services grids collapse |
-| ≤640px | Trust strip 2-col, desktop nav links hidden |
+| ≤980px | Single column layout, sidebar reflows below content, risk/form/services grids collapse, trust strip drops to 2-col |
+| ≤640px | Desktop nav links hidden (`.nav-panel` disclosure takes over), tighter paddings |
 
 ## Print
 
-- Full token override to light palette
-- Hides: `.site-nav`, `.landing`, `.trust-strip`, `.services`, `.section-divider`, `.quote-intro`, `.theme-switcher`, `.side-stack`, `.next-actions`, `#toast`
+- Core tokens overridden to a light palette (`--bg`, `--surface`, `--surface-2`, `--ink`, `--ink-soft`, `--line`, `--line-strong`, `--accent`, `--accent-soft`, `--ok`, `--warn`)
+- Hides: `.site-nav`, `.landing`, `.trust-strip`, `.gallery`, `.services`, `.section-divider`, `.quote-intro`, `.side-stack`, `.next-actions`, `#toast`
 - `@page { margin: 14mm }`
+- The identical print block ships in both `css/quote-form.css` and `css/marketing.css`
