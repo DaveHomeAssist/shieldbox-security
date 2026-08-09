@@ -96,7 +96,7 @@ governing doc.
 | 043 | P0 | closed | Quote delivery blocked by CSP and accepted ambiguous HTTP 200 responses | Allowed only the required FormSubmit connection origin and now requires an explicit JSON acceptance response |
 | 044 | P0 | closed | Public Act 235 certification claim lacked documented proof and publication approval | Removed the claim from every deployed page pending approved evidence |
 | 045 | P1 | closed | Submission states could imply delivery and lacked an accessible retry path | Added bounded timeout, fail-closed copy, form/button busy states, assertive errors, and explicit retry state |
-| 046 | P1 | open | Production deploy of the CSP/quote-delivery fix is unverified | The 2026-08-06 fix is committed but nobody has curl'd the live site to confirm GitHub Pages serves it; verify headers and submission path on shieldboxsecurity.com |
+| 046 | P1 | closed | Production deploy of the CSP/quote-delivery fix is unverified | Verified live 2026-08-08 via curl: shieldboxsecurity.com/quote.html serves the CSP with connect-src formsubmit.co, self-hosted css/fonts.css (200), the formsubmit.co/ajax endpoint, and no Act-235 claim |
 | 047 | P0 | open | FormSubmit endpoint activation unconfirmed | formsubmit.co requires a one-time email activation by the inbox owner; until Carl clicks the activation link, every quote request silently fails with no visible error — send a test submission after activation to confirm end to end |
 
 ## Session Log
