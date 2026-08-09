@@ -1,3 +1,8 @@
+> **Historical document (March 2026), archived 2026-08-08.** Written against
+> the single-file architecture that predates the August 2026 split into
+> `css/` + `js/` and the separate `quote.html` form. Preserved for context
+> only — do not use as current guidance.
+
 # ShieldBox Post-Redesign Stabilization Plan
 
 ## Current State

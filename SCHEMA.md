@@ -1,19 +1,26 @@
 # ShieldBox Security — Design Schema
 
-Extracted from `index.html` and aligned with the canonical ShieldBox development file.
+Extracted from the deployed pages: `index.html`, `quote.html`, and
+`event-quote-request.html`.
 
 ---
 
-## Head: Google Fonts
+## Head: Fonts (self-hosted)
+
+All pages load fonts from the local stylesheet — never from Google's CDN:
 
 ```html
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link
-  rel="stylesheet"
-  href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Libre+Franklin:wght@300;400;500;600;700&display=swap"
-/>
+<link rel="stylesheet" href="css/fonts.css" />
 ```
+
+`css/fonts.css` carries the `@font-face` declarations for Libre Baskerville
+(400, 700) and Libre Franklin (300–700), pointing at woff2 files in `fonts/`.
+
+> **Warning — do not reintroduce remote Google Fonts links.** Every page ships
+> a Content Security Policy with `style-src 'self' 'unsafe-inline'` and
+> `font-src 'self' data:`. A `fonts.googleapis.com` stylesheet is blocked by
+> `style-src` and `fonts.gstatic.com` font files are blocked by `font-src`, so
+> a remote link fails silently and drops the site to fallback fonts.
 
 ---
 
@@ -280,40 +287,119 @@ body[data-theme="parchment"] {
 
 ---
 
-## Page Shell (DOM order)
+## Page Shells (DOM order, per page)
+
+### `index.html` — marketing home
 
 ```html
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="skip-link" href="quote.html">Skip to quote request</a>
 
-  <nav class="site-nav">...</nav>
+  <nav class="site-nav" aria-label="Main navigation">
+    <!-- .nav-links + .nav-panel mobile disclosure -->
+  </nav>
 
-  <section class="landing">...</section>
-  <div class="trust-strip">...</div>
-  <section class="services">...</section>
+  <section class="landing"><div class="landing-grid">...</div></section>
+  <section class="trust-strip" aria-label="ShieldBox service commitments">...</section>
+  <section class="brand-story" aria-label="ShieldBox local credibility">...</section>
+  <section class="gallery" aria-label="ShieldBox team in action">...</section>
+  <section class="services" id="services">...</section>
+  <section class="coverage-process" aria-labelledby="coverageProcessTitle">...</section>
 
-  <div class="section-divider"></div>
+  <div class="section-divider"><hr /></div>
 
-  <div class="quote-section" id="main">
+  <section class="quote-cta-banner" id="quoteStart" aria-labelledby="quoteCtaTitle">...</section>
+
+  <footer class="site-footer">...</footer>
+
+  <div class="mobile-action-dock" aria-label="Quick mobile actions">...</div>
+  <div id="toast" role="status" aria-atomic="true" hidden></div>
+
+  <script src="js/nav.js" defer></script>
+  <script><!-- page logic --></script>
+</body>
+```
+
+### `quote.html` — intake form
+
+```html
+<body>
+  <a class="skip-link" href="#intakeForm">Skip to intake form</a>
+
+  <nav class="site-nav" aria-label="Main navigation">...</nav>
+
+  <div class="quote-section quote-section-standalone" id="quoteStart">
     <div class="layout">
       <div class="stack">
-        <!-- section cards -->
+        <!-- section cards, including
+             <form id="intakeForm" class="intake-form" novalidate> -->
       </div>
-      <aside class="side-stack">
+      <aside class="side-stack" aria-label="Quick reference">
         <!-- sticky sidebar -->
       </aside>
     </div>
+    <div class="submission-confirmation" id="submissionConfirmation" hidden aria-hidden="true" inert>...</div>
   </div>
 
   <footer class="site-footer">...</footer>
 
-  <div id="toast" aria-live="polite" aria-atomic="true"></div>
+  <div id="toast" role="status" aria-live="polite" aria-atomic="true" hidden></div>
+
+  <script src="js/nav.js" defer></script>
+  <script><!-- form logic, pricing, submission --></script>
+</body>
+```
+
+### `event-quote-request.html` — static event brief preview
+
+```html
+<body data-theme="">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <nav class="site-nav" aria-label="Site navigation">...</nav>
+
+  <div class="shell">
+    <nav class="sidebar" aria-label="Page sections">...</nav>
+    <main class="main" id="main-content">...</main>
+  </div>
+
+  <footer class="site-footer"><div class="footer-inner">...</div></footer>
+
+  <div id="toast" role="status" aria-live="polite" hidden></div>
+
+  <script><!-- page logic (inline; this page has no js/nav.js) --></script>
 </body>
 ```
 
 ---
 
 ## Component Inventory
+
+### Page ownership
+
+| Component group | `index.html` | `quote.html` | `event-quote-request.html` |
+|---|---|---|---|
+| `.site-nav` (+ `.nav-panel` mobile disclosure) | ✓ | ✓ | ✓ (variant with `.nav-sep`, no `.nav-panel`) |
+| `.landing` / `.landing-grid` hero | ✓ | — | — |
+| `.trust-strip` | ✓ | — | — |
+| `.brand-story`, `.gallery` | ✓ | — | — |
+| `.services` / `.services-grid` | ✓ | — | — |
+| `.coverage-process` | ✓ | — | — |
+| `.quote-cta-banner` | ✓ | — | — |
+| `.mobile-action-dock` | ✓ | — | — |
+| `.quote-section` / `.layout` / `.stack` / `.side-stack` | — | ✓ | — |
+| `.intake-form` + validation/submission logic | — | ✓ | — |
+| `.submission-confirmation` | — | ✓ | — |
+| Section cards (`.section`, `.section-head`, `.property-grid`, `.check-grid`, `.risk-grid`, `.billing-table`, `.promise-card`, `.next-step`, `.simple-table`) | — | ✓ | ✓ (read-only variants) |
+| `.shell` / `.sidebar` / `.main` dashboard frame | — | — | ✓ |
+| `.site-footer` | ✓ | ✓ | ✓ (`.footer-inner` variant) |
+| `#toast` | ✓ | ✓ | ✓ |
+
+Stylesheet ownership: `css/fonts.css` loads on all three pages;
+`css/shared.css` on `index.html` and `quote.html`; `css/marketing.css` on
+`index.html` only; `css/quote-form.css` on `quote.html` only;
+`event-quote-request.html` styles itself with an inline `<style>` block on top
+of `css/fonts.css`. `js/nav.js` loads on `index.html` and `quote.html`.
 
 ```
 GLOBAL

@@ -1,6 +1,8 @@
 # CLAUDE.md
 
-Inherits root rules from `/Users/daverobertson/Desktop/Code/AGENTS.md`.
+Inherits root rules from the workspace-level `AGENTS.md` at the Code
+workspace root (machine-specific path; this repo is public, so absolute
+local paths do not belong here).
 
 ## Project Overview
 
@@ -22,23 +24,28 @@ governing doc.
 
 ## Stack
 
-- Static HTML + inline CSS + inline JS (single file index.html)
-- Eight theme variants: default, editorial, slate, obsidian, arctic, midnight, concrete, parchment
+- Static HTML with external CSS in `css/` (`fonts.css`, `shared.css`,
+  `marketing.css` for index, `quote-form.css` for the form) and shared nav
+  JS in `js/nav.js`; page-specific logic stays inline per page
+- Fonts self-hosted from `fonts/` via `css/fonts.css` — the CSP blocks
+  remote font CDNs (see SCHEMA.md)
 - Token based design system documented in SCHEMA.md
 - GitHub Pages hosting
 - No build step, no bundler, no framework
 
 ## Key Decisions
 
-- Single file architecture; all form logic, pricing, and styles inline
-- Multi theme support via body[data-theme] attribute and CSS custom property overrides
+- Split architecture: shared design system in `css/`, per-page stylesheets,
+  and the intake form with all its logic living in `quote.html`
 - Full design token contract: components reference tokens, no hardcoded colors
-- Archives directory preserves the build evolution across different AI tools, including the pre-audit v4 snapshot
+- Every page ships a strict Content Security Policy; `quote.html` additionally
+  allows `connect-src https://formsubmit.co` for quote delivery
 
 ## Documentation Maintenance
 
 - **Issues**: Track in the issue tracker table below
-- **Session log**: Append to `/Users/daverobertson/Desktop/Code/95-docs-personal/today.csv` after each meaningful change
+- **Session log**: Append to the Session Log section at the bottom of this
+  file after each meaningful change
 
 ## Issue Tracker
 
@@ -89,6 +96,8 @@ governing doc.
 | 043 | P0 | closed | Quote delivery blocked by CSP and accepted ambiguous HTTP 200 responses | Allowed only the required FormSubmit connection origin and now requires an explicit JSON acceptance response |
 | 044 | P0 | closed | Public Act 235 certification claim lacked documented proof and publication approval | Removed the claim from every deployed page pending approved evidence |
 | 045 | P1 | closed | Submission states could imply delivery and lacked an accessible retry path | Added bounded timeout, fail-closed copy, form/button busy states, assertive errors, and explicit retry state |
+| 046 | P1 | open | Production deploy of the CSP/quote-delivery fix is unverified | The 2026-08-06 fix is committed but nobody has curl'd the live site to confirm GitHub Pages serves it; verify headers and submission path on shieldboxsecurity.com |
+| 047 | P0 | open | FormSubmit endpoint activation unconfirmed | formsubmit.co requires a one-time email activation by the inbox owner; until Carl clicks the activation link, every quote request silently fails with no visible error — send a test submission after activation to confirm end to end |
 
 ## Session Log
 
@@ -103,3 +112,4 @@ governing doc.
 [2026-04-10] [ShieldBox] [ops] Cleanup pass: removed stray duplicate preview file and realigned preview motion tokens with `SCHEMA.md`
 [2026-08-06] [ShieldBox] [fix] Restore quote delivery CSP path, require explicit service acceptance, add accessible timeout/retry states, and remove unverified certification claims
 [2026-08-07] [ShieldBox] [conversion] Refactor homepage hero, trust proof, coverage process, quote CTAs, local SEO copy, and analytics-ready action attributes
+[2026-08-08] [ShieldBox] [docs] Align docs with the split architecture: self-hosted fonts contract + per-page shells + page ownership table in SCHEMA.md; CLAUDE.md stack/path corrections; opened 046/047; archived March work orders; removed unreferenced BoxPics originals; added quote.html to sitemap

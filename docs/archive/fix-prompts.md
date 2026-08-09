@@ -1,3 +1,8 @@
+> **Historical document (March 2026), archived 2026-08-08.** These prompts
+> were all executed in March 2026 (see the CLAUDE.md issue tracker, issues 001–021)
+> against the single-file architecture. Preserved for context only — do not
+> re-run.
+
 # ShieldBox Fix Prompts — 5 Phases
 
 Each phase is a self-contained prompt you can hand to Claude or Codex.
