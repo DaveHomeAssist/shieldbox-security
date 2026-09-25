@@ -116,3 +116,16 @@ governing doc.
 [2026-08-07] [ShieldBox] [conversion] Refactor homepage hero, trust proof, coverage process, quote CTAs, local SEO copy, and analytics-ready action attributes
 [2026-08-08] [ShieldBox] [docs] Align docs with the split architecture: self-hosted fonts contract + per-page shells + page ownership table in SCHEMA.md; CLAUDE.md stack/path corrections; opened 046/047; archived March work orders; removed unreferenced BoxPics originals; added quote.html to sitemap
 [2026-08-08] [ShieldBox] [docs] SCHEMA truth pass: mark theme system dormant (no switcher ships, no page sets data-theme), drop .theme-switcher from inventory, correct sidebar 292→320px on quote.html, trust strip 5-col/≤980px collapse, and the real print hide-list
+
+## Status naming
+
+Name work with one string everywhere (chat status title, session title, Notion
+Status Check Runs "Human Name"):
+
+`Project | 🚦 | Phase | Title → state, reason | MM-DD`
+
+- 🚦: 🟢 complete and verified · 🟡 partial · 🔴 not started, blocked or failed · ⚪ unverifiable.
+  Add ⏳ scheduled, 🙋 awaiting Dave or 🚧 blocked to 🟡/🔴/⚪, never to 🟢.
+- Phase: Research, Design, Build, Audit or Scheduled. MM-DD: date of the latest light change.
+- Every light change gets a new name: a `RENAME:` line in chat and the Notion row updated.
+- Canonical source: https://github.com/DaveHomeAssist/skills/blob/master/status-naming.md
